@@ -1,37 +1,93 @@
-{% extends 'base.html' %}
-
-{% block body %}
-<div class="container">
-    <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Label</th>
-            <th scope="col">Category</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Price</th>
-            <th scope="col">Action</th>
-          </tr>
-        </thead>
-        <tbody>
-        {% for list in products %}
-          <tr>
-            <th scope="row">{{list.id}}</th>
-            <td>{{list.label}}</td>
-            <td>{{list.category}}</td>
-            <td>{{list.quantity}}</td>
-            <td>{{list.price}}</td>
-            <td>
-                <a href="{% url 'view-product' list.id %}" class="btn btn-success">View</button>
-                <a href="{% url 'update-product' list.id %}" class="btn btn-warning">Update</button>
-                <a href="{% url 'delete-product' list.id %}" class="btn btn-danger">Delete</button>
-            </td>
-          </tr>
-        {% endfor %}
-        </tbody>
-      </table>
-
-
-      <a href="{% url 'create-product' %}" class="btn btn-primary">Add Product</button>
-</div>
+{% extends 'base.html' %} {% block body %}
+<section class="section">
+  <div class="container-fluid">
+    <!-- ========== title-wrapper start ========== -->
+    <div class="title-wrapper pt-30">
+      <div class="row align-items-center">
+        <div class="col-md-6">
+          <div class="title mb-30">
+            <h2>Inventory Dashboard</h2>
+          </div>
+        </div>
+        <!-- end col -->
+        <div class="col-md-6">
+          <div class="breadcrumb-wrapper mb-30">
+            <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                  <a href="/">Dashboard</a>
+                </li>
+                <li class="breadcrumb-item active" aria-current="page">
+                  Inventory
+                </li>
+              </ol>
+            </nav>
+          </div>
+        </div>
+        <!-- end col -->
+      </div>
+      <!-- end row -->
+    </div>
+    <!-- ========== title-wrapper end ========== -->
+    <div class="row">
+      <div class="col-xl-3 col-lg-4 col-sm-6">
+        <div class="icon-card mb-30">
+          <div class="icon purple">
+            <i class="lni lni-cart-full"></i>
+          </div>
+          <div class="content">
+            <h6 class="mb-10">New Orders</h6>
+            <h3 class="text-bold mb-10">{{products}}</h3>
+          </div>
+        </div>
+        <!-- End Icon Cart -->
+      </div>
+      <!-- End Col -->
+      <div class="col-xl-3 col-lg-4 col-sm-6">
+        <div class="icon-card mb-30">
+          <div class="icon success">
+            <i class="lni lni-dollar"></i>
+          </div>
+          <div class="content">
+            <h6 class="mb-10">Total Sales</h6>
+            <h3 class="text-bold mb-10">$74,567</h3>
+          </div>
+        </div>
+        <!-- End Icon Cart -->
+      </div>
+      <!-- End Col -->
+      <div class="col-xl-3 col-lg-4 col-sm-6">
+        <div class="icon-card mb-30">
+          <div class="icon primary">
+            <i class="lni lni-credit-cards"></i>
+          </div>
+          <div class="content">
+            <h6 class="mb-10">Total Inquiries</h6>
+            <h3 class="text-bold mb-10">$24,567</h3>
+          </div>
+        </div>
+        <!-- End Icon Cart -->
+      </div>
+      <!-- End Col -->
+      <div class="col-xl-3 col-lg-4 col-sm-6">
+        <div class="icon-card mb-30">
+          <div class="icon orange">
+            <i class="lni lni-user"></i>
+          </div>
+          <div class="content">
+            <h6 class="mb-10">Total Bookings</h6>
+            <h3 class="text-bold mb-10">34567</h3>
+          </div>
+        </div>
+        <!-- End Icon Cart -->
+      </div>
+      <!-- End Col -->
+    </div>
+    
+    {% include "dashboard/table.html" %}
+    {% include "dashboard/products.html" %}
+    <!-- End Row -->
+  </div>
+  <!-- end container -->
+</section>
 {% endblock %}

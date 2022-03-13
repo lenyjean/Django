@@ -6,7 +6,8 @@ from .forms import *
 # Create your views here.
 def homepage(request):
     template_name = "dashboard/homepage.html"
-    products = Products.objects.all()
+    products = Products.objects.all().count()
+    
     context = {
         "products": products
     }
