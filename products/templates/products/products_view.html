@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Category</th>
+            <th scope="col">Price</th>
+            <th scope="col">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for list in products %}
+              <tr>
+                <th scope="row">{{list.id}}</th>
+                <td>{{list.product_name}}</td>
+                <td>{{list.category}}</td>
+                <td>{{list.price}}</td>
+                <td>{{list.status}}</td>
+              </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

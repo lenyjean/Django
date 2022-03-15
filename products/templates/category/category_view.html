@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Category</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for list in category %}
+              <tr>
+                <th scope="row">{{list.id}}</th>
+                <td>{{list.category}}</td>
+              </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% endblock %}

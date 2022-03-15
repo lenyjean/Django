@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+
+{% block body %}
+<div class="container">
+    <table class="table">
+        <thead>
+          <tr>
+            <th scope="col">#</th>
+            <th scope="col">Product Name</th>
+            <th scope="col">Category</th>
+            <th scope="col">Price</th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+            {% for list in products %}
+              <tr>
+                <th scope="row">{{list.id}}</th>
+                <td>{{list.product_name}}</td>
+                <td>{{list.category}}</td>
+                <td>{{list.price}}</td>
+                <td>{{list.status}}</td>
+                <td>
+                    <a href="{% url 'products-view' list.id %}" class="btn btn-success">View</button>
+                    <a href="{% url 'products-update' list.id %}" class="btn btn-warning">Update</button>
+                    <a href="{% url 'products-delete' list.id %}" class="btn btn-danger">Delete</button>
+                    
+                </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+
+      </table>
+
+      <a href="{% url 'products-add' %}" class="btn btn-primary">Create New Product</a>
+</div>
+{% endblock %}
