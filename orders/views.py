@@ -5,7 +5,7 @@ from orders.models import *
 from .forms import *
 
 # Create your views here.
-def orders(request):
+def orders_list(request):
     template_name = "orders/orders_list.html"
     orders = Orders.objects.all()
     context = {
