@@ -22,11 +22,15 @@
 </head>
 
 <body>
-  {% include "sidenav.html" %}
+  {% if user.is_authenticated %}
+    {% include "sidenav.html" %}
+  {% endif %}
 
   <!-- ======== main-wrapper start =========== -->
   <main class="main-wrapper">
-   {%  include 'navbar.html' %}
+  {% if user.is_authenticated %}
+    {%  include 'navbar.html' %}
+  {% endif %}
 
     <!-- ========== section start ========== -->
     {% block body %}
