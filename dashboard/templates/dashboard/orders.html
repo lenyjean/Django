@@ -1,7 +1,19 @@
-<div class="card shadow rounded mt-5">
+<div class="card shadow rounded" style="font-size:  12px;">
     <div class="card-body">
         <table class="table table-striped">
-            <h3 class="text-bold mb-10"></h3>
+            <ul class="nav">
+                <li class="nav-item">
+                  <p class="nav-link active text-muted">Top 5 Orders</p>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link text-decoration-none" href="{% url "orders-list" %}">
+                        View orders
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-right" viewBox="0 0 16 16">
+                          <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
+                        </svg>
+                      </a>
+                </li>
+              </ul>
             <thead>
                 <tr class="text-center">
                     <th  scope="col">ID </th>

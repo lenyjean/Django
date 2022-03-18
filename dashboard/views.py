@@ -10,9 +10,13 @@ def homepage(request):
     template_name = "dashboard/homepage.html"
     orders = Orders.objects.all()[:5]
     products = Products.objects.all()[:5]
+
+    total_orders = Orders.objects.all().count()
+    
     context = {
         "orders" : orders,
-        "products" : products
+        "products" : products,
+        "total_orders" : total_orders
     }
     return render(request, template_name, context)
 

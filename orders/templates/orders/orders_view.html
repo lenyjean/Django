@@ -1,38 +1,36 @@
-{% extends 'base.html' %}
+{% extends 'base.html' %} {% block body %}
 
-{% block body %}
+
 <div class="container p-4">
-    <table class="table table-striped bg-white p-3">
-        <thead>
-          <tr class="text-center">
-            <th scope="col">#</th>
-            <th scope="col">Customer Name</th>
-            <th scope="col">Customer Address</th>
-            <th scope="col">Product</th>
-            <th scope="col">No. of Order</th>
-            <th scope="col">Total Amount</th>
-            <th scope="col">Date Ordered</th>
-            <th scope="col">Pickup Date</th>
-            <th scope="col">Processed By</th>
-            <th scope="col">Status</th>
-          </tr>
-        </thead>
-        <tbody>
-            {% for list in orders %}
-              <tr class="text-center">
-                <th scope="row">{{list.id}}</th>
-                <td>{{list.customer_name}}</td>
-                <td>{{list.customer_address}}</td>
-                <td>{{list.products}}</td>
-                <td>{{list.no_of_order}}</td>
-                <td>{{list.total_amount}}</td>
-                <td>{{list.date_ordered}}</td>
-                <td>{{list.pickup_date}}</td>
-                <td>{{list.processed_by}}</td>
-                <td>{{list.status}}</td>
-              </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+  <a href="{% url 'orders-list' %}" class="text-decoration-none">
+    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-arrow-left" viewBox="0 0 16 16">
+      <path fill-rule="evenodd" d="M15 8a.5.5 0 0 0-.5-.5H2.707l3.147-3.146a.5.5 0 1 0-.708-.708l-4 4a.5.5 0 0 0 0 .708l4 4a.5.5 0 0 0 .708-.708L2.707 8.5H14.5A.5.5 0 0 0 15 8z"/>
+    </svg>
+    Back to order list
+  </a>
+  <div class="row">
+    <div class="col-sm col-md-6 col-lg-6">
+      <div class="card shadow rounded p-3">
+        {% for detail in orders %}
+        <div class="card-title">
+            Product: {{detail.products}}
+        </div>
+        <div class="card-body">
+          <ul class="list-group list-group-flush">
+            <li class="list-group-item">Customer Name: {{detail.customer_name}}</li>
+            <li class="list-group-item">Customer Address: {{detail.customer_address}}</li>
+            <li class="list-group-item">Quantity: {{detail.no_of_order}}</li>
+            <li class="list-group-item">Date Ordered: {{detail.date_ordered}}</li>
+            <li class="list-group-item">Pickup Date: {{detail.pickup_date}}</li>
+            <li class="list-group-item">Total Amount: ₱ {{detail.total_amount}}</li>
+            <li class="list-group-item">Processed By: {{detail.processed_by}}</li>
+            <li class="list-group-item">Status: {{detail.status}}</li>
+          </ul>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+    <div class="col-sm col-md-6 col-lg-6"></div>
+  </div>
 </div>
 {% endblock %}

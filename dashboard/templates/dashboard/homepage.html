@@ -33,8 +33,8 @@
             <i class="lni lni-cart-full"></i>
           </div>
           <div class="content">
-            <h6 class="mb-10">New Orders</h6>
-            <h3 class="text-bold mb-10"></h3>
+            <h6 class="mb-10">Total Orders</h6>
+            <h3 class="text-bold mb-10">{{total_orders}}</h3>
           </div>
         </div>
         <!-- End Icon Cart -->
@@ -47,7 +47,7 @@
           </div>
           <div class="content">
             <h6 class="mb-10">Total Sales</h6>
-            <h3 class="text-bold mb-10"></h3>  
+            <h3 class="text-bold mb-10">Soon</h3>
           </div>
         </div>
         <!-- End Icon Cart -->
@@ -60,7 +60,7 @@
           </div>
           <div class="content">
             <h6 class="mb-10">Total Inquiries</h6>
-            <h3 class="text-bold mb-10">$24,567</h3>
+            <h3 class="text-bold mb-10">Soon</h3>
           </div>
         </div>
         <!-- End Icon Cart -->
@@ -73,16 +73,20 @@
           </div>
           <div class="content">
             <h6 class="mb-10">Total Bookings</h6>
-            <h3 class="text-bold mb-10">34567</h3>
+            <h3 class="text-bold mb-10">Soon</h3>
           </div>
         </div>
         <!-- End Icon Cart -->
       </div>
       <!-- End Col -->
     </div>
-    
-    {% include "dashboard/products.html" %}
-    {% include "dashboard/orders.html" %}
+
+    <div class="dashboard-products">
+      {% include "dashboard/products.html" %}
+    </div>
+    <div class="dashboard-orders mt-5">
+      {% include "dashboard/orders.html" %}
+    </div>
     <!-- End Row -->
   </div>
   <!-- end container -->
