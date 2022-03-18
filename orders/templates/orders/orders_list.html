@@ -2,7 +2,8 @@
 
 {% block body %}
 <div class="container mt-5 p-0" style="font-size: 12px;">
-  <a href="{% url 'orders-add' %}" class="btn btn-primary"style="font-size: 12px;">Create New Order</a>
+  <div class="card p-5 shadow-lg p-3 mb-5 bg-white rounded" style="width: 70rem;">
+  <a href="{% url 'orders-add' %}" class="btn btn-primary w-25"style="font-size: 12px;">Create New Order</a>
     <table class="table table-striped bg-white p-3">
         <thead>
           <tr class="text-center">
@@ -43,6 +44,7 @@
             </tbody>
       </table>
 
-     
+     </div>
+
 </div>
 {% endblock %}

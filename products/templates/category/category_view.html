@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<div class="container">
-    <table class="table">
+
+  <div class="container p-4">
+    <div class="card p-5 shadow-lg p-3 mb-5 bg-white rounded" style="width: 60rem;">
+      <table class="table table-striped bg-white p-3">
         <thead>
           <tr>
             <th scope="col">#</th>
@@ -12,11 +14,12 @@
         <tbody>
             {% for list in category %}
               <tr>
-                <th scope="row">{{forloop.counter}}</th>
+                <th scope="row">{{list.id}}</th>
                 <td>{{list.category}}</td>
               </tr>
             {% endfor %}
         </tbody>
     </table>
+    </div>
 </div>
 {% endblock %}

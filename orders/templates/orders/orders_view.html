@@ -1,10 +1,10 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<div class="container">
-    <table class="table">
+<div class="container p-4">
+    <table class="table table-striped bg-white p-3">
         <thead>
-          <tr>
+          <tr class="text-center">
             <th scope="col">#</th>
             <th scope="col">Customer Name</th>
             <th scope="col">Customer Address</th>
@@ -19,8 +19,8 @@
         </thead>
         <tbody>
             {% for list in orders %}
-              <tr>
-                <th scope="row">{{forloop.counter}}</th>
+              <tr class="text-center">
+                <th scope="row">{{list.id}}</th>
                 <td>{{list.customer_name}}</td>
                 <td>{{list.customer_address}}</td>
                 <td>{{list.products}}</td>

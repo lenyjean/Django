@@ -1,10 +1,11 @@
 {% extends 'base.html' %}
 
 {% block body %}
-<div class="container">
-    <table class="table">
+<div class="container p-4">
+  <div class="card p-5 shadow-lg p-3 mb-5 bg-white rounded" style="width: 60rem;">
+    <table class="table table-striped bg-white p-3">
         <thead>
-          <tr>
+          <tr class="text-center">
             <th scope="col">#</th>
             <th scope="col">Product Name</th>
             <th scope="col">Category</th>
@@ -14,8 +15,8 @@
         </thead>
         <tbody>
             {% for list in products %}
-              <tr>
-                <th scope="row">{{forloop.counter}}</th>
+              <tr class="text-center">
+                <th scope="row">{{list.id}}</th>
                 <td>{{list.product_name}}</td>
                 <td>{{list.category}}</td>
                 <td>{{list.price}}</td>
@@ -24,5 +25,6 @@
             {% endfor %}
         </tbody>
     </table>
+  </div>
 </div>
 {% endblock %}
