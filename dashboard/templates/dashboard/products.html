@@ -1,6 +1,27 @@
-<div class="card shadow rounded">
-    <div class="card-body">
-        
-    </div>
-  </div>
-  
+<div class="card shadow rounded mt-3 mb-3">
+  <div class="card-body">
+    <table class="table table-striped">
+      <p class="text-uppercase font-weight-bold">Top 5 Products</p>
+      <h3 class="text-bold mb-10"></h3>
+      <thead>
+        <tr class="text-center">
+          <th scope="col">ID</th>
+          <th scope="col">Product Name</th>
+          <th scope="col">Category</th>
+          <th scope="col">Price</th>
+          <th scope="col">Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for list in products %}
+          <tr class="text-center">
+            <th scope="row">{{forloop.counter}}</th>
+            <td>{{list.product_name}}</td>
+            <td>{{list.category}}</td>
+            <td>{{list.price}}</td>
+            <td>{{list.status}}</td>
+          </tr>
+        {% endfor %}
+        </tbody>
+  </table>
+</div>

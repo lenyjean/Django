@@ -15,7 +15,7 @@
       <tbody>
       {% for list in category %}
         <tr class="text-center">
-          <th scope="row">{{list.id}}</th>
+          <th scope="row">{{forloop.counter}}</th>
           <td>{{list.category}}</td>
           <td>
               <a href="{% url 'category-view' list.id %}" class="btn btn-success">View</button>

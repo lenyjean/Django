@@ -12,7 +12,7 @@
         <tbody>
             {% for list in category %}
               <tr>
-                <th scope="row">{{list.id}}</th>
+                <th scope="row">{{forloop.counter}}</th>
                 <td>{{list.category}}</td>
               </tr>
             {% endfor %}

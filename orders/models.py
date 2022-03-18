@@ -22,4 +22,4 @@ class Orders(models.Model):
         verbose_name = "Orders"
 
     def __str__(self):
-        return f"Customer Name: {self.customer_name} | Order: {self.product.product_name}"
+        return f"Customer Name: {self.customer_name}"

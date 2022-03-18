@@ -7,7 +7,7 @@
     <table class="table table-striped bg-white p-3">
         <thead>
           <tr class="text-center">
-            <th scope="col">#</th>
+            <th scope="col">ID</th>
             <th scope="col">Product Name</th>
             <th scope="col">Category</th>
             <th scope="col">Price</th>
@@ -18,7 +18,7 @@
         <tbody>
             {% for list in products %}
               <tr class="text-center">
-                <th scope="row">{{list.id}}</th>
+                <th scope="row">{{forloop.counter}}</th>
                 <td>{{list.product_name}}</td>
                 <td>{{list.category}}</td>
                 <td>{{list.price}}</td>

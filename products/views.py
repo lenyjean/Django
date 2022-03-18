@@ -51,7 +51,7 @@ def category_delete(request, pk):
 
 def products(request):
    template_name = "products/products_list.html"
-   products = Products.objects.all()
+   products = Products.objects.all()[:5]
    context = {
        "products" : products
    }

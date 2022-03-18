@@ -22,7 +22,7 @@
         <tbody>
             {% for list in orders %}
               <tr class="text-center">
-                <th scope="row">{{list.id}}</th>
+                <th scope="row">{{forloop.counter}}</th>
                 <td>{{list.customer_name}}</td>
                 <td>{{list.customer_address}}</td>
                 <td>{{list.products}}</td>
