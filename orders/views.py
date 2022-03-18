@@ -1,10 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
-
+from django.contrib.auth.decorators import login_required
 from orders.models import *
 
 from .forms import *
 
 # Create your views here.
+@login_required
 def orders_list(request):
     template_name = "orders/orders_list.html"
     orders = Orders.objects.all()
@@ -13,6 +14,7 @@ def orders_list(request):
     }
     return render (request, template_name, context)
 
+@login_required
 def orders_add(request):
     template_name = "orders/orders_add.html"
     form = OrderForms(request.POST or None)
@@ -24,7 +26,7 @@ def orders_add(request):
     }
     return render (request, template_name, context)
 
-
+@login_required
 def orders_view(request, pk):
      template_name = "orders/orders_view.html"
      orders = Orders.objects.filter(id=pk)
@@ -33,6 +35,7 @@ def orders_view(request, pk):
      }
      return render (request, template_name, context)
 
+@login_required
 def orders_update(request, pk):
     template_name = "orders/orders_update.html"
     orders = get_object_or_404(Orders, pk=pk)
@@ -45,6 +48,7 @@ def orders_update(request, pk):
     }
     return render (request, template_name, context)
 
+@login_required
 def orders_delete(request, pk):
      orders = Orders.objects.filter(id=pk)
      orders.delete()
