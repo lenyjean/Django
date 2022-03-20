@@ -25,7 +25,7 @@
         />
       </svg>
     </a>
-    <table class="table table-striped bg-white p-3">
+    <table class="table table-striped bg-white p-3" id="productsTable" style="font-size: 11px;">
       <thead>
         <tr class="text-center">
           <th scope="col">ID</th>
@@ -117,4 +117,20 @@
     </table>
   </div>
 </div>
+
+<script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+<script
+  type="text/javascript"
+  charset="utf8"
+  src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"
+></script>
+<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.6/js/responsive.bootstrap4.min.js"></script>
+
+<script>
+  $(document).ready(function () {
+    $("#productsTable").DataTable();
+  });
+</script>
 {% endblock %}
