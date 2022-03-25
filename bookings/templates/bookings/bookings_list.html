@@ -14,9 +14,9 @@
     <table class="table table-striped bg-white p-3" id="bookingsTable" style="font-size: 11px;">
       <thead>
         <tr class="text-center">
-          <th scope="col">ID</th>
+          <th scope="col">#</th>
           <th scope="col">Customer Name</th>
-          <th scope="col">Product</th>
+          <th scope="col">Product Ordered</th>
           <th scope="col">Category</th>
           <th scope="col">Pickup Date</th>
           <th scope="col">Status</th>
@@ -28,7 +28,7 @@
         <tr class="text-center">
           <th scope="row">{{forloop.counter}}</th>
           <td>{{list.customer_name}}</td>
-          <td>{{list.products}}</td>
+          <td>{{list.product_ordered}}</td>
           <td>{{list.category}}</td>
           <td>{{list.pickup_date}}</td>
           <td>{{list.status}}</td>
