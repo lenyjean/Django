@@ -23,41 +23,41 @@
   <div
     class="card p-5 shadow-lg p-3 mb-5 bg-white rounded text-decoration-none"
   >
-      <div class="row">
-       <div class="col-8">
+    <div class="row">
+      <div class="col-8">
         <a
-      href="{% url 'products-add' %}"
-      class="btn btn-primary w-25"
-      style="font-size: 12px"
+          href="{% url 'products-add' %}"
+          class="btn btn-primary w-25"
+          style="font-size: 12px"
+        >
+          Create New Product
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-plus-lg"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"
+            />
+          </svg>
+        </a>
+      </div>
+      <div class="col-4">
+        <div
+          id="printBtn"
+          style="float: right; font-size: 10px; margin-bottom: 5px"
+        ></div>
+      </div>
+    </div>
+    <table
+      class="table table-striped bg-white p-3"
+      id="productsTable"
+      style="font-size: 11px"
     >
-      Create New Product
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        fill="currentColor"
-        class="bi bi-plus-lg"
-        viewBox="0 0 16 16"
-      >
-      <path
-      fill-rule="evenodd"
-      d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"
-    />
-    </svg>
-    </a>
-  </div>
-  <div class="col-4">
-    <div
-      id="printBtn"
-      style="float: right; font-size: 10px; margin-bottom: 5px"
-    ></div>
-  </div>
-</div>
-<table
-  class="table table-striped bg-white p-3"
-  id="productsTable"
-  style="font-size: 11px"
->
       <thead>
         <tr class="text-center">
           <th scope="col">#</th>
@@ -76,7 +76,7 @@
           <td>{{list.category}}</td>
           <td>{{list.price}}</td>
           <td>{{list.status}}</td>
-          <td>
+          <td colspan="5">
             <a
               href="{% url 'products-view' list.id %}"
               class="bg-success p-1 text-white rounded"
