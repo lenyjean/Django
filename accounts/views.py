@@ -6,11 +6,11 @@ from django.views.generic import CreateView
 from .models import *
 from .forms import *
 # Create your views here.
-# def accounts(request):
-#     template_name = "user_accounts/accounts.html"
-#     accounts = Accounts.objects.all()
-#     context = {}
-#     return render (request. template_name, context)
+def accounts(request):
+    template_name = "user_accounts/accounts.html"
+    accounts = User.objects.all()
+    context = {"accounts":accounts}
+    return render (request, template_name, context)
 
 class AdminSignUpView(CreateView):
     model = User

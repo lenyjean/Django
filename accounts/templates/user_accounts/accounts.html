@@ -11,7 +11,7 @@
       class="btn btn-primary w-25"
       style="font-size: 12px"
     > -->
-      Create New Account
+      Add New Account
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="16"
@@ -35,7 +35,7 @@
           <th scope="col">Email</th>
           <th scope="col">Username</th>
           <th scope="col">Date Joined</th>
-          <th scope="col">Last Joined</th>
+          <th scope="col">Last Logged In</th>
           <th scope="col">Actions</th>
         </tr>
       </thead>
@@ -43,7 +43,7 @@
         {% for list in accounts %}
         <tr class="text-center">
           <th scope="row">{{forloop.counter}}</th>
-          <td>{{list.last_name}}</td>
+          <td>{{list.last_name|default_if_none:"Not Available"}}</td>
           <td>{{list.first_name}}</td>
           <td>{{list.email}}</td>
           <td>{{list.username}}</td>

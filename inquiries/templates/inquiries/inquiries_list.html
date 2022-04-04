@@ -1,36 +1,17 @@
 {% extends 'base.html' %} {% block body %}
-<link
-  rel="stylesheet"
-  type="text/css"
-  href="https://cdn.datatables.net/v/bs5/dt-1.11.5/datatables.min.css"
-/>
 
-{% comment %}
-<link
-  rel="stylesheet"
-  type="text/css"
-  href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"
-/>
-{% endcomment %}
-<link
-  rel="stylesheet"
-  type="text/css"
-  href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css"
-/>
-<div class="container-fluid
-  mt-5 p-0" style="font-size: 12px;">
-  <h2>Categories</h2>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+<div class="container-fluid mt-5 p-0" style="font-size: 12px">
+  <h2>Bookings</h2>
   <div
     class="card p-5 shadow-lg p-3 mb-5 bg-white rounded text-decoration-none"
   >
-      <div class="row">
-       <div class="col-8">
-        <a
-      href="{% url 'category-add' %}"
+    <!-- <a
+      href="{% url 'orders-add' %}"
       class="btn btn-primary w-25"
       style="font-size: 12px"
-    >
-      Add New Category
+    > -->
+      Create New Inquiries
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="16"
@@ -45,34 +26,30 @@
         />
       </svg>
     </a>
-  </div>
-  <div class="col-4">
-    <div
-      id="printBtn"
-      style="float: right; font-size: 10px; margin-bottom: 5px"
-    ></div>
-  </div>
-</div>
-<table
-  class="table table-striped bg-white p-3"
-  id="categoryTable"
-  style="font-size: 11px"
->
+    <table class="table table-striped bg-white p-3" id="inquiriesTable" style="font-size: 11px;">
       <thead>
         <tr class="text-center">
-          <th scope="col">#</th>
+          <th scope="col">ID</th>
+          <th scope="col">Customer Name</th>
+          <th scope="col">Product</th>
           <th scope="col">Category</th>
+          <th scope="col">Pickup Date</th>
+          <th scope="col">Status</th>
           <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
-        {% for list in category %}
+        {% for list in inquiries %}
         <tr class="text-center">
           <th scope="row">{{forloop.counter}}</th>
+          <td>{{list.customer_name}}</td>
+          <td>{{list.products}}</td>
           <td>{{list.category}}</td>
-          <td>
+          <td>{{list.pickup_date}}</td>
+          <td>{{list.status}}</td>
+          <!-- <td>
             <a
-              href="{% url 'category-view' list.id %}"
+              href="{% url 'orders-view' list.id %}"
               class="bg-success p-1 text-white rounded"
               style="font-size: 12px"
             >
@@ -93,7 +70,7 @@
               </svg>
             </a>
             <a
-              href="{% url 'category-update' list.id %}"
+              href="{% url 'orders-update' list.id %}"
               class="bg-warning p-1 text-white rounded"
               style="font-size: 12px"
             >
@@ -115,7 +92,7 @@
               </svg>
             </a>
             <a
-              href="{% url 'category-delete' list.id %}"
+              href="{% url 'orders-delete' list.id %}"
               class="bg-danger p-1 text-white rounded"
               style="font-size: 12px"
             >
@@ -136,7 +113,7 @@
                 />
               </svg>
             </a>
-          </td>
+          </td> -->
         </tr>
         {% endfor %}
       </tbody>
@@ -147,74 +124,16 @@
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script
   type="text/javascript"
-  src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"
+  charset="utf8"
+  src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"
 ></script>
-<script
-  type="text/javascript"
-  src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"
-></script>
-<script
-  type="text/javascript"
-  src="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.11.5/b-2.2.2/b-html5-2.2.2/b-print-2.2.2/fh-3.2.2/r-2.2.9/datatables.min.js"
-></script>
+<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
+<script src="https://cdn.datatables.net/responsive/2.2.6/js/responsive.bootstrap4.min.js"></script>
 
 <script>
   $(document).ready(function () {
-    var table = $("#categoryTable").DataTable({
-      lengthMenu: [
-        [5, 10, 25, 50, -1],
-        [5, 10, 25, 50, "All"],
-      ],
-      dom: "Blfrtip",
-      buttons: [
-        {
-          extend: "excelHtml5",
-          text: '<i class="fas fa-file-excel"></i> Excel',
-          titleAttr: "Excel",
-          exportOptions: {
-            columns: [0, 1, 2, 5, 6, 7, 8, 9],
-          },
-          filename: function () {
-            var today = new Date();
-            var date =
-              today.getFullYear() +
-              "-" +
-              (today.getMonth() + 1) +
-              "-" +
-              today.getDate();
-            return "stsweb-report-" + date;
-          },
-        },
-        {
-          extend: "print",
-          text: '<i class="fas fa-print"></i> Print',
-          titleAttr: "Print",
-          customize: function (win) {
-            $(win.document.body).css("font-size", "12px");
-
-            $(win.document.body)
-              .find("table")
-              .addClass("compact")
-              .css("font-size", "12px");
-          },
-          exportOptions: {
-            columns: [0, 1, 2, 5, 6, 7, 8, 9],
-          },
-          filename: function () {
-            var today = new Date();
-            var date =
-              today.getFullYear() +
-              "-" +
-              (today.getMonth() + 1) +
-              "-" +
-              today.getDate();
-            return "stsweb-report-" + date;
-          },
-        },
-      ],
-    });
-
-    table.buttons().container().appendTo($("#printBtn"));
+    $("#inquiriesTable").DataTable();
   });
 </script>
 
