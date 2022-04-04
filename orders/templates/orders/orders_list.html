@@ -1,32 +1,63 @@
 {% extends 'base.html' %} {% block body %}
 
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
-<div class="container-fluid mt-5 p-0" style="font-size: 12px">
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="https://cdn.datatables.net/v/bs5/dt-1.11.5/datatables.min.css"
+/>
+
+{% comment %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css"
+/>
+{% endcomment %}
+<link
+  rel="stylesheet"
+  type="text/css"
+  href="https://cdn.datatables.net/buttons/2.2.2/css/buttons.dataTables.min.css"
+/>
+<div class="container-fluid mt-2 p-0" style="font-size: 12px">
   <h2>Orders</h2>
   <div
     class="card p-5 shadow-lg p-3 mb-5 bg-white rounded text-decoration-none"
   >
-    <a
-      href="{% url 'orders-add' %}"
-      class="btn btn-primary w-25"
-      style="font-size: 12px"
+    <div class="row">
+      <div class="col-8">
+        <a
+          href="{% url 'orders-add' %}"
+          class="btn btn-primary w-25"
+          style="font-size: 12px"
+        >
+          Create New Order
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            fill="currentColor"
+            class="bi bi-plus-lg"
+            viewBox="0 0 16 16"
+          >
+            <path
+              fill-rule="evenodd"
+              d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"
+            />
+          </svg>
+        </a>
+      </div>
+      <div class="col-4">
+        <div
+          id="printBtn"
+          style="float: right; font-size: 10px; margin-bottom: 5px"
+        ></div>
+      </div>
+    </div>
+    <table
+      class="table table-striped bg-white p-3"
+      id="ordersTable"
+      style="font-size: 11px"
     >
-      Create New Order
-      <svg
-        xmlns="http://www.w3.org/2000/svg"
-        width="16"
-        height="16"
-        fill="currentColor"
-        class="bi bi-plus-lg"
-        viewBox="0 0 16 16"
-      >
-        <path
-          fill-rule="evenodd"
-          d="M8 2a.5.5 0 0 1 .5.5v5h5a.5.5 0 0 1 0 1h-5v5a.5.5 0 0 1-1 0v-5h-5a.5.5 0 0 1 0-1h5v-5A.5.5 0 0 1 8 2Z"
-        />
-      </svg>
-    </a>
-    <table class="table table-striped bg-white p-3" id="ordersTable" style="font-size: 11px;">
       <thead>
         <tr class="text-center">
           <th scope="col">#</th>
@@ -55,7 +86,7 @@
           <td>{{list.pickup_date}}</td>
           <td>{{list.processed_by}}</td>
           <td>{{list.status}}</td>
-          <td>
+          <td colspan="5">
             <a
               href="{% url 'orders-view' list.id %}"
               class="bg-success p-1 text-white rounded"
@@ -132,16 +163,74 @@
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script
   type="text/javascript"
-  charset="utf8"
-  src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"
+  src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/pdfmake.min.js"
 ></script>
-<script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.2.6/js/dataTables.responsive.min.js"></script>
-<script src="https://cdn.datatables.net/responsive/2.2.6/js/responsive.bootstrap4.min.js"></script>
+<script
+  type="text/javascript"
+  src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.36/vfs_fonts.js"
+></script>
+<script
+  type="text/javascript"
+  src="https://cdn.datatables.net/v/bs5/jszip-2.5.0/dt-1.11.5/b-2.2.2/b-html5-2.2.2/b-print-2.2.2/fh-3.2.2/r-2.2.9/datatables.min.js"
+></script>
 
 <script>
   $(document).ready(function () {
-    $("#ordersTable").DataTable();
+    var table = $("#ordersTable").DataTable({
+      lengthMenu: [
+        [5, 10, 25, 50, -1],
+        [5, 10, 25, 50, "All"],
+      ],
+      dom: "Blfrtip",
+      buttons: [
+        {
+          extend: "excelHtml5",
+          text: '<i class="fas fa-file-excel"></i> Excel',
+          titleAttr: "Excel",
+          exportOptions: {
+            columns: [0, 1, 2, 5, 6, 7, 8, 9],
+          },
+          filename: function () {
+            var today = new Date();
+            var date =
+              today.getFullYear() +
+              "-" +
+              (today.getMonth() + 1) +
+              "-" +
+              today.getDate();
+            return "stsweb-report-" + date;
+          },
+        },
+        {
+          extend: "print",
+          text: '<i class="fas fa-print"></i> Print',
+          titleAttr: "Print",
+          customize: function (win) {
+            $(win.document.body).css("font-size", "12px");
+
+            $(win.document.body)
+              .find("table")
+              .addClass("compact")
+              .css("font-size", "12px");
+          },
+          exportOptions: {
+            columns: [0, 1, 2, 5, 6, 7, 8, 9],
+          },
+          filename: function () {
+            var today = new Date();
+            var date =
+              today.getFullYear() +
+              "-" +
+              (today.getMonth() + 1) +
+              "-" +
+              today.getDate();
+            return "stsweb-report-" + date;
+          },
+        },
+      ],
+    });
+
+    table.buttons().container().appendTo($("#printBtn"));
   });
 </script>
 
