@@ -17,6 +17,7 @@ class Orders(models.Model):
     date_ordered = models.DateField(auto_now_add=True)
     pickup_date = models.DateField(auto_now_add=False)
     processed_by = models.CharField(max_length=255)
+    notes = models.TextField()
     status = models.CharField(max_length=255, choices=status)
 
     class Meta:
@@ -24,6 +25,3 @@ class Orders(models.Model):
 
     def __str__(self):
         return f"Customer Name: {self.customer_name}"
-
-class Order_Notes(models.TextField):
-    notes = CharField(max_length=225)
