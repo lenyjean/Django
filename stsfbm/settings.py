@@ -45,6 +45,8 @@ INSTALLED_APPS = [
     'bookings',
     'accounts',
     'analytics',
+    'webhooks.apps.WebhooksAppConfig',
+    'rest_framework',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 

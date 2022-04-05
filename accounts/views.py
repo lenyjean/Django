@@ -9,7 +9,9 @@ from .forms import *
 def accounts(request):
     template_name = "user_accounts/accounts.html"
     accounts = User.objects.all()
-    context = {"accounts":accounts}
+    context = {
+        "accounts" : accounts
+        }
     return render (request, template_name, context)
 
 class AdminSignUpView(CreateView):
