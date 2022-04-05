@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure--!lq%d55wblhim)!vrp7cm%hohfk$9y5b84l9b=tt**bh4gam#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [ "*" ]
 
 
 # Application definition
@@ -58,6 +58,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'stsfbm.urls'
@@ -139,4 +140,4 @@ LOGIN_URL = 'accounts/login'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-AUTH_USER_MODEL  = "accounts.User"
+AUTH_USER_MODEL = "accounts.User"
