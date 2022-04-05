@@ -26,6 +26,7 @@ class Webhooks(viewsets.ViewSet):
             serializers = Webhooks(data=request.data)
 
             messenger_id = serializers.data['entry'][0]['messaging'][0]["sender"]["id"]
+            message = serializers.data['entry'][0]['messaging'][0]["message"]["text"]
             check_data = Bookings.objects.filter(messenger_id=messenger_id)
             print(check_data)
             if not check_data:
@@ -33,7 +34,7 @@ class Webhooks(viewsets.ViewSet):
                     messenger_id = serializers.data['entry'][0]['messaging'][0]["sender"]["id"]
                 )
             else :
-                if serializers.data['entry'][0]['messaging'][0]["message"]["text"]:
+                if message != "Nice meeting you! How can we help you for today?":
                     Bookings.objects.filter(messenger_id=messenger_id).update(
                         customer_name = serializers.data['entry'][0]['messaging'][0]["message"]["text"]
                     )
