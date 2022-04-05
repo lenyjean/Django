@@ -36,7 +36,7 @@ class Webhooks(viewsets.ViewSet):
                 "Please enter your full name (Last name, First Name, M.I)"
             ]
 
-            if not check_data:
+            if not check_data and message not in restrict_msg:
                 Bookings.objects.create(
                     messenger_id=serializers.data['entry'][0]['messaging'][0]["sender"]["id"]
                 )
