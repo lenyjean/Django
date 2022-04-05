@@ -23,4 +23,5 @@ class Webhooks(viewsets.ViewSet):
     def create(self, request):
         if request.method == "POST":
             serializers = Webhooks(data=request.data)
+            print(serializers.data)
             return Response(serializers.data, status=status.HTTP_201_CREATED)
