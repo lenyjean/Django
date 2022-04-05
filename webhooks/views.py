@@ -7,6 +7,7 @@ from rest_framework import status
 
 from .serializers import *
 
+from bookings.models import *
 
 class Webhooks(viewsets.ViewSet):
 
@@ -23,4 +24,18 @@ class Webhooks(viewsets.ViewSet):
     def create(self, request):
         if request.method == "POST":
             serializers = Webhooks(data=request.data)
+
+            messenger_id = serializers.data['entry'][0]['messaging'][0]["sender"]["id"]
+            check_data = Bookings.objects.filter(messenger_id=messenger_id)
+            print(check_data)
+            if not check_data:
+                Bookings.objects.create(
+                    messenger_id = serializers.data['entry'][0]['messaging'][0]["sender"]["id"]
+                )
+            else :
+                if serializers.data['entry'][0]['messaging'][0]["message"]["text"]:
+                    Bookings.objects.filter(messenger_id=messenger_id).update(
+                        customer_name = serializers.data['entry'][0]['messaging'][0]["message"]["text"]
+                    )
+            print(serializers.data['entry'][0]['messaging'][0]["message"]["text"])
             return Response(serializers.data, status=status.HTTP_201_CREATED)
