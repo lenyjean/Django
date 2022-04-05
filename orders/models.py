@@ -1,4 +1,5 @@
 from django.db import models
+from django.forms import CharField
 
 from products.models import *
 
@@ -23,3 +24,6 @@ class Orders(models.Model):
 
     def __str__(self):
         return f"Customer Name: {self.customer_name}"
+
+class Order_Notes(models.TextField):
+    notes = CharField(max_length=225)

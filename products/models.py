@@ -19,6 +19,7 @@ class Products(models.Model):
     product_name = models.CharField(max_length=255)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=10, decimal_places=2)
+    size = models.CharField(max_length=255, default=0)
     status = models.CharField(max_length=255, choices=status)
 
     class Meta:

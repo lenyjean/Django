@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'products',
     'orders',
     'bookings',
+    'category',
     'accounts',
     'analytics',
     'webhooks',
