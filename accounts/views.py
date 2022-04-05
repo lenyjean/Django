@@ -25,7 +25,7 @@ class AdminSignUpView(CreateView):
 
     def form_valid(self, form):
         user = form.save()
-        return redirect('accounts-list')
+        return redirect('account-list')
 
 
 
@@ -40,4 +40,4 @@ class StaffSignUpView(CreateView):
 
     def form_valid(self, form):
         user = form.save()
-        return redirect('accounts-list')
+        return redirect('account-list')

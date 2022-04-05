@@ -61,6 +61,7 @@
               <span class="text"> Products</span>
             </a>
           </li>
+          {% if user.is_superuser or user.is_admin %}
           <li class="nav-item">
             <a href="{% url "account-list" %}">
               <span class="icon">
@@ -71,6 +72,7 @@
               <span class="text"> User Accounts</span>
             </a>
           </li>
+          {% endif %}
         <span class="divider">
           <hr />
         </span>

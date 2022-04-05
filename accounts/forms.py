@@ -7,6 +7,7 @@ from .models import *
 class AdminSignUpForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = User
+        fields = ["last_name", "first_name", "email", "username"]
 
     def save(self, commit=True):
         user = super().save(commit=False)
@@ -18,6 +19,7 @@ class AdminSignUpForm(UserCreationForm):
 class StaffSignUpForm(UserCreationForm):
     class Meta(UserCreationForm.Meta):
         model = User
+        fields = ["last_name", "first_name", "email", "username"]
 
     def save(self, commit=True):
         user = super().save(commit=False)
