@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import login
 from django.shortcuts import redirect
 from django.views.generic import CreateView
@@ -14,6 +14,23 @@ def accounts(request):
         }
     return render (request, template_name, context)
 
+def user_update(request, pk):
+    template_name = "user_accounts/update_account.html"
+    user = get_object_or_404(User, pk=pk)
+    form = AdminSignUpForm(request.POST or None, instance=user)
+    if form.is_valid():
+         form.save()
+         return redirect("account-list")
+    context = {
+        "form" : form
+    }
+    return render (request, template_name, context)
+
+def user_delete(request, pk):
+     user = User.objects.filter(id=pk)
+     user.delete()
+     return redirect("account-list")
+
 class AdminSignUpView(CreateView):
     model = User
     form_class = AdminSignUpForm
@@ -27,8 +44,6 @@ class AdminSignUpView(CreateView):
         user = form.save()
         return redirect('account-list')
 
-
-
 class StaffSignUpView(CreateView):
     model = User
     form_class = StaffSignUpForm
@@ -41,3 +56,4 @@ class StaffSignUpView(CreateView):
     def form_valid(self, form):
         user = form.save()
         return redirect('account-list')
+

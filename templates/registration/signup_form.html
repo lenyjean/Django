@@ -13,6 +13,7 @@ user account{% endblock %} {% block body %}
             {% csrf_token %} {{form|crispy}}
             <div class="d-grid gap-2 mt-3">
               <button class="btn btn-primary" type="submit">Create an account</button>
+              <a href="{% url "account-list" %}" class="btn btn-secondary text-decoration-none">Cancel</a>
             </div>
           </form>
         </div>
