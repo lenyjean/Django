@@ -32,7 +32,7 @@
               </tr>
               <tr>
                 <td>Status</td>
-                <td>{{user.status}}</td>
+                <td>{% if user.status == True %} Active {% else %} Inactive {% endif %}</td>
               </tr>
               <tr>
                 <td>Role</td>
