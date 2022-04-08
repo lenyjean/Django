@@ -34,7 +34,7 @@ def user_update(request, pk):
 def profile_update(request, pk):
     template_name = "user_accounts/update_account.html"
     user = get_object_or_404(User, pk=pk)
-    form = AdminSignUpForm(request.POST or None, instance=user)
+    form = UpdateForm(request.POST or None, instance=user)
     if form.is_valid():
          form.save()
          return redirect("view-profile")

@@ -71,7 +71,9 @@
             <span class="badge bg-danger">Not Available</span>
             {% endif %}
           </td>
-          <td>{{list.status}}</td>
+          <td>
+            {% if list.status == True %} Active {% else %} Inactive {% endif %}
+          </td>
           <td colspan="5">
             <a
               href="{% url 'update-account' list.id %}"
@@ -96,9 +98,10 @@
               </svg>
             </a>
             <a
-              href="{% url 'delete-account' list.id %}"
               class="bg-danger p-1 text-white rounded"
               style="font-size: 12px"
+              data-bs-toggle="modal"
+              data-bs-target="#exampleModal"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -119,6 +122,45 @@
             </a>
           </td>
         </tr>
+
+        <!-- Modal -->
+        <div
+          class="modal fade"
+          id="exampleModal"
+          tabindex="-1"
+          aria-labelledby="exampleModalLabel"
+          aria-hidden="true"
+        >
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Deactivate account</h5>
+                <button
+                  type="button"
+                  class="btn-close"
+                  data-bs-dismiss="modal"
+                  aria-label="Close"
+                ></button>
+              </div>
+              <div class="modal-body">
+                Are you sure you want to deactivate this account? <br>
+                Employee Name : {{list.last_name}}, {{list.first_name}} <br>
+              </div>
+              <div class="modal-footer">
+                <button
+                  type="button"
+                  class="btn btn-secondary"
+                  data-bs-dismiss="modal"
+                >
+                  Cancel
+                </button>
+                <a href="{% url 'delete-account' list.id %}" type="button" class="btn btn-danger">
+                  Deactivate
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
         {% endfor %}
       </tbody>
     </table>
@@ -184,9 +226,9 @@
   $(document).ready(function () {
     $("#accountsTable").DataTable({
       lengthMenu: [
-      [5, 10, 25, 50, -1],
-      [5, 10, 25, 50, "All"],
-    ],
+        [5, 10, 25, 50, -1],
+        [5, 10, 25, 50, "All"],
+      ],
     });
   });
 </script>

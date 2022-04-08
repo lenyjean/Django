@@ -27,3 +27,9 @@ class StaffSignUpForm(UserCreationForm):
         if commit:
             user.save()
         return user
+
+
+class UpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ["last_name", "first_name", "email", "username"]
