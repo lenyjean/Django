@@ -26,11 +26,8 @@
             >
               <div class="profile-info">
                 <div class="info">
-                  <h6>{{user.last_name}}, {{user.first_name}}</h6>
-                  <div class="image">
-                    <img src="assets/images/profile/profile-image.png" alt="" />
-                    <span class="status"></span>
-                  </div>
+                  <h4>{{user.last_name}}, {{user.first_name}}</h4>
+                 
                 </div>
               </div>
               <i class="lni lni-chevron-down"></i>
@@ -40,7 +37,7 @@
               aria-labelledby="profile"
             >
               <li>
-                <a href="#0"> <i class="lni lni-user"></i> View Profile </a>
+                <a href="{% url 'view-profile' %}"> <i class="lni lni-user"></i> View Profile </a>
               </li>
               {% comment %} <li>
                 <a href="#0"> <i class="lni lni-alarm"></i> Notifications </a>

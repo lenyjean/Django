@@ -14,6 +14,11 @@ def accounts(request):
         }
     return render (request, template_name, context)
 
+def viewprofile(request):
+    template_name = "profile/profile.html"
+    return render (request, template_name)
+
+
 def user_update(request, pk):
     template_name = "user_accounts/update_account.html"
     user = get_object_or_404(User, pk=pk)
@@ -26,6 +31,18 @@ def user_update(request, pk):
     }
     return render (request, template_name, context)
 
+def profile_update(request, pk):
+    template_name = "user_accounts/update_account.html"
+    user = get_object_or_404(User, pk=pk)
+    form = AdminSignUpForm(request.POST or None, instance=user)
+    if form.is_valid():
+         form.save()
+         return redirect("view-profile")
+    context = {
+        "form" : form
+    }
+    return render (request, template_name, context)
+    
 def user_delete(request, pk):
      user = User.objects.filter(id=pk)
      user.delete()
