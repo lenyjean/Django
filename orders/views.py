@@ -10,9 +10,11 @@ from .forms import *
 @login_required
 def orders_list(request):
     template_name = "orders/orders_list.html"
-    orders = Orders.objects.all()
+    active_orders = Orders.objects.filter(status="Pending")
+    inactive_orders = Orders.objects.filter(status="Done")
     context = {
-        "orders": orders
+        "active_orders": active_orders,
+        "inactive_orders" : inactive_orders
     }
     return render(request, template_name, context)
 
