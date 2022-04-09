@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from orders.models import *
+from django.db.models import Q
 
 from .forms import *
 
@@ -71,6 +72,5 @@ def orders_update(request, pk):
 
 @login_required
 def orders_delete(request, pk):
-    orders = Orders.objects.filter(id=pk)
-    orders.delete()
+    orders = Orders.objects.filter(id=pk).update(status=False)
     return redirect("orders-list")

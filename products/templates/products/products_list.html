@@ -107,7 +107,7 @@
         </tr>
       </thead>
       <tbody>
-        {% for list in active_products %}
+        {% for list in available_products %}
         <tr class="text-center">
           <th scope="row">{{forloop.counter}}</th>
           <td>{{list.product_name}}</td>
@@ -274,7 +274,7 @@
       </tr>
     </thead>
     <tbody>
-      {% for list in inactive_products %}
+      {% for list in not_available_products %}
       <tr class="text-center">
         <th scope="row">{{forloop.counter}}</th>
         <td>{{list.product_name}}</td>

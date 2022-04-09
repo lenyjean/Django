@@ -7,7 +7,9 @@ from products.models import *
 class Orders(models.Model):
     status = (
         ("Pending" , "Pending"),
-        ("Done" , "Done")
+        ("Done" , "Done"),
+        ("Cancelled" , "Cancelled"),
+        ("Late" , "Late")
     )
     customer_name = models.CharField(max_length=255)
     customer_address = models.CharField(max_length=255)

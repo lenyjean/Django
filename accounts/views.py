@@ -9,9 +9,13 @@ from .forms import *
 def accounts(request):
     template_name = "user_accounts/accounts.html"
     accounts = User.objects.all()
+    active_user = User.objects.filter(status=True)
+    inactive_user = User.objects.filter(status=False)
     context = {
+        "active_user": active_user,
+        "inactive_user" : inactive_user,
         "accounts" : accounts
-        }
+    }
     return render (request, template_name, context)
 
 def viewprofile(request):

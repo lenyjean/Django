@@ -6,12 +6,14 @@ from .forms import *
 # Create your views here.
 @login_required
 def category(request):
-   template_name = "category/category_list.html"
-   category = Category.objects.all()
-   context = {
-       "category" : category
-   }
-   return render (request, template_name, context)
+    template_name = "category/category_list.html"
+    active_category = Category.objects.filter(status=True)
+    inactive_category = Category.objects.filter(status=False)
+    context = {
+        "active_category": active_category,
+        "inactive_category" : inactive_category
+    }
+    return render (request, template_name, context)
 
 @login_required
 def category_add(request):
@@ -49,6 +51,5 @@ def category_update(request, pk):
 
 @login_required
 def category_delete(request, pk):
-     category = Category.objects.filter(id=pk)
-     category.delete()
-     return redirect("category-list")
+    category = Category.objects.filter(id=pk).update(status=False)
+    return redirect("category-list")

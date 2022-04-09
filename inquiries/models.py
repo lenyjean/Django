@@ -6,7 +6,7 @@ class Inquiries(models.Model):
     product_ordered = models.CharField(max_length=225)
     category = models.CharField(max_length=225)
     pickup_date = models.DateField(auto_now_add=False)
-    status = models.CharField(max_length=225)
+    status = models.BooleanField(default=True)
     created_date = models.DateField(auto_now_add=True)
 
     class Meta:
