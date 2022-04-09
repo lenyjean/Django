@@ -44,8 +44,7 @@ def profile_update(request, pk):
     return render (request, template_name, context)
     
 def user_delete(request, pk):
-     user = User.objects.filter(id=pk)
-     user.delete()
+     user = User.objects.filter(id=pk).update(status=False)
      return redirect("account-list")
 
 class AdminSignUpView(CreateView):
