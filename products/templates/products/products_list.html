@@ -62,11 +62,13 @@
     <div class="card-body">
     <div class="row">
       <div class="col-8">
+        {% if user.is_superuser or user.is_admin %} 
         <a
           href="{% url 'products-add' %}"
           class="btn btn-primary w-25"
           style="font-size: 12px"
         >
+          
           Add New Product
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -82,6 +84,7 @@
             />
           </svg>
         </a>
+        {% endif %} 
       </div>
       <div class="col-4">
         <div
@@ -103,7 +106,9 @@
           <th scope="col">Size</th>
           <th scope="col">Price</th>
           <th scope="col">Status</th>
+          {% if user.is_superuser or user.is_admin %}
           <th scope="col">Actions</th>
+          {% endif %}
         </tr>
       </thead>
       <tbody>
@@ -114,7 +119,9 @@
           <td>{{list.category}}</td>
           <td>{{list.size}}</td>
           <td>{{list.price}}</td>
-          <td>{{list.status}}</td>
+          <td>
+            {% if list.status == True %} <span class="badge bg-primary">Available</span> {% else %} <span class="badge bg-danger">Not Available</span> {% endif %}
+          </td>
           <td colspan="5">
             <a
               href="{% url 'products-view' list.id %}"
@@ -281,7 +288,9 @@
         <td>{{list.category}}</td>
         <td>{{list.size}}</td>
         <td>{{list.price}}</td>
-        <td>{{list.status}}</td>
+        <td>
+          {% if list.status == True %} <span class="badge bg-primary">Available</span> {% else %} <span class="badge bg-danger">Not Available</span> {% endif %}
+        </td>
         <td colspan="5">
           <a
             href="{% url 'products-view' list.id %}"
