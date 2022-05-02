@@ -5,6 +5,7 @@ from django.db.models import Q
 
 from .forms import *
 
+
 # Create your views here.
 
 
@@ -69,8 +70,55 @@ def orders_update(request, pk):
     }
     return render(request, template_name, context)
 
-
 @login_required
 def orders_delete(request, pk):
     orders = Orders.objects.filter(id=pk).update(status=False)
     return redirect("orders-list")
+
+@login_required
+def messenger_list(request):
+    template_name = "messenger_orders/m-orders_list.html"
+    messenger_orders = MessengerOrders.objects.all()
+    context = {
+        "messenger_orders":  messenger_orders
+    }
+    return render(request, template_name, context)
+
+@login_required
+def messenger_add(request):
+    template_name = "messenger_orders/m-orders_add.html"
+    form = MessengerOrdersForm(request.POST or None)
+    if form.is_valid():
+        form.save()
+        return redirect("m-orders-list")
+    context = {
+       "form" :  form
+    }
+    return render (request, template_name, context)
+
+@login_required
+def messenger_view(request, pk):
+    template_name = "messenger_orders/m-orders_view.html"
+    messenger_orders = MessengerOrders.objects.filter(id=pk)
+    context = {
+        "messenger_orders": messenger_orders
+    }
+    return render(request, template_name, context)
+
+@login_required
+def messenger_update(request, pk):
+    template_name = "messenger_orders/m-orders_update.html"
+    messenger_orders = get_object_or_404(Category, pk=pk)
+    form = MessengerOrdersForm(request.POST or None, instance=messenger_orders)
+    if form.is_valid():
+         form.save()
+         return redirect("m-orders-list")
+    context = {
+        "form" : form
+    }
+    return render (request, template_name, context)
+
+@login_required
+def messenger_delete(request, pk):
+    messenger_orders = MessengerOrders.objects.filter(id=pk).update(status=False)
+    return redirect("m-orders-list")
