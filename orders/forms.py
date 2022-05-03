@@ -24,3 +24,11 @@ class OrderForms(forms.ModelForm):
  
         if pickup < datetime.date.today():
             raise forms.ValidationError('Pick up date must not be later than today')
+
+
+class MessengerOrdersForm(forms.ModelForm):
+    class meta: 
+        model = MessengerOrders
+        fields = [
+             "customer_name", "customer_address" , "products", "no_of_order", "total_amount", "pickup_date", "status", "remarks"
+        ]
