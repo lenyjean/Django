@@ -1,16 +1,18 @@
 from django import forms
 from .models import *
 import datetime
+from products.models import *
 
  
 class DateInput(forms.DateInput):
     input_type = 'date'
  
 class OrderForms(forms.ModelForm):
+    products = forms.ModelChoiceField(queryset=Products.objects.filter(status=True))
     class Meta: 
         model = Orders
         fields = [
-            "customer_name", "customer_address" , "products", "no_of_order", "total_amount", "pickup_date", "status"
+            "customer_name", "customer_address" , "products", "no_of_order", "pickup_date", "status"
         ]
         widgets = {
             "pickup_date" : DateInput()

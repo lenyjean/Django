@@ -25,15 +25,16 @@ def orders_add(request):
     template_name = "orders/orders_add.html"
     form = OrderForms(request.POST or None)
     if form.is_valid():
+        get_price = Products.objects.get(product_name=form.cleaned_data['products'])
         customer_name = form.cleaned_data['customer_name']
         customer_address = form.cleaned_data['customer_address']
         products = form.cleaned_data['products']
         no_of_order = form.cleaned_data['no_of_order']
-        total_amount = form.cleaned_data['total_amount']
+        total_amount = get_price.price  *  form.cleaned_data['no_of_order']
         pickup_date = form.cleaned_data['pickup_date']
         processed_by = request.user.username
         status = form.cleaned_data['status']
-
+        
         orders = Orders.objects.get_or_create(
             customer_name=customer_name, customer_address=customer_address, products=products,
             no_of_order=no_of_order, total_amount=total_amount, pickup_date=pickup_date, processed_by=processed_by, status=status

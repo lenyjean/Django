@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'accounts',
     'analytics',
     'webhooks',
+    'payment',
     'rest_framework',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'

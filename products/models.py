@@ -17,7 +17,7 @@ class Products(models.Model):
         ("Available" , "Available"),
         ("Not Available" , "Not Available"),
     )
-    product_name = models.CharField(max_length=255)
+    product_name = models.CharField(max_length=255, unique=True)
     category = models.ForeignKey(Category, on_delete=models.CASCADE)
     price = models.DecimalField(max_digits=10, decimal_places=2)
     size = models.CharField(max_length=255, default=0)
