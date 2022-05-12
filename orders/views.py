@@ -4,7 +4,7 @@ from orders.models import *
 from django.db.models import Q
 
 from .forms import *
-
+from datetime import datetime
 
 # Create your views here.
 
@@ -12,11 +12,25 @@ from .forms import *
 @login_required
 def orders_list(request):
     template_name = "orders/orders_list.html"
-    active_orders = Orders.objects.filter(status="Pending")
+  # A filter for the date range.
+    if 'from_date' in request.GET or  'to_date' in request.GET:
+        from_date = request.GET['from_date']
+        to_date = request.GET['to_date']
+        multiple_q = Q(Q(date_ordered__range=[datetime.strptime(from_date, '%Y-%m-%d').date(), datetime.strptime(to_date, '%Y-%m-%d').date()]) & Q(status="Pending"))
+        active_orders = Orders.objects.filter(multiple_q)
+        filtered = True
+        filter_info = f"{from_date} to {to_date}"
+    else:
+        active_orders = Orders.objects.filter(status="Pending")
+        filtered = False
+        filter_info = None
+
     inactive_orders = Orders.objects.filter(status="Done")
     context = {
         "active_orders": active_orders,
-        "inactive_orders" : inactive_orders
+        "inactive_orders" : inactive_orders,
+        "filtered" : filtered,
+        "filter_info" : filter_info
     }
     return render(request, template_name, context)
 
