@@ -22,7 +22,15 @@
   <div
     class="card p-5 shadow-lg p-3 mb-5 bg-white rounded text-decoration-none"
   >
-    <div class="card" id="ordersActive">
+    <div class="card" id="ordersActive"
+    {% if inactive == "Yes" %}
+    style="display: none"
+    {% elif inactive == "No" %}
+    style="display: block"
+    {% elif inactive == None %}
+    style="display: block"
+    {%  endif%}
+    >
       <div class="card-header">
         <ul class="nav nav-tabs card-header-tabs">
           <li class="nav-item">
@@ -214,7 +222,15 @@
       </div>
     </div>
 
-    <div class="card" id="ordersHistory" style="display: none">
+    <div class="card" id="ordersHistory" 
+      {% if inactive == "Yes" %}
+      style="display: block"
+      {% elif inactive == "No" %}
+      style="display: none"
+      {% elif inactive == None %}
+      style="display: none"
+      {%  endif%}
+    >
       <div class="card-header">
         <ul class="nav nav-tabs card-header-tabs">
           <li class="nav-item">
@@ -275,7 +291,7 @@
               </svg>
             </a>
         <!-- Button trigger modal -->
-            <button type="button" class="btn btn-outline-primary w-22" data-bs-toggle="modal" data-bs-target="#exampleModal" style="font-size: 12px">
+            <button type="button" class="btn btn-outline-primary w-22" data-bs-toggle="modal" data-bs-target="#exampleModalHistory" style="font-size: 12px">
               {% if filtered %}
               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-calendar-week" viewBox="0 0 16 16">
                 <path d="M11 6.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm-5 3a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1z"/>
@@ -289,8 +305,8 @@
               &nbsp; Filter by Date Ordered
             {% endif %}
             </button>
-            {% if filter %}
-              <a href="{% url '' %}"><span class="badge rounded-pill bg-danger">Reset Filter</span></a>
+            {% if filtered %}
+              <a href="{% url 'orders-list' %}"><span class="badge rounded-pill bg-danger">Reset Filter</span></a>
             {% endif %}
           </div>
           <div class="col-4">
@@ -434,6 +450,39 @@
             <div class="mb-3">
               <label class="form-label">To</label>
               <input type="date" name="to_date" class="form-control" placeholder="dd/mm/yyyy" required>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary btn-sm" data-bs-dismiss="modal" style="font-size: 12px">Cancel</button>
+        <button type="submit" class="btn btn-primary  btn-sm" style="font-size: 12px">Filter</button>
+      </div>
+    </form>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="exampleModalHistory" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Select order date range for filtering</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <form method="GET">
+      <div class="modal-body">
+        <div class="row">
+          <div class="col">
+            <div class="mb-3">
+              <label class="form-label">From</label>
+              <input type="date" name="from_date_history" class="form-control" placeholder="dd/mm/yyyy" required>
+            </div>
+          </div>
+          <div class="col">
+            <div class="mb-3">
+              <label class="form-label">To</label>
+              <input type="date" name="to_date_history" class="form-control" placeholder="dd/mm/yyyy" required>
             </div>
           </div>
         </div>

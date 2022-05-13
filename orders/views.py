@@ -16,32 +16,37 @@ def orders_list(request):
     if 'from_date' in request.GET or  'to_date' in request.GET:
         from_date = request.GET['from_date']
         to_date = request.GET['to_date']
-        multiple_q = Q(Q(date_ordered__range=[datetime.strptime(from_date, '%Y-%m-%d').date(), datetime.strptime(to_date, '%Y-%m-%d').date()]) & Q(status="Pending"))
+        multiple_q = Q(Q(date_ordered__range=[datetime.strptime(from_date, '%Y-%m-%d').date(), datetime.strptime(to_date, '%Y-%m-%d').date()]) & Q(status="Pending") | Q(status="Late"))
         active_orders = Orders.objects.filter(multiple_q)
-        filtered = True
-        filter_info = f"{from_date} to {to_date}"
-    else:
-        active_orders = Orders.objects.filter(status="Pending")
-        filtered = False
-        filter_info = None
-
-    if 'from_date' in request.GET or  'to_date' in request.GET:
-        from_date = request.GET['from_date']
-        to_date = request.GET['to_date']
-        multiple_q = Q(Q(date_ordered__range=[datetime.strptime(from_date, '%Y-%m-%d').date(), datetime.strptime(to_date, '%Y-%m-%d').date()]) & Q(status="Done"))
-        inactive_orders = Orders.objects.filter(multiple_q)
-        filtered = True
-        filter_info = f"{from_date} to {to_date}"
-    else:
         inactive_orders = Orders.objects.filter(status="Done")
+        filtered = True
+        filter_info = f"{from_date} to {to_date}"
+        inactive = "No"
+
+
+    elif 'from_date_history' in request.GET or  'to_date_history' in request.GET:
+        from_date_history = request.GET['from_date_history']
+        to_date_history = request.GET['to_date_history']
+        multiple_q_history = Q(Q(date_ordered__range=[datetime.strptime(from_date_history, '%Y-%m-%d').date(), datetime.strptime(to_date_history, '%Y-%m-%d').date()]) & Q(status="Done") | Q(status="Cancelled") | Q(status="Late"))
+        inactive_orders = Orders.objects.filter(multiple_q_history)
+        active_orders = Orders.objects.filter(status="Pending")
+        filtered = True
+        filter_info = f"{from_date_history} to {to_date_history}"
+        inactive = "Yes"
+    else:
+        active_orders = Orders.objects.filter(status__in=["Pending", "Late"])
+        inactive_orders = Orders.objects.filter(status__in=["Done","Cancelled"])
         filtered = False
         filter_info = None
+        inactive = None
 
+    print(inactive)
     context = {
         "active_orders": active_orders,
         "inactive_orders" : inactive_orders,
         "filtered" : filtered,
-        "filter_info" : filter_info
+        "filter_info" : filter_info,
+        "inactive" : inactive
     }
     return render(request, template_name, context)
 
@@ -98,7 +103,7 @@ def orders_update(request, pk):
 
 @login_required
 def orders_delete(request, pk):
-    orders = Orders.objects.filter(id=pk).update(status=False)
+    orders = Orders.objects.filter(id=pk).update(status="Done")
     return redirect("orders-list")
 
 @login_required
