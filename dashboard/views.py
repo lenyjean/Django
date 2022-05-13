@@ -4,6 +4,7 @@ from .models import *
 from orders.models import *
 from products.models import *
 from category.models import *
+from bookings.models import *
 # Create your views here.
 @login_required
 def homepage(request):
@@ -14,13 +15,15 @@ def homepage(request):
     total_orders = Orders.objects.all().count()
     total_sales = Orders.objects.filter(status="Done").count()
     total_category = Category.objects.filter(status=True).count()
+    total_bookings = Bookings.objects.filter(status=True).count()
     
     context = {
         "orders" : orders,
         "products" : products,
         "total_orders" : total_orders,
         "total_sales" : total_sales,
-        "total_category" : total_category
+        "total_category" : total_category,
+        "total_bookings" : total_bookings
     }
     return render(request, template_name, context)
 

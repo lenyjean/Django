@@ -25,7 +25,18 @@ def orders_list(request):
         filtered = False
         filter_info = None
 
-    inactive_orders = Orders.objects.filter(status="Done")
+    if 'from_date' in request.GET or  'to_date' in request.GET:
+        from_date = request.GET['from_date']
+        to_date = request.GET['to_date']
+        multiple_q = Q(Q(date_ordered__range=[datetime.strptime(from_date, '%Y-%m-%d').date(), datetime.strptime(to_date, '%Y-%m-%d').date()]) & Q(status="Done"))
+        inactive_orders = Orders.objects.filter(multiple_q)
+        filtered = True
+        filter_info = f"{from_date} to {to_date}"
+    else:
+        inactive_orders = Orders.objects.filter(status="Done")
+        filtered = False
+        filter_info = None
+
     context = {
         "active_orders": active_orders,
         "inactive_orders" : inactive_orders,
