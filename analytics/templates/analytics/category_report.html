@@ -1,0 +1,28 @@
+<script>
+    google.charts.load("current", {packages:["corechart"]});
+    google.charts.setOnLoadCallback(drawChart);
+    function drawChart() {
+      var data = google.visualization.arrayToDataTable([
+        ['Category', 'Total Product'],
+        {% for category in total_product_per_category %}
+            ['{{category.category_id__category}}', {{category.category__count}}],
+        {% endfor %}
+      ]);
+
+      var options = {
+        title: 'Total Products per Category',
+        pieHole: 0.3,
+        height: 300
+      };
+
+      var chart = new google.visualization.PieChart(document.getElementById('donutchart'));
+      chart.draw(data, options);
+    }
+  </script>
+
+  <div class="icon-card  mt-3">
+    <div class="card-body">
+      <p class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Total Products per Category</p>  
+      <div id="donutchart"></div>
+    </div>
+</div>

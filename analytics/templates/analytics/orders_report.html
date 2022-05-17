@@ -1,0 +1,38 @@
+<script>
+    google.charts.load('current', {packages: ['corechart', 'bar']});
+    google.charts.setOnLoadCallback(drawBasic);
+    
+    function drawBasic() {
+    
+    var data = google.visualization.arrayToDataTable([
+        ['Product', 'Total Orders',],
+        {% for orders in total_orders_per_products %}
+        ['{{orders.products_id__product_name}}', {{orders.no_of_order__sum}}],
+        {% endfor %}
+    ]);
+
+    var options = {
+        height: 300,
+        title: 'Total orders per product',
+        chartArea: {width: '50%', height: '100px'},
+        hAxis: {
+            title: 'Total Orders per Product',
+            minValue: 0
+        },
+        vAxis: {
+            title: 'Products'
+        }
+    };
+
+    var chart = new google.visualization.BarChart(document.getElementById('orders_div'));
+
+    chart.draw(data, options);
+}
+</script>
+
+<div class="icon-card mt-3">
+    <div class="card-body">
+        <p class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">Total Orders per Product</p>
+        <div id="orders_div"></div>
+    </div>
+</div>

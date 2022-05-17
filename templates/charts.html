@@ -2,9 +2,17 @@
 {% load static %}
 <html>
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, shrink-to-fit=no"
+    />
     <title>Monette's Cakes and Pastries Shop</title>
+
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/flowbite@1.4.5/dist/flowbite.min.css"
+    />
 
     <!-- ========== All CSS files linkup ========= -->
     <link rel="stylesheet" href="{% static 'assets/css/bootstrap.min.css' %}" />
@@ -13,8 +21,10 @@
       rel="stylesheet"
       href="{% static 'assets/css/materialdesignicons.min.css' %}"
     />
-    {% comment %} <link rel="stylesheet" href="{% static 'assets/css/fullcalendar.css' %}" />
-    <link rel="stylesheet" href="{% static 'assets/css/fullcalendar.css' %}" /> {% endcomment %}
+    {% comment %}
+    <link rel="stylesheet" href="{% static 'assets/css/fullcalendar.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/fullcalendar.css' %}" />
+    {% endcomment %}
     <link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
 
     <!-- UIkit CSS -->
@@ -23,18 +33,8 @@
       href="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/css/uikit.min.css"
     />
 
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" type="text/css" href="{% static 'charts/css/bootstrap.min.css' %}">
-    <!-- Fonts -->
-    <link rel="stylesheet" type="text/css" href="{% static 'charts/fonts/line-icons.css' %}">
-    <!-- Main Style -->
-    <link rel="stylesheet" type="text/css" href="{% static 'charts/css/main.css' %}">
-    <!-- Responsive Style -->
-    <link rel="stylesheet" type="text/css" href="{% static 'charts/css/responsive.css' %}">
-
-    <!--Morris Chart CSS -->
-    <link rel="stylesheet" href="{% static 'charts/plugins/morris/morris.css' %}">
-
+    {% block script %}
+    {% endblock %}
   </head>
 
   <body>
@@ -47,40 +47,26 @@
       <!-- ========== section start ========== -->
       {% block body %} {% endblock %}
       <!-- ========== section end ========== -->
-
-      <!-- ========== footer start =========== -->
-      <!-- ========== footer end =========== -->
     </main>
     <!-- ======== main-wrapper end =========== -->
+    <script src="https://unpkg.com/flowbite@1.4.5/dist/flowbite.js"></script>
 
     <!-- ========= All Javascript files linkup ======== -->
     <script src="{% static 'assets/js/bootstrap.bundle.min.js' %}"></script>
     <script src="{% static 'assets/js/Chart.min.js' %}"></script>
     <script src="{% static 'assets/js/dynamic-pie-chart.js' %}"></script>
     <script src="{% static 'assets/js/moment.min.js' %}"></script>
-    {% comment %} <script src="{% static 'assets/js/fullcalendar.js' %}"></script> {% endcomment %}
+    {% comment %}
+    <script src="{% static 'assets/js/fullcalendar.js' %}"></script>
+    {% endcomment %}
     <script src="{% static 'assets/js/jvectormap.min.js' %}"></script>
     <script src="{% static 'assets/js/world-merc.js' %}"></script>
     <script src="{% static 'assets/js/polyfill.js' %}"></script>
     <script src="{% static 'assets/js/main.js' %}"></script>
 
-    
     <!-- UIkit JS -->
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/js/uikit.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/js/uikit-icons.min.js"></script>
-
-     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="{% static 'charts/js/jquery-min.js' %}"></script>
-    <script src="{% static 'charts/js/popper.min.js' %}"></script>
-    <script src="{% static 'charts/js/bootstrap.min.js' %}"></script>
-    <script src="{% static 'charts/js/jquery.app.js' %}"></script>
-    <script src="{% static 'charts/js/main.js' %}"></script>
-
-    <!--Morris Chart-->
-    <script src="{% static 'charts/plugins/morris/morris.min.js' %}"></script>
-    <script src="{% static 'charts/plugins/raphael/raphael-min.js' %}"></script>
-    <script src="{% static 'charts/js/morris.init.js' %}"></script>
-
-
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1/dist/chart.min.js" integrity="sha256-ErZ09KkZnzjpqcane4SCyyHsKAXMvID9/xwbl/Aq1pc=" crossorigin="anonymous"></script>
   </body>
 </html>

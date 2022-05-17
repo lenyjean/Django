@@ -28,6 +28,10 @@ class Orders(models.Model):
     def __str__(self):
         return f"Customer Name: {self.customer_name}"
 
+    def total_price(self):
+        total = self.no_of_order * self.products.price
+        return total
+        
 class MessengerOrders(models.Model):
     status = (
         ("Pending" , "Pending"),
