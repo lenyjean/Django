@@ -24,7 +24,7 @@ class Webhooks(viewsets.ViewSet):
 
     def create(self, request):
         if request.method == "POST":
-            print(type(request.data))
+            print(request.data)
             MessengerData.objects.create(data=request.data)
             # serializers = Webhooks(data=request.data)
             # print(serializers.data)
