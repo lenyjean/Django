@@ -98,10 +98,10 @@ WSGI_APPLICATION = 'stsfbm.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'ytotdabf',
-        'USER': 'ytotdabf',
-        'PASSWORD': '3fEDiJjQkTKqUiURzhYGCdsaHmhDuHkG',
-        'HOST': 'tiny.db.elephantsql.com',
+        'NAME': 'mipnvoln',
+        'USER': 'mipnvoln',
+        'PASSWORD': '2xxesZu2orghedxRj1qOeitCS9f9SwMD',
+        'HOST': 'rosie.db.elephantsql.com',
         'PORT': '',
     }
 }
