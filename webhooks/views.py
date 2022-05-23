@@ -26,27 +26,11 @@ class Webhooks(viewsets.ViewSet):
         if request.method == "POST":
             print(request.data)
             MessengerData.objects.create(data=request.data)
-            # serializers = Webhooks(data=request.data)
-            # print(serializers.data)
-            # messenger_id = serializers.data['entry'][0]['messaging'][0]["sender"]["id"]
-            # message = serializers.data['entry'][0]['messaging'][0]["message"]["text"]
-            # check_data = Bookings.objects.filter(messenger_id=messenger_id)
-
-            # restrict_msg = [
-            #     "Please enter your full name",
-            #     "Nice meeting you! How can we help you for today?",
-            #     "Please enter your full name (Last name, First Name, M.I)"
-            # ]
-
-            # if not check_data and message not in restrict_msg:
-            #     Bookings.objects.create(
-            #         messenger_id=serializers.data['entry'][0]['messaging'][0]["sender"]["id"]
-            #     )
-            # else:
-            #     if message not in restrict_msg:
-            #         Bookings.objects.filter(messenger_id=messenger_id).update(
-            #             customer_name=serializers.data['entry'][0]['messaging'][0]["message"]["text"]
-            #         )
-            # print(serializers.data['entry'][0]
-            #       ['messaging'][0]["message"]["text"])
-            return Response(request.data, status=status.HTTP_201_CREATED)
+            serializers = InquriesSerializer(data=request.data)
+            
+            if serializers.is_valid():
+                serializers.save()
+                return Response(serializers.data, status=status.HTTP_201_CREATED)
+            else:
+                return Response(serializers.errors, status=status.HTTP_201_CREATED)
+            
