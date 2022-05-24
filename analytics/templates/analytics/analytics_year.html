@@ -62,68 +62,81 @@
   <div class="col-12">
     <div class="p-6 bg-white rounded-lg border border-gray-200 shadow-md dark:bg-gray-800 dark:border-gray-700">
           <!-- ========== title-wrapper end ========== -->
-    <div class="row">
-      <div class="col-sm-1 col-lg-3 col-sm-6">
-        <div class="icon-card mb-30">
-          <div class="icon purple">
-            <i class="lni lni-cart-full"></i>
+          <div class="row">
+            <div class="col-sm col-md-3 col-lg-3">
+              <div class="icon-card mb-30"  style="height: 200px;">
+                <div class="icon purple">
+                  <i class="lni lni-cart-full"></i>
+                </div>
+                <div class="content">
+                  <p class="mb-10" style="font-size: 12px;">Total Processed Orders <br> {{date}}</p>
+                  <p class="text-5xl   dark:text-white">
+                      {{total_orders.no_of_order__sum|default_if_none:"0"}}
+                  </p>
+                </div>
+              </div>
+              <!-- End Icon Cart -->
+            </div>
+            <!-- End Col -->
+            <div class="col-sm col-md-2 col-lg-2">
+              <div class="icon-card mb-30"  style="height: 200px;">
+                <div class="icon success">
+                  <i class="lni lni-dollar"></i>
+                </div>
+                <div class="content">
+                  <p class="mb-10" style="font-size: 12px;">Total Sales <br> {{date}}</p>
+                  <p class="text-5xl   dark:text-white">
+                    ₱{{total_sales.total_amount__sum|default_if_none:"0"}}
+                </p>
+                </div>
+              </div>
+              <!-- End Icon Cart -->
+            </div>
+            <!-- End Col -->
+            <div class="col-sm col-md-2 col-lg-2">
+              <div class="icon-card mb-30"  style="height: 200px;">
+                <div class="icon primary">
+                  <i class="lni lni-credit-cards"></i>
+                </div>
+                <div class="content">
+                  <p class="mb-10" style="font-size: 12px;">Total Available Products <br> {{date}}</p>
+                  <p class="text-5xl  dark:text-white">
+                    {{total_products|default_if_none:"0"}}
+                </p>
+                </div>
+              </div>
+              <!-- End Icon Cart -->
+            </div>
+            <!-- End Col -->
+            <div class="col-sm col-md-2 col-lg-2">
+              <div class="icon-card mb-30"  style="height: 200px;">
+                <div class="icon orange">
+                  <i class="lni lni-calendar"></i>
+                </div>
+                <div class="content">
+                  <p class="mb-10" style="font-size: 12px;">Total Bookings <br> {{date}}</p>
+                  <p class="text-5xl  dark:text-white">{{ total_bookings|default_if_none:"0" }}</p>
+                </div>
+              </div>
+              <!-- End Icon Cart -->
+            </div>
+      
+            <div class="col-sm col-md-3 col-lg-3">
+              <div class="icon-card mb-30"  style="height: 200px;">
+                <div class="icon red">
+                  <i class="lni lni-question-circle"></i>
+                </div>
+                <div class="content">
+                  <p class="mb-10" style="font-size: 12px;">Total Inquiries <br> {{date}}</p>
+                  <p class="text-5xl  dark:text-white">{{ total_inquiries|default_if_none:"0" }}</p>
+                </div>
+              </div>
+              <!-- End Icon Cart -->
+            </div>
+            <!-- End Col -->
           </div>
-          <div class="content">
-            <h6 class="mb-10">Total Processed Orders {{date}}</h6>
-            <p class="text-6xl  dark:text-white">
-                {{total_orders.no_of_order__sum}}
-            </p>
-          </div>
-        </div>
-        <!-- End Icon Cart -->
-      </div>
-      <!-- End Col -->
-      <div class="col-xl-3 col-lg-4 col-sm-6">
-        <div class="icon-card mb-30">
-          <div class="icon success">
-            <i class="lni lni-dollar"></i>
-          </div>
-          <div class="content">
-            <h6 class="mb-10">Total Sales {{date}}</h6>
-            <p class="text-6xl  dark:text-white">
-              ₱{{total_sales.total_amount__sum}}
-          </p>
-          </div>
-        </div>
-        <!-- End Icon Cart -->
-      </div>
-      <!-- End Col -->
-      <div class="col-xl-3 col-lg-4 col-sm-6">
-        <div class="icon-card mb-30">
-          <div class="icon primary">
-            <i class="lni lni-credit-cards"></i>
-          </div>
-          <div class="content">
-            <h6 class="mb-10">Total Available Products {{date}}</h6>
-            <p class="text-6xl  dark:text-white">
-              {{total_products}}
-          </p>
-          </div>
-        </div>
-        <!-- End Icon Cart -->
-      </div>
-      <!-- End Col -->
-      <div class="col-xl-3 col-lg-4 col-sm-6">
-        <div class="icon-card mb-30">
-          <div class="icon orange">
-            <i class="lni lni-user"></i>
-          </div>
-          <div class="content">
-            <h6 class="mb-10">Total Bookings {{date}}</h6>
-            <h3 class="text-bold mb-10">{{ total_bookings }}</h3>
-          </div>
-        </div>
-        <!-- End Icon Cart -->
-      </div>
-      <!-- End Col -->
-    </div>
 
-      {% include 'analytics/sales_report.html' %}
+      {% comment %} {% include 'analytics/sales_report.html' %} {% endcomment %}
       <div class="row">
         <div class="col-sm-12 col-md-6 col-lg-6">
           {% include 'analytics/orders_report.html' %}

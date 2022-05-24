@@ -27,53 +27,72 @@
     </div>
     <!-- ========== title-wrapper end ========== -->
     <div class="row">
-      <div class="col-sm-1 col-lg-3 col-sm-6">
-        <div class="icon-card mb-30">
+      <div class="col-sm col-md-3 col-lg-3">
+        <div class="icon-card mb-30"   style="height: 200px;">
           <div class="icon purple">
             <i class="lni lni-cart-full"></i>
           </div>
           <div class="content">
-            <h6 class="mb-10">Total Orders</h6>
-            <h3 class="text-bold mb-10">{{total_orders}}</h3>
+            <p class="mb-10" style="font-size: 12px;">Total Processed Orders {{date}}</p>
+            <p class="text-5xl   dark:text-white">
+                {{total_orders.no_of_order__sum|default_if_none:"0"}}
+            </p>
           </div>
         </div>
         <!-- End Icon Cart -->
       </div>
       <!-- End Col -->
-      <div class="col-xl-3 col-lg-4 col-sm-6">
-        <div class="icon-card mb-30">
+      <div class="col-sm col-md-2 col-lg-2">
+        <div class="icon-card mb-30"   style="height: 200px;">
           <div class="icon success">
             <i class="lni lni-dollar"></i>
           </div>
           <div class="content">
-            <h6 class="mb-10">Total Sales</h6>
-            <h3 class="text-bold mb-10">{{total_sales}}</h3>
+            <p class="mb-10" style="font-size: 12px;">Total Sales {{date}}</p>
+            <p class="text-5xl   dark:text-white">
+              ₱{{total_sales.total_amount__sum|default_if_none:"0"}}
+          </p>
           </div>
         </div>
         <!-- End Icon Cart -->
       </div>
       <!-- End Col -->
-      <div class="col-xl-3 col-lg-4 col-sm-6">
-        <div class="icon-card mb-30">
+      <div class="col-sm col-md-2 col-lg-2">
+        <div class="icon-card mb-30"   style="height: 200px;">
           <div class="icon primary">
             <i class="lni lni-credit-cards"></i>
           </div>
           <div class="content">
-            <h6 class="mb-10">Total Category</h6>
-            <h3 class="text-bold mb-10">{{total_category}}</h3>
+            <p class="mb-10" style="font-size: 12px;">Total Available Products {{date}}</p>
+            <p class="text-5xl  dark:text-white">
+              {{total_products|default_if_none:"0"}}
+          </p>
           </div>
         </div>
         <!-- End Icon Cart -->
       </div>
       <!-- End Col -->
-      <div class="col-xl-3 col-lg-4 col-sm-6">
-        <div class="icon-card mb-30">
+      <div class="col-sm col-md-2 col-lg-2">
+        <div class="icon-card mb-30"   style="height: 200px;">
           <div class="icon orange">
-            <i class="lni lni-user"></i>
+            <i class="lni lni-calendar"></i>
           </div>
           <div class="content">
-            <h6 class="mb-10">Total Bookings</h6>
-            <h3 class="text-bold mb-10">{{ total_bookings }}</h3>
+            <p class="mb-10" style="font-size: 12px;">Total Bookings {{date}}</p>
+            <p class="text-5xl  dark:text-white">{{ total_bookings|default_if_none:"0" }}</p>
+          </div>
+        </div>
+        <!-- End Icon Cart -->
+      </div>
+
+      <div class="col-sm col-md-3 col-lg-3">
+        <div class="icon-card mb-30"   style="height: 200px;">
+          <div class="icon red">
+            <i class="lni lni-question-circle"></i>
+          </div>
+          <div class="content">
+            <p class="mb-10" style="font-size: 12px;">Total Inquiries {{date}}</p>
+            <p class="text-5xl  dark:text-white">{{ total_inquiries|default_if_none:"0" }}</p>
           </div>
         </div>
         <!-- End Icon Cart -->
@@ -84,6 +103,7 @@
       {% include "dashboard/products.html" %}
     </div>
     <div class="dashboard-orders mt-4">
+      <div class="container-fluid">
       {% include "dashboard/orders.html" %}
     </div>
     <!-- End Row -->

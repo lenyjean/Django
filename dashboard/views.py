@@ -1,29 +1,41 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
+from django.db.models import Sum
 from .models import *
 from orders.models import *
 from products.models import *
 from category.models import *
 from bookings.models import *
+from inquiries.models import *
+
+import datetime
+
 # Create your views here.
 @login_required
 def homepage(request):
     template_name = "dashboard/homepage.html"
+    date = datetime.date.today()
     orders = Orders.objects.all()[:5]
     products = Products.objects.all()[:5]
+    orders_date = Orders.objects.filter(pickup_date=date)
+    orders_today = Orders.objects.filter(pickup_date=date).count()
 
-    total_orders = Orders.objects.all().count()
-    total_sales = Orders.objects.filter(status="Done").count()
-    total_category = Category.objects.filter(status=True).count()
-    total_bookings = Bookings.objects.filter(status=True).count()
+    total_orders = Orders.objects.filter(status__in=['Done', 'Pending', 'Cancelled', 'Late']).aggregate(Sum('no_of_order'))
+    total_sales = Orders.objects.filter(status="Done").aggregate(Sum('total_amount'))
+    total_products = Products.objects.filter(status=True).count()
+    total_inquiries = Inquiries.objects.all().count()
     
+
     context = {
         "orders" : orders,
         "products" : products,
         "total_orders" : total_orders,
         "total_sales" : total_sales,
-        "total_category" : total_category,
-        "total_bookings" : total_bookings
+        "total_products" : total_products,
+        "total_inquiries" : total_inquiries,
+        "orders_date" : orders_date,
+        "date" : date,
+        "orders_today" : orders_today
     }
     return render(request, template_name, context)
 

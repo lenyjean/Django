@@ -39,3 +39,11 @@ class Webhooks(viewsets.ViewSet):
             elif request.data["type"] == "custom_no":
                 MessengerData.objects.create(data=request.data)
                 return Response(request.data, status=status.HTTP_201_CREATED)
+
+            elif request.data["type"] == "bookings_custom_yes":
+                MessengerData.objects.create(data=request.data)
+                return Response(request.data, status=status.HTTP_201_CREATED)
+
+            elif request.data["type"] == "bookings_custom_no":
+                MessengerData.objects.create(data=request.data)
+                return Response(request.data, status=status.HTTP_201_CREATED)
