@@ -88,23 +88,27 @@ WSGI_APPLICATION = 'stsfbm.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
 # DATABASES = {
 #     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'mipnvoln',
-#         'USER': 'mipnvoln',
-#         'PASSWORD': '2xxesZu2orghedxRj1qOeitCS9f9SwMD',
-#         'HOST': 'rosie.db.elephantsql.com',
-#         'PORT': '',
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
 #     }
 # }
+import os
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'defaultdb',
+        'USER': 'doadmin',
+        'PASSWORD': 'AVNS_dpOlpu6M-q021tw',
+        'HOST': 'codehubdb-do-user-7998116-0.b.db.ondigitalocean.com',
+        'PORT': '25060',
+          'OPTIONS':{
+            'sslmode':'verify-full',
+            'sslrootcert': os.path.join(BASE_DIR, 'ca-certificate.crt')
+        }
+    }
+}
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 

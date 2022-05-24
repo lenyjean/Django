@@ -46,4 +46,11 @@ class Webhooks(viewsets.ViewSet):
 
             elif request.data["type"] == "bookings_custom_no":
                 MessengerData.objects.create(data=request.data)
-                return Response(request.data, status=status.HTTP_201_CREATED)
+                serializers = BookingsSerializer(data=request.data)
+                
+                if serializers.is_valid():
+                    serializers.save()
+                    return Response(serializers.data, status=status.HTTP_201_CREATED)
+                else:
+                    return Response(serializers.error, status=status.HTTP_201_CREATED)
+
