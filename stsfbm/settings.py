@@ -88,23 +88,23 @@ WSGI_APPLICATION = 'stsfbm.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'mipnvoln',
-        'USER': 'mipnvoln',
-        'PASSWORD': '2xxesZu2orghedxRj1qOeitCS9f9SwMD',
-        'HOST': 'rosie.db.elephantsql.com',
-        'PORT': '',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'mipnvoln',
+#         'USER': 'mipnvoln',
+#         'PASSWORD': '2xxesZu2orghedxRj1qOeitCS9f9SwMD',
+#         'HOST': 'rosie.db.elephantsql.com',
+#         'PORT': '',
+#     }
+# }
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
