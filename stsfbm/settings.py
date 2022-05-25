@@ -61,7 +61,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
 
-CSRF_TRUSTED_ORIGINS = ['https://stsweb-c5j95.ondigitalocean.app/']
+CSRF_TRUSTED_ORIGINS = ['https://stsweb-c5j95.ondigitalocean.app']
 
 CORS_REPLACE_HTTPS_REFERER = True
 
