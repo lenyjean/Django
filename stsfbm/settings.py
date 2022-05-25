@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure--!lq%d55wblhim)!vrp7cm%hohfk$9y5b84l9b=tt**bh4gam#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [ "*" , "stsweb-c5j95.ondigitalocean.app"]
+ALLOWED_HOSTS = [ "*" , "stsweb-c5j95.ondigitalocean.app", 'http://*', 'https://*']
 
 
 # Application definition
@@ -61,7 +61,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
 
-CSRF_TRUSTED_ORIGINS = ['https://stsweb-c5j95.ondigitalocean.app']
+CSRF_TRUSTED_ORIGINS = ['http://*', 'https://*']
 
 CORS_REPLACE_HTTPS_REFERER = True
 
