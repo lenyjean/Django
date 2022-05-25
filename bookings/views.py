@@ -1,6 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
+from django.contrib.auth.decorators import login_required
 from .models import *
 from django.db.models import Q
+
+from .forms import *
 
 # Create your views here.
 def bookings(request):
@@ -10,6 +13,19 @@ def bookings(request):
     context = {
         "active_bookings": active_bookings,
         "inactive_bookings" : inactive_bookings
+    }
+    return render (request, template_name, context)
+
+@login_required
+def bookings_update(request, pk):
+    template_name = "bookings/bookings_update.html"
+    bookings = get_object_or_404(Bookings, pk=pk)
+    form = BookingsForms(request.POST or None, instance=bookings)
+    if form.is_valid():
+         form.save()
+         return redirect("bookings-list")
+    context = {
+        "form" : form
     }
     return render (request, template_name, context)
 
