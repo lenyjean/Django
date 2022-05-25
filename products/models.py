@@ -3,7 +3,7 @@ from django.db import models
 
 # Create your models here.
 class Category(models.Model):
-    category = models.CharField(max_length=255)
+    category = models.CharField(max_length=255, unique=True)
     status = models.BooleanField(default=True)
 
     class Meta:
