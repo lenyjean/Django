@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure--!lq%d55wblhim)!vrp7cm%hohfk$9y5b84l9b=tt**bh4gam#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [ "*" , "stsweb-c5j95.ondigitalocean.app", 'http://*', 'https://*']
+ALLOWED_HOSTS = [ "*" , "stsweb-c5j95.ondigitalocean.app"]
 
 
 # Application definition
@@ -61,7 +61,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
 
-CSRF_TRUSTED_ORIGINS = ['http://*', 'https://*', 'https://stsweb-c5j95.ondigitalocean.app',  'https://*.ondigitalocean.app']
+CSRF_TRUSTED_ORIGINS = [ 'https://stsweb-c5j95.ondigitalocean.app',  'https://*.ondigitalocean.app']
 
 
 CSRF_COOKIE_DOMAIN = 'ondigitalocean.app'
@@ -69,6 +69,10 @@ CSRF_COOKIE_DOMAIN = 'ondigitalocean.app'
 CORS_ORIGIN_WHITELIST = (
     'https://stsweb-c5j95.ondigitalocean.app',
 )
+
+# Setup support for proxy headers
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
