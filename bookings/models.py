@@ -17,7 +17,7 @@ class Bookings(models.Model):
     pickup_date = models.CharField(max_length=225)
     name_on_cake = models.CharField(max_length=225)
     phone = models.CharField(max_length=225)
-    status = models.CharField(max_length=225)
+    status = models.CharField(max_length=225, choices=status)
     created_date = models.DateField(auto_now_add=True)
 
 

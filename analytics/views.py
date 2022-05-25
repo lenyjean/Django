@@ -171,7 +171,7 @@ def analytics_week(request):
         total_orders_per_products = Orders.objects.filter(total_orders_per_product_range).values('products_id__product_name').annotate(Sum('no_of_order'))
         total_product_per_category = Products.objects.filter(total_product_per_category_range).values('category_id__category').annotate(Count('category'))
         total_sales_per_product = Orders.objects.filter(total_sales_per_product_range).values('products_id__product_name').annotate(Sum('total_amount'))
-        total_inquiries = Orders.objects.filter(total_inquiries_range).count()
+        total_inquiries = Inquiries.objects.filter(total_inquiries_range).count()
         total_bookings = Bookings.objects.filter(total_bookings_range).count()
         date = f"from {from_date} to {to_date}"
     else:

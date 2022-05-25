@@ -47,7 +47,7 @@
           <th scope="col">Flavor</th>
           <th scope="col">Custom Decoration</th>
           <th scope="col">Describe Decoration</th>
-          <th scope="col">Delivery Date</th>
+          <th scope="col">Pickup Date</th>
           <th scope="col">Name on Cake</th>
           <th scope="col">Created Date</th>
         </tr>
@@ -60,7 +60,7 @@
           <td>{{list.flavor}}</td>
           <td>{{list.custom_decoration}}</td>
           <td>{{list.describe_decoration}}</td>
-          <td>{{list.delivery_date}}</td>
+          <td>{{list.pickup_date}}</td>
           <td>{{list.name_on_cake}}</td>
           <td>{{list.created_date}}</td>
         </tr>
@@ -109,7 +109,7 @@
               (today.getMonth() + 1) +
               "-" +
               today.getDate();
-            return "stsweb-report-" + date;
+            return "inquiries-report-" + date;
           },
         },
         {
@@ -118,7 +118,7 @@
           titleAttr: "Print",
           customize: function (win) {
             $(win.document.body).css("font-size", "12px");
-
+            
             $(win.document.body)
               .find("table")
               .addClass("compact")
@@ -135,7 +135,7 @@
               (today.getMonth() + 1) +
               "-" +
               today.getDate();
-            return "stsweb-report-" + date;
+            return "inquiries-report-" + date;
           },
         },
       ],

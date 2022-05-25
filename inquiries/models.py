@@ -6,7 +6,7 @@ class Inquiries(models.Model):
     flavor = models.CharField(max_length=225)
     custom_decoration = models.CharField(max_length=225)
     describe_decoration = models.CharField(max_length=225)
-    delivery_date = models.CharField(max_length=225)
+    pickup_date = models.CharField(max_length=225)
     name_on_cake = models.CharField(max_length=225)
     created_date = models.DateField(auto_now_add=True)
     
