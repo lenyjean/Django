@@ -39,7 +39,7 @@ def category_view(request, pk):
 @login_required
 def category_update(request, pk):
     template_name = "category/category_update.html"
-    category = get_object_or_404(Category, pk=pk)
+    category = get_object_or_404(Category, id=pk)
     form = CategoryForms(request.POST or None, instance=category)
     if form.is_valid():
          form.save()

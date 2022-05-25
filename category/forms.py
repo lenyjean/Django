@@ -2,13 +2,10 @@ from django import forms
 from products.models import *
 
 class CategoryForms(forms.ModelForm):
+    status = forms.BooleanField(label="Activate this category?", required=False)
     class Meta: 
         model = Category
-        fields = ["category"]
+        fields = ["category", "status"]
 
-    class Meta:
-        verbose_name = "Category"
 
-    def __str__(self):
-        return f"Category: {self.category}"
 
