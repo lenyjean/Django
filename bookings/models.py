@@ -14,7 +14,7 @@ class Bookings(models.Model):
     cake_size = models.CharField(max_length=225)
     quantity = models.IntegerField()
     total_amount = models.DecimalField(max_digits=10, decimal_places=2)
-    pickup_date = models.DateField(auto_now_add=False)
+    pickup_date = models.CharField(max_length=225)
     name_on_cake = models.CharField(max_length=225)
     phone = models.CharField(max_length=225)
     status = models.CharField(max_length=225)
