@@ -34,7 +34,7 @@ class Webhooks(viewsets.ViewSet):
                     serializers.save()
                     return Response(serializers.data, status=status.HTTP_201_CREATED)
                 else:
-                    return Response(serializers.error, status=status.HTTP_201_CREATED)
+                    return Response(serializers.errors, status=status.HTTP_201_CREATED)
 
             elif request.data["type"] == "custom_no":
                 MessengerData.objects.create(data=request.data)
