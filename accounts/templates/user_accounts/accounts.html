@@ -113,10 +113,10 @@
         {% for list in active_user %}
         <tr class="text-center">
           <th scope="row">{{forloop.counter}}</th>
-          <td>{{list.last_name|default_if_none:"Not Available"}}</td>
-          <td>{{list.first_name}}</td>
-          <td>{{list.email}}</td>
-          <td>{{list.username}}</td>
+          <td>{{list.last_name|default:"Not Available"}}</td>
+          <td>{{list.first_name|default:"Not Available"}}</td>
+          <td>{{list.email|default:"Not Available"}}</td>
+          <td>{{list.username|default:"Not Available"}}</td>
           <td>{{list.date_joined}}</td>
           <td>{{list.last_login|default_if_none:"Not yet logged in"}}</td>
           <td>
@@ -159,8 +159,7 @@
             <a
               class="bg-danger p-1 text-white rounded"
               style="font-size: 12px"
-              data-bs-toggle="modal"
-              data-bs-target="#exampleModal"
+              href="{% url 'delete_user' list.id %}"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -318,10 +317,10 @@
       {% for list in inactive_user %}
       <tr class="text-center">
         <th scope="row">{{forloop.counter}}</th>
-        <td>{{list.last_name|default_if_none:"Not Available"}}</td>
-        <td>{{list.first_name}}</td>
-        <td>{{list.email}}</td>
-        <td>{{list.username}}</td>
+        <td>{{list.last_name|default:"Not Available"}}</td>
+        <td>{{list.first_name|default:"Not Available"}}</td>
+        <td>{{list.email|default:"Not Available"}}</td>
+        <td>{{list.username|default:"Not Available"}}</td>
         <td>{{list.date_joined}}</td>
         <td>{{list.last_login|default_if_none:"Not yet logged in"}}</td>
         <td>
@@ -364,8 +363,7 @@
           <a
             class="bg-danger p-1 text-white rounded"
             style="font-size: 12px"
-            data-bs-toggle="modal"
-            data-bs-target="#exampleModal"
+            href="{% url 'delete_user' list.id %}"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

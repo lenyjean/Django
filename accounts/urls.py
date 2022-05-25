@@ -10,4 +10,5 @@ urlpatterns = [
     path("create-admin-account", AdminSignUpView.as_view(), name="admin-sign-up"),
     path("create-staff-account", StaffSignUpView.as_view(), name="staff-sign-up"),
     path("update-password", update_password, name="update_password"),
+    path("delete-user/<int:pk>", UserDetailView.as_view(), name="delete_user"),
 ]

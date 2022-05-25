@@ -2,6 +2,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import login
 from django.shortcuts import redirect
 from django.views.generic import CreateView
+from django.views.generic.detail import DetailView
 from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
@@ -98,3 +99,9 @@ def update_password(request):
     return render(request, template_name, {
         'form': form
     })
+
+class UserDetailView(DetailView):
+    # specify the model to use
+    template_name = 'user_accounts/delete_profile.html'
+    model = User
+    context_object_name = "user"
