@@ -55,7 +55,7 @@
           </div>
           <div class="content">
             <p class="mb-10" style="font-size: 12px;">Total Processed Orders {{date}}</p>
-            <p class="text-5xl   dark:text-white">
+            <p class="text-3xl   dark:text-white">
                 {{total_orders.no_of_order__sum|default_if_none:"0"}}
             </p>
           </div>
@@ -70,7 +70,7 @@
           </div>
           <div class="content">
             <p class="mb-10" style="font-size: 12px;">Total Sales {{date}}</p>
-            <p class="text-5xl   dark:text-white">
+            <p class="text-1xl   dark:text-white">
               ₱{{total_sales.total_amount__sum|default_if_none:"0"}}
           </p>
           </div>
@@ -85,7 +85,7 @@
           </div>
           <div class="content">
             <p class="mb-10" style="font-size: 12px;">Total Available Products {{date}}</p>
-            <p class="text-5xl  dark:text-white">
+            <p class="text-3xl  dark:text-white">
               {{total_products|default_if_none:"0"}}
           </p>
           </div>
@@ -100,7 +100,7 @@
           </div>
           <div class="content">
             <p class="mb-10" style="font-size: 12px;">Total Bookings {{date}}</p>
-            <p class="text-5xl  dark:text-white">{{ total_bookings|default_if_none:"0" }}</p>
+            <p class="text-3xl  dark:text-white">{{ total_bookings|default_if_none:"0" }}</p>
           </div>
         </div>
         <!-- End Icon Cart -->
@@ -113,7 +113,7 @@
           </div>
           <div class="content">
             <p class="mb-10" style="font-size: 12px;">Total Inquiries {{date}}</p>
-            <p class="text-5xl  dark:text-white">{{ total_inquiries|default_if_none:"0" }}</p>
+            <p class="text-3xl  dark:text-white">{{ total_inquiries|default_if_none:"0" }}</p>
           </div>
         </div>
         <!-- End Icon Cart -->
