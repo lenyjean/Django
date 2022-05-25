@@ -50,13 +50,32 @@ INSTALLED_APPS = [
     'webhooks',
     'payment',
     'rest_framework',
+    'corsheaders'
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
+CORS_ALLOW_CREDENTIALS = True
+
+CORS_ORIGIN_ALLOW_ALL = True
+
+CORS_ALLOW_CREDENTIALS = True
+
+
+CSRF_TRUSTED_ORIGINS = ['https://stsweb-c5j95.ondigitalocean.app/']
+
+CORS_REPLACE_HTTPS_REFERER = True
+
+CSRF_COOKIE_DOMAIN = 'ondigitalocean.app'
+
+CORS_ORIGIN_WHITELIST = (
+    'https://stsweb-c5j95.ondigitalocean.app',
+)
+
 MIDDLEWARE = [
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware",
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
