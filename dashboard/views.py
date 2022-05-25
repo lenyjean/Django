@@ -24,6 +24,7 @@ def homepage(request):
     total_sales = Orders.objects.filter(status="Done").aggregate(Sum('total_amount'))
     total_products = Products.objects.filter(status=True).count()
     total_inquiries = Inquiries.objects.all().count()
+    total_bookings = Bookings.objects.all().count()
     
 
     context = {
@@ -33,6 +34,7 @@ def homepage(request):
         "total_sales" : total_sales,
         "total_products" : total_products,
         "total_inquiries" : total_inquiries,
+        "total_bookings" : total_bookings,
         "orders_date" : orders_date,
         "date" : date,
         "orders_today" : orders_today

@@ -10,7 +10,7 @@ class InquriesSerializer(serializers.ModelSerializer):
         fields ="__all__"
 
 
-class BookingsSerializer(serializers.ModelSerializer):
+class BookingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bookings
         fields ="__all__"
