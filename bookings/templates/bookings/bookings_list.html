@@ -88,6 +88,7 @@
           <th scope="col">Name on Cake</th>
           <th scope="col">Phone</th>
           <th scope="col">Total Amount</th>
+          <th scope="col">Actions</th>
         </tr>
       </thead>
       <tbody>
@@ -104,11 +105,29 @@
           <td>{{list.name_on_cake}}</td>
           <td>{{list.phone}}</td>
           <td>{{list.total_amount}}</td>
-       
-        
-  
-          
-          <td>
+          <td colspan="5">
+            <a
+              href="{% url 'bookings-update' list.id %}"
+              class="bg-warning p-1 text-white rounded"
+              style="font-size: 12px"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                fill="currentColor"
+                class="bi bi-pencil-square"
+                viewBox="0 0 16 16"
+              >
+                <path
+                  d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"
+                />
+                <path
+                  fill-rule="evenodd"
+                  d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"
+                />
+              </svg>
+            </a>
           </td>
         </tr>
         {% endfor %}
@@ -172,10 +191,15 @@
       <tr class="text-center">
         <th scope="col">#</th>
         <th scope="col">Customer Name</th>
-        <th scope="col">Product Ordered</th>
+        <th scope="col">Cake Name</th>
         <th scope="col">Category</th>
         <th scope="col">Pickup Date</th>
         <th scope="col">Status</th>
+        <th scope="col">Created Date</th>
+        <th scope="col">Quantity</th>
+        <th scope="col">Name on Cake</th>
+        <th scope="col">Phone</th>
+        <th scope="col">Total Amount</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
@@ -184,10 +208,15 @@
       <tr class="text-center">
         <th scope="row">{{forloop.counter}}</th>
         <td>{{list.customer_name}}</td>
-        <td>{{list.product_ordered}}</td>
+        <td>{{list.cake_name}}</td>
         <td>{{list.category}}</td>
         <td>{{list.pickup_date}}</td>
         <td>{{list.status}}</td>
+        <td>{{list.created_date}}</td>
+        <td>{{list.quantity}}</td>
+        <td>{{list.name_on_cake}}</td>
+        <td>{{list.phone}}</td>
+        <td>{{list.total_amount}}</td>
         <td>
         </td>
       </tr>
