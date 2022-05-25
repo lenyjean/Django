@@ -1,3 +1,4 @@
+
 {% extends 'charts.html' %} 
 
 {% block script %}
@@ -25,13 +26,13 @@
               <div class="relative">
                     <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                        </div>
-                    <input name="from_date" type="date" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={{from_date}} required>
+                    <input name="from_date" type="date" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={{from_date}}>
                 </div>
               <span class="mx-4 text-gray-500">to</span>
               <div class="relative">
                 <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
                   </div>
-                <input name="to_date" type="date" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={{to_date}} required>
+                <input name="to_date" type="date" class="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5  dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" value={{to_date}}>
             </div>
             </div>
             &nbsp; &nbsp; 
@@ -60,7 +61,7 @@
           <a href="{% url 'analytics_year' %}" class="p-1 rounded-t-lg border-b-2 border-transparent hover:text-gray-600 hover:border-gray-300 dark:hover:text-gray-300  text-decoration-none">Year</a>
         </li>
         <li>
-          <button type="button" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"  onclick="document.title='analytics-weekly';window.print()">
+          <button type="button" class="px-3 py-2 text-xs font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"  onclick="window.print()">
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path></svg>
           </button>
         </li>
@@ -82,7 +83,7 @@
                 </div>
                 <div class="content">
                   <p class="mb-10" style="font-size: 12px;">Total Processed Orders <br> {{date}}</p>
-                  <p class="text-5xl   dark:text-white">
+                  <p class="text-3xl   dark:text-white">
                       {{total_orders.no_of_order__sum|default_if_none:"0"}}
                   </p>
                 </div>
@@ -96,8 +97,8 @@
                   <i class="lni lni-dollar"></i>
                 </div>
                 <div class="content">
-                  <p class="mb-10" style="font-size: 12px;">Total Sales <br> {{date}}</p>
-                  <p class="text-5xl   dark:text-white">
+                  <p class="mb-10" style="font-size: 10px;">Total Sales <br> {{date}}</p>
+                  <p class="text-2xl   dark:text-white">
                     ₱{{total_sales.total_amount__sum|default_if_none:"0"}}
                 </p>
                 </div>
@@ -111,8 +112,8 @@
                   <i class="lni lni-credit-cards"></i>
                 </div>
                 <div class="content">
-                  <p class="mb-10" style="font-size: 12px;">Total Available Products <br> {{date}}</p>
-                  <p class="text-5xl  dark:text-white">
+                  <p class="mb-10" style="font-size: 10px;">Total Available Products <br> {{date}}</p>
+                  <p class="text-3xl  dark:text-white">
                     {{total_products|default_if_none:"0"}}
                 </p>
                 </div>
@@ -126,8 +127,8 @@
                   <i class="lni lni-calendar"></i>
                 </div>
                 <div class="content">
-                  <p class="mb-10" style="font-size: 12px;">Total Bookings <br> {{date}}</p>
-                  <p class="text-5xl  dark:text-white">{{ total_bookings|default_if_none:"0" }}</p>
+                  <p class="mb-10" style="font-size: 10px;">Total Bookings <br> {{date}}</p>
+                  <p class="text-4xl  dark:text-white">{{ total_bookings|default_if_none:"0" }}</p>
                 </div>
               </div>
               <!-- End Icon Cart -->
