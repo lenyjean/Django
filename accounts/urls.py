@@ -9,4 +9,5 @@ urlpatterns = [
     path("delete-account/<int:pk>", user_delete, name="delete-account"),
     path("create-admin-account", AdminSignUpView.as_view(), name="admin-sign-up"),
     path("create-staff-account", StaffSignUpView.as_view(), name="staff-sign-up"),
+    path("update-password", update_password, name="update_password"),
 ]

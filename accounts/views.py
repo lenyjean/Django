@@ -2,6 +2,10 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth import login
 from django.shortcuts import redirect
 from django.views.generic import CreateView
+from django.views.decorators.csrf import csrf_exempt
+from django.contrib.auth import update_session_auth_hash
+from django.contrib.auth.forms import PasswordChangeForm
+from django.contrib import messages
 
 from .models import *
 from .forms import *
@@ -77,3 +81,20 @@ class StaffSignUpView(CreateView):
         user = form.save()
         return redirect('account-list')
 
+
+def update_password(request):
+    template_name =  "user_accounts/update_password.html"
+    if request.method == 'POST':
+        form = PasswordChangeForm(request.user, request.POST)
+        if form.is_valid():
+            user = form.save()
+            update_session_auth_hash(request, user)  # Important!
+            return redirect('view-profile')
+        else:
+            messages.error(request, 'Please correct the error below.')
+            return redirect('update_password')
+    else:
+        form = PasswordChangeForm(request.user)
+    return render(request, template_name, {
+        'form': form
+    })
