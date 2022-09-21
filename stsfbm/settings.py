@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure--!lq%d55wblhim)!vrp7cm%hohfk$9y5b84l9b=tt**bh4gam#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [ "*" , "stsweb-c5j95.ondigitalocean.app"]
+ALLOWED_HOSTS = [ "*" , "stsweb.up.railway.app"]
 
 
 # Application definition
@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'crispy_forms',
 
-    'inquiries',
+    # 'inquiries',
     'dashboard',
     'products',
     'orders',
@@ -61,13 +61,13 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
 
-CSRF_TRUSTED_ORIGINS = [ 'https://stsweb-c5j95.ondigitalocean.app',  'https://*.ondigitalocean.app']
+CSRF_TRUSTED_ORIGINS = [ 'https://stsweb.up.railway.app',  'https://*.up.railway.app', 'http://127.0.0.1:8000']
 
 
-CSRF_COOKIE_DOMAIN = 'ondigitalocean.app'
+CSRF_COOKIE_DOMAIN = 'up.railway.app'
 
 CORS_ORIGIN_WHITELIST = (
-    'https://stsweb-c5j95.ondigitalocean.app',
+    'https://stsweb.up.railway.app', 'http://127.0.0.1:8000',
 )
 
 # Setup support for proxy headers
@@ -109,27 +109,27 @@ WSGI_APPLICATION = 'stsfbm.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
-import os
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'defaultdb',
-        'USER': 'doadmin',
-        'PASSWORD': 'AVNS_dpOlpu6M-q021tw',
-        'HOST': 'codehubdb-do-user-7998116-0.b.db.ondigitalocean.com',
-        'PORT': '25060',
-          'OPTIONS':{
-            'sslmode':'verify-full',
-            'sslrootcert': os.path.join(BASE_DIR, 'ca-certificate.crt')
-        }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
+# import os
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'defaultdb',
+#         'USER': 'doadmin',
+#         'PASSWORD': 'AVNS_dpOlpu6M-q021tw',
+#         'HOST': 'codehubdb-do-user-7998116-0.b.db.ondigitalocean.com',
+#         'PORT': '25060',
+#           'OPTIONS':{
+#             'sslmode':'verify-full',
+#             'sslrootcert': os.path.join(BASE_DIR, 'ca-certificate.crt')
+#         }
+#     }
+# }
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 

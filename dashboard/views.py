@@ -6,7 +6,7 @@ from orders.models import *
 from products.models import *
 from category.models import *
 from bookings.models import *
-from inquiries.models import *
+# from inquiries.models import *
 
 import datetime
 
@@ -23,7 +23,7 @@ def homepage(request):
     total_orders = Orders.objects.filter(status__in=['Done', 'Pending', 'Cancelled', 'Late']).aggregate(Sum('no_of_order'))
     total_sales = Orders.objects.filter(status="Done").aggregate(Sum('total_amount'))
     total_products = Products.objects.filter(status=True).count()
-    total_inquiries = Inquiries.objects.all().count()
+    # total_inquiries = Inquiries.objects.all().count()
     total_bookings = Bookings.objects.all().count()
     
 
@@ -33,7 +33,7 @@ def homepage(request):
         "total_orders" : total_orders,
         "total_sales" : total_sales,
         "total_products" : total_products,
-        "total_inquiries" : total_inquiries,
+        # "total_inquiries" : total_inquiries,
         "total_bookings" : total_bookings,
         "orders_date" : orders_date,
         "date" : date,

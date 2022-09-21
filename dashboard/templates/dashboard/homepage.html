@@ -10,23 +10,25 @@
           </div>
         </div>
         <!-- end col -->
-        <div class="col-md-6">
-          <div class="breadcrumb-wrapper mb-30">
-            <nav aria-label="breadcrumb">
-              <ol class="breadcrumb">
-                <li class="breadcrumb-item">
-                  <a href="/">Dashboard</a>
-                </li>
-              </ol>
-            </nav>
-          </div>
-        </div>
-        <!-- end col -->
       </div>
       <!-- end row -->
     </div>
     <!-- ========== title-wrapper end ========== -->
     <div class="row">
+      <div class="col-sm col-md-3 col-lg-3">
+        <div class="icon-card mb-30"   style="height: 200px;">
+          <div class="icon success">
+            <i class="lni lni-dollar"></i>
+          </div>
+          <div class="content">
+            <p class="mb-10" style="font-size: 12px;">Total Sales {{date}}</p>
+            <p class="text-3xl   dark:text-white">
+              ₱{{total_sales.total_amount__sum|default_if_none:"0"}}
+          </p>
+          </div>
+        </div>
+        <!-- End Icon Cart -->
+      </div>
       <div class="col-sm col-md-3 col-lg-3">
         <div class="icon-card mb-30"   style="height: 200px;">
           <div class="icon purple">
@@ -42,22 +44,7 @@
         <!-- End Icon Cart -->
       </div>
       <!-- End Col -->
-      <div class="col-sm col-md-2 col-lg-2">
-        <div class="icon-card mb-30"   style="height: 200px;">
-          <div class="icon success">
-            <i class="lni lni-dollar"></i>
-          </div>
-          <div class="content">
-            <p class="mb-10" style="font-size: 12px;">Total Sales {{date}}</p>
-            <p class="text-1xl   dark:text-white">
-              ₱{{total_sales.total_amount__sum|default_if_none:"0"}}
-          </p>
-          </div>
-        </div>
-        <!-- End Icon Cart -->
-      </div>
-      <!-- End Col -->
-      <div class="col-sm col-md-2 col-lg-2">
+      <div class="col-sm col-md-3 col-lg-3">
         <div class="icon-card mb-30"   style="height: 200px;">
           <div class="icon primary">
             <i class="lni lni-credit-cards"></i>
@@ -72,7 +59,7 @@
         <!-- End Icon Cart -->
       </div>
       <!-- End Col -->
-      <div class="col-sm col-md-2 col-lg-2">
+      <div class="col-sm col-md-3 col-lg-3">
         <div class="icon-card mb-30"   style="height: 200px;">
           <div class="icon orange">
             <i class="lni lni-calendar"></i>
@@ -84,20 +71,6 @@
         </div>
         <!-- End Icon Cart -->
       </div>
-
-      <div class="col-sm col-md-3 col-lg-3">
-        <div class="icon-card mb-30"   style="height: 200px;">
-          <div class="icon red ">
-            <i class="lni lni-question-circle"></i>
-          </div>
-          <div class="content">
-            <p class="mb-10" style="font-size: 12px;">Total Inquiries {{date}}</p>
-            <p class="text-3xl  dark:text-white">{{ total_inquiries|default_if_none:"0" }}</p>
-          </div>
-        </div>
-        <!-- End Icon Cart -->
-      </div>
-      <!-- End Col -->
     </div>
     <div class="dashboard-products">
       {% include "dashboard/products.html" %}

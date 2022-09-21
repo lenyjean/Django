@@ -29,7 +29,7 @@ def analytics(request):
     total_orders = Orders.objects.filter(status__in=['Done', 'Pending', 'Cancelled', 'Late']).aggregate(Sum('no_of_order'))
     total_sales = Orders.objects.filter(status="Done").aggregate(Sum('total_amount'))
     total_products = Products.objects.filter(status=True).count()
-    total_inquiries = Inquiries.objects.all().count()
+    # total_inquiries = Inquiries.objects.all().count()
     total_bookings = Bookings.objects.all().count()
 
     # Getting the total sales per month.
@@ -54,7 +54,7 @@ def analytics(request):
         'total_orders_per_products' : total_orders_per_products,
         'total_product_per_category' : total_product_per_category,
         'total_sales_per_product' : total_sales_per_product,
-        'total_inquiries' : total_inquiries,
+        # 'total_inquiries' : total_inquiries,
         'total_bookings' : total_bookings
     }
     return render(request, template_name, context)
@@ -79,7 +79,7 @@ def analytics_day(request):
         total_orders_per_product_range = Q(Q(date_ordered=datetime.strptime(day, '%Y-%m-%d').date()) & Q(status__in=['Done', 'Pending', 'Cancelled', 'Late']))
         total_product_per_category_range = Q(Q(created_date=datetime.strptime(day, '%Y-%m-%d').date()) & Q(status=True))
         total_sales_per_product_range = Q(Q(date_ordered=datetime.strptime(day, '%Y-%m-%d').date()) & Q(status="Done"))
-        total_inquiries_range = Q(Q(created_date=datetime.strptime(day, '%Y-%m-%d').date()))
+        # total_inquiries_range = Q(Q(created_date=datetime.strptime(day, '%Y-%m-%d').date()))
         total_bookings_range = Q(Q(created_date=datetime.strptime(day, '%Y-%m-%d').date()))
 
         total_orders = Orders.objects.filter(total_orders_range).aggregate(Sum('no_of_order'))
@@ -91,7 +91,7 @@ def analytics_day(request):
         total_orders_per_products = Orders.objects.filter(total_orders_per_product_range).values('products_id__product_name').annotate(Sum('no_of_order'))
         total_product_per_category = Products.objects.filter(total_product_per_category_range).values('category_id__category').annotate(Count('category'))
         total_sales_per_product = Orders.objects.filter(total_sales_per_product_range).values('products_id__product_name').annotate(Sum('total_amount'))
-        total_inquiries = Inquiries.objects.filter(total_inquiries_range).count()
+        # total_inquiries = Inquiries.objects.filter(total_inquiries_range).count()
         total_bookings = Bookings.objects.filter(total_bookings_range).count()
         date = f"as of {day}"
     else:
@@ -105,7 +105,7 @@ def analytics_day(request):
         total_orders_per_product_range = Q(Q(date_ordered=day) & Q(status__in=['Done', 'Pending', 'Cancelled', 'Late']))
         total_product_per_category_range = Q(Q(created_date=day) & Q(status=True))
         total_sales_per_product_range = Q(Q(date_ordered=day) & Q(status="Done"))
-        total_inquiries_range = Q(Q(created_date=day))
+        # total_inquiries_range = Q(Q(created_date=day))
         total_bookings_range = Q(Q(created_date=day))
 
         total_orders = Orders.objects.filter(total_orders_range).aggregate(Sum('no_of_order'))
@@ -117,7 +117,7 @@ def analytics_day(request):
         total_orders_per_products = Orders.objects.filter(total_orders_per_product_range).values('products_id__product_name').annotate(Sum('no_of_order'))
         total_product_per_category = Products.objects.filter(total_product_per_category_range).values('category_id__category').annotate(Count('category'))
         total_sales_per_product = Orders.objects.filter(total_sales_per_product_range).values('products_id__product_name').annotate(Sum('total_amount'))
-        total_inquiries = Inquiries.objects.filter(total_inquiries_range).count()
+        # total_inquiries = Inquiries.objects.filter(total_inquiries_range).count()
         total_bookings = Bookings.objects.filter(total_bookings_range).count()
         date = f"as of {day}"
 
@@ -129,7 +129,7 @@ def analytics_day(request):
         'total_orders_per_products' : total_orders_per_products,
         'total_product_per_category' : total_product_per_category,
         'total_sales_per_product' : total_sales_per_product,
-        "total_inquiries" : total_inquiries,
+        # "total_inquiries" : total_inquiries,
         'total_bookings' : total_bookings,
         'date' : date,
         "day" : day
@@ -158,7 +158,7 @@ def analytics_week(request):
         total_orders_per_product_range = Q(Q(date_ordered__range=[datetime.strptime(from_date, '%Y-%m-%d').date(), datetime.strptime(to_date, '%Y-%m-%d').date()]) & Q(status__in=['Done', 'Pending', 'Cancelled', 'Late']))
         total_product_per_category_range = Q(Q(created_date__range=[datetime.strptime(from_date, '%Y-%m-%d').date(), datetime.strptime(to_date, '%Y-%m-%d').date()]) & Q(status=True))
         total_sales_per_product_range = Q(Q(date_ordered__range=[datetime.strptime(from_date, '%Y-%m-%d').date(), datetime.strptime(to_date, '%Y-%m-%d').date()]) & Q(status="Done"))
-        total_inquiries_range = Q(Q(created_date__range=[datetime.strptime(from_date, '%Y-%m-%d').date(), datetime.strptime(to_date, '%Y-%m-%d').date()]))
+        # total_inquiries_range = Q(Q(created_date__range=[datetime.strptime(from_date, '%Y-%m-%d').date(), datetime.strptime(to_date, '%Y-%m-%d').date()]))
         total_bookings_range = Q(Q(created_date__range=[datetime.strptime(from_date, '%Y-%m-%d').date(), datetime.strptime(to_date, '%Y-%m-%d').date()]))
  
 
@@ -171,7 +171,7 @@ def analytics_week(request):
         total_orders_per_products = Orders.objects.filter(total_orders_per_product_range).values('products_id__product_name').annotate(Sum('no_of_order'))
         total_product_per_category = Products.objects.filter(total_product_per_category_range).values('category_id__category').annotate(Count('category'))
         total_sales_per_product = Orders.objects.filter(total_sales_per_product_range).values('products_id__product_name').annotate(Sum('total_amount'))
-        total_inquiries = Inquiries.objects.filter(total_inquiries_range).count()
+        # total_inquiries = Inquiries.objects.filter(total_inquiries_range).count()
         total_bookings = Bookings.objects.filter(total_bookings_range).count()
         date = f"from {from_date} to {to_date}"
     else:
@@ -186,7 +186,7 @@ def analytics_week(request):
         total_orders_per_product_range = Q(Q(date_ordered__range=[from_date, to_date]) & Q(status__in=['Done', 'Pending', 'Cancelled', 'Late']))
         total_product_per_category_range = Q(Q(created_date__range=[from_date, to_date]) & Q(status=True))
         total_sales_per_product_range = Q(Q(date_ordered__range=[from_date, to_date]) & Q(status="Done"))
-        total_inquiries_range = Q(Q(created_date__range=[from_date, to_date]))
+        # total_inquiries_range = Q(Q(created_date__range=[from_date, to_date]))
         total_bookings_range = Q(Q(created_date__range=[from_date, to_date]))
 
         total_orders = Orders.objects.filter(total_orders_range).aggregate(Sum('no_of_order'))
@@ -198,7 +198,7 @@ def analytics_week(request):
         total_orders_per_products = Orders.objects.filter(total_orders_per_product_range).values('products_id__product_name').annotate(Sum('no_of_order'))
         total_product_per_category = Products.objects.filter(total_product_per_category_range).values('category_id__category').annotate(Count('category'))
         total_sales_per_product = Orders.objects.filter(total_sales_per_product_range).values('products_id__product_name').annotate(Sum('total_amount'))
-        total_inquiries = Inquiries.objects.filter(total_inquiries_range).count()
+        # total_inquiries = Inquiries.objects.filter(total_inquiries_range).count()
         total_bookings = Bookings.objects.filter(total_bookings_range).count()
         date = f"from {from_date} to {to_date}"
 
@@ -210,7 +210,7 @@ def analytics_week(request):
         'total_orders_per_products' : total_orders_per_products,
         'total_product_per_category' : total_product_per_category,
         'total_sales_per_product' : total_sales_per_product,
-        'total_inquiries' : total_inquiries,
+        # 'total_inquiries' : total_inquiries,
         'total_bookings' : total_bookings,
         'date' : date,
         "from_date" : from_date,
@@ -242,7 +242,7 @@ def analytics_month(request):
         total_orders_per_product_range = Q(Q(date_ordered__year__exact=current_year) & Q(date_ordered__month__exact=current_month)  & Q(status__in=['Done', 'Pending', 'Cancelled', 'Late']))
         total_product_per_category_range = Q(Q(created_date__year__exact=current_year) & Q(created_date__month__exact=current_month)  & Q(status=True))
         total_sales_per_product_range = Q(Q(date_ordered__year__exact=current_year) & Q(date_ordered__month__exact=current_month)  & Q(status="Done"))
-        total_inquiries_range = Q(Q(created_date__year__exact=current_year) & Q(created_date__month__exact=current_month))
+        # total_inquiries_range = Q(Q(created_date__year__exact=current_year) & Q(created_date__month__exact=current_month))
         total_bookings_range = Q(Q(created_date__year__exact=current_year) & Q(created_date__month__exact=current_month))
 
         total_orders = Orders.objects.filter(total_orders_range).aggregate(Sum('no_of_order'))
@@ -254,7 +254,7 @@ def analytics_month(request):
         total_orders_per_products = Orders.objects.filter(total_orders_per_product_range).values('products_id__product_name').annotate(Sum('no_of_order'))
         total_product_per_category = Products.objects.filter(total_product_per_category_range).values('category_id__category').annotate(Count('category'))
         total_sales_per_product = Orders.objects.filter(total_sales_per_product_range).values('products_id__product_name').annotate(Sum('total_amount'))
-        total_inquiries = Inquiries.objects.filter(total_inquiries_range).count()
+        # total_inquiries = Inquiries.objects.filter(total_inquiries_range).count()
         total_bookings = Bookings.objects.filter(total_bookings_range).count()
         date = f"as of {month}"
     else:
@@ -271,7 +271,7 @@ def analytics_month(request):
         total_orders_per_product_range = Q(Q(date_ordered__year__exact=current_year) & Q(date_ordered__month__exact=current_month)  &  Q(status__in=['Done', 'Pending', 'Cancelled', 'Late']))
         total_product_per_category_range = Q(Q(created_date__year__exact=current_year) & Q(created_date__month__exact=current_month)  &  Q(status=True))
         total_sales_per_product_range = Q(Q(date_ordered__year__exact=current_year) & Q(date_ordered__month__exact=current_month)  & Q(status="Done"))
-        total_inquiries_range = Q(Q(created_date__year__exact=current_year) & Q(created_date__month__exact=current_month))
+        # total_inquiries_range = Q(Q(created_date__year__exact=current_year) & Q(created_date__month__exact=current_month))
         total_bookings_range = Q(Q(created_date__year__exact=current_year) & Q(created_date__month__exact=current_month))
 
         total_orders = Orders.objects.filter(total_orders_range).aggregate(Sum('no_of_order'))
@@ -283,7 +283,7 @@ def analytics_month(request):
         total_orders_per_products = Orders.objects.filter(total_orders_per_product_range).values('products_id__product_name').annotate(Sum('no_of_order'))
         total_product_per_category = Products.objects.filter(total_product_per_category_range).values('category_id__category').annotate(Count('category'))
         total_sales_per_product = Orders.objects.filter(total_sales_per_product_range).values('products_id__product_name').annotate(Sum('total_amount'))
-        total_inquiries = Inquiries.objects.filter(total_inquiries_range).count()
+        # total_inquiries = Inquiries.objects.filter(total_inquiries_range).count()
         total_bookings = Bookings.objects.filter(total_bookings_range).count()
         date = f"as of {var_month}"
 
@@ -295,7 +295,7 @@ def analytics_month(request):
         'total_orders_per_products' : total_orders_per_products,
         'total_product_per_category' : total_product_per_category,
         'total_sales_per_product' : total_sales_per_product,
-        'total_inquiries' : total_inquiries,
+        # 'total_inquiries' : total_inquiries,
         'total_bookings' : total_bookings,
         'date' : date,
         "month" : month
@@ -324,7 +324,7 @@ def analytics_year(request):
         total_orders_per_product_range = Q(Q(date_ordered__year__exact=current_year) & Q(status__in=['Done', 'Pending', 'Cancelled', 'Late']))
         total_product_per_category_range = Q(Q(created_date__year__exact=current_year) & Q(status=True))
         total_sales_per_product_range = Q(Q(date_ordered__year__exact=current_year) & Q(status="Done"))
-        total_inquiries_range = Q(Q(created_date__year__exact=current_year))
+        # total_inquiries_range = Q(Q(created_date__year__exact=current_year))
         total_bookings_range = Q(Q(created_date__year__exact=current_year))
 
         total_orders = Orders.objects.filter(total_orders_range).aggregate(Sum('no_of_order'))
@@ -336,7 +336,7 @@ def analytics_year(request):
         total_orders_per_products = Orders.objects.filter(total_orders_per_product_range).values('products_id__product_name').annotate(Sum('no_of_order'))
         total_product_per_category = Products.objects.filter(total_product_per_category_range).values('category_id__category').annotate(Count('category'))
         total_sales_per_product = Orders.objects.filter(total_sales_per_product_range).values('products_id__product_name').annotate(Sum('total_amount'))
-        total_inquiries = Inquiries.objects.filter(total_inquiries_range).count()
+        # total_inquiries = Inquiries.objects.filter(total_inquiries_range).count()
         total_bookings = Bookings.objects.filter(total_bookings_range).count()
         date = f"as of {year}"
     else:
@@ -350,7 +350,7 @@ def analytics_year(request):
         total_orders_per_product_range = Q(Q(date_ordered__year__exact=year) &  Q(status__in=['Done', 'Pending', 'Cancelled', 'Late']))
         total_product_per_category_range = Q(Q(created_date__year__exact=year)  &  Q(status=True))
         total_sales_per_product_range = Q(Q(date_ordered__year__exact=year)  & Q(status="Done"))
-        total_inquiries_range = Q(Q(created_date__year__exact=year))
+        # total_inquiries_range = Q(Q(created_date__year__exact=year))
         total_bookings_range = Q(Q(created_date__year__exact=year))
 
         total_orders = Orders.objects.filter(total_orders_range).aggregate(Sum('no_of_order'))
@@ -362,7 +362,7 @@ def analytics_year(request):
         total_orders_per_products = Orders.objects.filter(total_orders_per_product_range).values('products_id__product_name').annotate(Sum('no_of_order'))
         total_product_per_category = Products.objects.filter(total_product_per_category_range).values('category_id__category').annotate(Count('category'))
         total_sales_per_product = Orders.objects.filter(total_sales_per_product_range).values('products_id__product_name').annotate(Sum('total_amount'))
-        total_inquiries = Inquiries.objects.filter(total_inquiries_range).count()
+        # total_inquiries = Inquiries.objects.filter(total_inquiries_range).count()
         total_bookings = Bookings.objects.filter(total_bookings_range).count()
         date = f"as of {year}"
 
@@ -374,7 +374,7 @@ def analytics_year(request):
         'total_orders_per_products' : total_orders_per_products,
         'total_product_per_category' : total_product_per_category,
         'total_sales_per_product' : total_sales_per_product,
-        'total_inquiries' : total_inquiries,
+        # 'total_inquiries' : total_inquiries,
         'total_bookings' : total_bookings,
         'date' : date,
         "year" : year
