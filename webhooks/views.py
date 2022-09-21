@@ -26,17 +26,17 @@ class Webhooks(viewsets.ViewSet):
         if request.method == "POST":
             print(request.data)
 
-            if request.data['type'] == "custom_yes":
-                MessengerData.objects.create(data=request.data)
-                serializers = InquriesSerializer(data=request.data)
+            # if request.data['type'] == "custom_yes":
+            #     MessengerData.objects.create(data=request.data)
+            #     # serializers = InquriesSerializer(data=request.data)
                 
-                if serializers.is_valid():
-                    serializers.save()
-                    return Response(serializers.data, status=status.HTTP_201_CREATED)
-                else:
-                    return Response(serializers.errors, status=status.HTTP_201_CREATED)
+            #     if serializers.is_valid():
+            #         serializers.save()
+            #         return Response(serializers.data, status=status.HTTP_201_CREATED)
+            #     else:
+            #         return Response(serializers.errors, status=status.HTTP_201_CREATED)
 
-            elif request.data["type"] == "custom_no":
+            if request.data["type"] == "custom_no":
                 MessengerData.objects.create(data=request.data)
                 return Response(request.data, status=status.HTTP_201_CREATED)
 
