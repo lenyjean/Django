@@ -61,7 +61,7 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
 
-CSRF_TRUSTED_ORIGINS = ['https://stswebapp.herokuapp.com', 'https://*.herokuapp.com']
+CSRF_TRUSTED_ORIGINS = ['https://stswebapp.herokuapp.com', 'https://*.herokuapp.com', 'stswebapp.herokuapp.com', '*.herokuapp.com']
 
 
 CSRF_COOKIE_DOMAIN = 'herokuapp.com'
