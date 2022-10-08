@@ -20,7 +20,7 @@
             <li class="list-group-item">Category:  {{detail.category}}</li>
             <li class="list-group-item">Size:  {{detail.size}}</li>
             <li class="list-group-item">Price: {{detail.price}}</li>
-            <li class="list-group-item">Status: {{detail.status}}</li>
+            <li class="list-group-item">Status: {% if detail.status == True %}Available</span> {% else %} Not Available</span> {% endif %}</li>
           </ul>
         </div>
         {% endfor %}
