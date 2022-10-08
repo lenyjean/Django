@@ -44,3 +44,14 @@ class UpdatePasswordForm(forms.ModelForm):
     class Meta:
         model = User
         fields = ["password", "new_password", "confirm_password"]
+
+class SignInForm(forms.Form):
+    username = forms.CharField(label='Username')
+    password = forms.CharField(
+        label="Password",
+        strip=False,
+        widget=forms.PasswordInput(attrs={"autocomplete": "new-password", "class" : "form-control"}),
+    )
+ 
+    class Meta:
+        fields = ['username', 'password']

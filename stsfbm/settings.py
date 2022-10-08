@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     'webhooks',
     'payment',
     'rest_framework',
-    'corsheaders'
+    'corsheaders',
 ]
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
 

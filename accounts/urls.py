@@ -11,4 +11,6 @@ urlpatterns = [
     path("create-staff-account", StaffSignUpView.as_view(), name="staff-sign-up"),
     path("update-password", update_password, name="update_password"),
     path("delete-user/<int:pk>", UserDetailView.as_view(), name="delete_user"),
+    path("accounts/login", login_page, name="login"),
+    path("accounts/logout", logout_page, name="logout"),
 ]

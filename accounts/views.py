@@ -7,6 +7,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.contrib.auth import update_session_auth_hash
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import messages
+from django.contrib.auth import logout
 
 from .models import *
 from .forms import *
@@ -105,3 +106,29 @@ class UserDetailView(DetailView):
     template_name = 'user_accounts/delete_profile.html'
     model = User
     context_object_name = "user"
+
+def login_page(request):
+    template_name = "registration/login.html"
+    form = SignInForm(request.POST or None)
+
+    if request.method == "POST":
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+        try:
+            check_email = User.objects.get(username=username)
+            user = authenticate(request, username=username, password=password)
+            if user is not None:
+                login(request, user)
+                return redirect("/")
+            else:
+                messages.error(request, "Invalid email address or password")
+        except User.DoesNotExist:
+            messages.error(request, "User doesn't exists. Please register.")
+    context = {
+            "form" : form
+            }
+    return render(request, template_name, context)
+
+def logout_page(request):
+    logout(request)
+    return redirect("login")

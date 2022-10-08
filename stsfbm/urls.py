@@ -36,7 +36,7 @@ urlpatterns = [
     path("", include("analytics.urls")),
     # path("", include("inquiries.urls")),
     # path("", include("analytics.urls")),
-    path('accounts/', include('django.contrib.auth.urls')),
+    # path('accounts/', include('django.contrib.auth.urls')),
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
 
     path('', include(router.urls), name = "API Endpoints"),
