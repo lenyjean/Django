@@ -15,7 +15,7 @@ import datetime
 def homepage(request):
     template_name = "dashboard/homepage.html"
     date = datetime.date.today()
-    orders = Orders.objects.all()[:5]
+    orders = Orders.objects.filter(status__in=["Done", "Pending"])[:5]
     products = Products.objects.all()[:5]
     orders_date = Orders.objects.filter(pickup_date=date)
     orders_today = Orders.objects.filter(pickup_date=date).count()
