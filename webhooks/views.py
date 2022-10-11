@@ -62,7 +62,7 @@ class Webhooks(viewsets.ViewSet):
             return Response(request.data, status=status.HTTP_201_CREATED)
 
 
-@api.post("/create-bookings", response=BookingOutputSchema)
+@api.post("/api/create-bookings", response=BookingOutputSchema)
 def create_bookings_from_chatbot(request, payload: BookingInputSchema):
     return Bookings.objects.create(**payload.dict())
 
