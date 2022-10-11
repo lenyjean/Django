@@ -5,11 +5,15 @@ from rest_framework.response import Response
 from rest_framework import viewsets
 from rest_framework import status
 
+from ninja import NinjaAPI
+
+
 from .serializers import *
 from .models import *
 from bookings.models import *
+from .schema import *
 
-
+api = NinjaAPI()
 class Webhooks(viewsets.ViewSet):
 
     def list(self, request):
@@ -56,3 +60,10 @@ class Webhooks(viewsets.ViewSet):
             #         return Response(serializers.errors, status=status.HTTP_201_CREATED)
             MessengerData.objects.create(data=request.data)
             return Response(request.data, status=status.HTTP_201_CREATED)
+
+
+@api.post("/create-bookings", response=BookingOutputSchema)
+def create_bookings_from_chatbot(request, payload: BookingInputSchema):
+    return Bookings.objects.create(**payload.dict())
+
+

@@ -21,6 +21,7 @@ from django.views.generic.base import TemplateView
 from rest_framework.routers import DefaultRouter
 from webhooks.views import ( Webhooks )
 
+from webhooks.views import api
 
 router = DefaultRouter()
 router.register('api/webhooks?', Webhooks, basename='Plant')
@@ -40,4 +41,7 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
 
     path('', include(router.urls), name = "API Endpoints"),
+
+    path("api/", api.urls)
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+

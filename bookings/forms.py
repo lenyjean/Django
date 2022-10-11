@@ -5,7 +5,7 @@ class BookingsForms(forms.ModelForm):
     class Meta: 
         model = Bookings
         fields = [
-            "customer_name", "cake_name" , "category", "quantity", "total_amount", "pickup_date", "name_on_cake", "phone", "status"
+            "customer_name", "cake_name" , "cake_size", "category", "quantity", "total_amount", "mode_of_payment", "pickup_date","phone", "status"
         ]
 
         
