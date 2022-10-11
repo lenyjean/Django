@@ -9,7 +9,7 @@ from datetime import datetime
 # Create your views here.
 
 
-@login_required
+@login_required(login_url='/accounts/login')
 def orders_list(request):
     template_name = "orders/orders_list.html"
   # A filter for the date range.
@@ -51,7 +51,7 @@ def orders_list(request):
     return render(request, template_name, context)
 
 
-@login_required
+@login_required(login_url='/accounts/login')
 def orders_add(request):
     template_name = "orders/orders_add.html"
     form = OrderForms(request.POST or None)
@@ -78,7 +78,7 @@ def orders_add(request):
     return render(request, template_name, context)
 
 
-@login_required
+@login_required(login_url='/accounts/login')
 def orders_view(request, pk):
     template_name = "orders/orders_view.html"
     orders = Orders.objects.filter(id=pk)
@@ -88,7 +88,7 @@ def orders_view(request, pk):
     return render(request, template_name, context)
 
 
-@login_required
+@login_required(login_url='/accounts/login')
 def orders_update(request, pk):
     template_name = "orders/orders_update.html"
     orders = get_object_or_404(Orders, pk=pk)
@@ -101,12 +101,12 @@ def orders_update(request, pk):
     }
     return render(request, template_name, context)
 
-@login_required
+@login_required(login_url='/accounts/login')
 def orders_delete(request, pk):
     orders = Orders.objects.filter(id=pk).update(status="Done")
     return redirect("orders-list")
 
-@login_required
+@login_required(login_url='/accounts/login')
 def messenger_list(request):
     template_name = "messenger_orders/m-orders_list.html"
     messenger_orders = MessengerOrders.objects.all()
@@ -115,7 +115,7 @@ def messenger_list(request):
     }
     return render(request, template_name, context)
 
-@login_required
+@login_required(login_url='/accounts/login')
 def messenger_add(request):
     template_name = "messenger_orders/m-orders_add.html"
     form = MessengerOrdersForm(request.POST or None)
@@ -127,7 +127,7 @@ def messenger_add(request):
     }
     return render (request, template_name, context)
 
-@login_required
+@login_required(login_url='/accounts/login')
 def messenger_view(request, pk):
     template_name = "messenger_orders/m-orders_view.html"
     messenger_orders = MessengerOrders.objects.filter(id=pk)
@@ -136,7 +136,7 @@ def messenger_view(request, pk):
     }
     return render(request, template_name, context)
 
-@login_required
+@login_required(login_url='/accounts/login')
 def messenger_update(request, pk):
     template_name = "messenger_orders/m-orders_update.html"
     messenger_orders = get_object_or_404(Category, pk=pk)
@@ -148,8 +148,8 @@ def messenger_update(request, pk):
         "form" : form
     }
     return render (request, template_name, context)
-
-@login_required
+    
+@login_required(login_url='/accounts/login')
 def messenger_delete(request, pk):
     messenger_orders = MessengerOrders.objects.filter(id=pk).update(status=False)
     return redirect("m-orders-list")

@@ -11,7 +11,7 @@ from bookings.models import *
 import datetime
 
 # Create your views here.
-@login_required
+@login_required(login_url='/accounts/login')
 def homepage(request):
     template_name = "dashboard/homepage.html"
     date = datetime.date.today()

@@ -16,7 +16,7 @@ def bookings(request):
     }
     return render (request, template_name, context)
 
-@login_required
+@login_required(login_url='/accounts/login')
 def bookings_update(request, pk):
     template_name = "bookings/bookings_update.html"
     bookings = get_object_or_404(Bookings, pk=pk)

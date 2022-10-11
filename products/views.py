@@ -5,7 +5,7 @@ from products.forms import *
 from .models import *
 
 # Create your views here.
-@login_required
+@login_required(login_url='/accounts/login')
 def products(request):
     template_name = "products/products_list.html"
     available_products = Products.objects.filter(status=True)
@@ -16,7 +16,7 @@ def products(request):
     }
     return render (request, template_name, context)
 
-@login_required
+@login_required(login_url='/accounts/login')
 def products_add(request):
     template_name = "products/products_add.html"
     form = ProductForms(request.POST or None)
@@ -28,7 +28,7 @@ def products_add(request):
     }
     return render (request, template_name, context)
 
-@login_required
+@login_required(login_url='/accounts/login')
 def products_view(request, pk):
      template_name = "products/products_view.html"
      products = Products.objects.filter(id=pk)
@@ -37,7 +37,7 @@ def products_view(request, pk):
      }
      return render (request, template_name, context)
 
-@login_required
+@login_required(login_url='/accounts/login')
 def products_update(request, pk):
     template_name = "products/products_update.html"
     products = get_object_or_404(Products, pk=pk)
@@ -50,7 +50,7 @@ def products_update(request, pk):
     }
     return render (request, template_name, context)
     
-@login_required
+@login_required(login_url='/accounts/login')
 def products_delete(request, pk):
     products = Products.objects.filter(id=pk).update(status=False)
     return redirect("products-list")
