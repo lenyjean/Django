@@ -27,18 +27,18 @@ router = DefaultRouter()
 router.register('api/webhooks?', Webhooks, basename='Plant')
 
 urlpatterns = [
+    path("", include("accounts.urls")),
     path('admin/', admin.site.urls),
     path("", include("dashboard.urls")),
     path("", include("products.urls")),
     path("", include("orders.urls")),
     path("", include("bookings.urls")),
     path("", include("category.urls")),
-    path("", include("accounts.urls")),
     path("", include("analytics.urls")),
     # path("", include("inquiries.urls")),
     # path("", include("analytics.urls")),
     # path('accounts/', include('django.contrib.auth.urls')),
-    path('', TemplateView.as_view(template_name='home.html'), name='home'),
+    # path('', TemplateView.as_view(template_name='home.html'), name='home'),
 
     # path('', include(router.urls), name = "API Endpoints"),
 
