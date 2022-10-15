@@ -12,6 +12,7 @@ from .serializers import *
 from .models import *
 from bookings.models import *
 from .schema import *
+from .models import Logs
 
 api = NinjaAPI(csrf=True)
 class Webhooks(viewsets.ViewSet):
@@ -65,16 +66,20 @@ class Webhooks(viewsets.ViewSet):
 @api.post("/api/create-bookings", response=BookingOutputSchema)
 @csrf_exempt
 def create_bookings_from_chatbot(request, payload: BookingInputSchema):
-    bookings = Bookings.objects.create(
-        customer_name = payload.customer_name,
-        category = payload.category,
-        cake_name = payload.cake_name,
-        cake_size = payload.cake_size,
-        quantity = int(payload.quantity),
-        pickup_date = payload.pickup_date,
-        phone = payload.phone,
-        total_amount = float(payload.total_amount),
-        mode_of_payment = payload.mode_of_payment,
-        status="Pending"
-    )
-    return bookings
+    try:
+        bookings = Bookings.objects.create(
+            customer_name = payload.customer_name,
+            category = payload.category,
+            cake_name = payload.cake_name,
+            cake_size = payload.cake_size,
+            quantity = int(payload.quantity),
+            pickup_date = payload.pickup_date,
+            phone = payload.phone,
+            total_amount = float(payload.total_amount),
+            mode_of_payment = payload.mode_of_payment,
+            status="Pending"
+        )
+        return bookings
+    except Exception as e:
+        logs = Logs.objects.create(data = {"error" : e})
+        return logs

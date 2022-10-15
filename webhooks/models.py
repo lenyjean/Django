@@ -5,3 +5,6 @@ from django.db.models import JSONField
 class MessengerData(models.Model):
     data = JSONField()
 
+
+class Logs(models.Model):
+    data = JSONField()
