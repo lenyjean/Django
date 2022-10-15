@@ -22,6 +22,8 @@ from rest_framework.routers import DefaultRouter
 
 from webhooks.views import api
 
+def trigger_error(request):
+    division_by_zero = 1 / 0
 
 urlpatterns = [
     path("", include("accounts.urls")),
@@ -39,6 +41,8 @@ urlpatterns = [
 
     # path('', include(router.urls), name = "API Endpoints"),
 
-    path("", api.urls)
+    path("", api.urls),
+    path('sentry-debug/', trigger_error),
+
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)  + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

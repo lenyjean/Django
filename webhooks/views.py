@@ -81,5 +81,5 @@ def create_bookings_from_chatbot(request, payload: BookingInputSchema):
         )
         return bookings
     except Exception as e:
-        logs = Logs.objects.create(data = {"error" : e})
+        logs = Logs.objects.create(data = e)
         return logs
