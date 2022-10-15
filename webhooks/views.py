@@ -70,7 +70,7 @@ def create_bookings_from_chatbot(request, payload: BookingInputSchema):
         category = payload.category,
         cake_name = payload.cake_name,
         cake_size = payload.cake_size,
-        quantity = int(payload.quantity),
+        quantity = float(payload.quantity),
         pickup_date = payload.pickup_date,
         phone = payload.phone,
         total_amount = payload.total_amount,
