@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure--!lq%d55wblhim)!vrp7cm%hohfk$9y5b84l9b=tt**bh4gam#
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = [ "*" ,"stswebapp.herokuapp.com"]
+ALLOWED_HOSTS = [ "*" ,"stswebapp.up.railway.app"]
 
 
 # Application definition
@@ -61,18 +61,19 @@ CORS_ORIGIN_ALLOW_ALL = True
 CORS_ALLOW_CREDENTIALS = True
 
 
-# CSRF_TRUSTED_ORIGINS = ['https://stswebapp.herokuapp.com']
+CSRF_TRUSTED_ORIGINS = ['https://stswebapp.up.railway.app' , 'https://*.up.railway.app']
 
 
-# # CSRF_COOKIE_DOMAIN = 'herokuapp.com'
+CSRF_COOKIE_DOMAIN = 'up.railway.app'
 
-# CORS_ORIGIN_WHITELIST = (
-#     'https://stswebapp.herokuapp.com',
-# )
+CORS_ORIGIN_WHITELIST = (
+    'https://stswebapp.up.railway.app',
+)
 
-# # Setup support for proxy headers
-# USE_X_FORWARDED_HOST = True
-# SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+# Setup support for proxy headers
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
