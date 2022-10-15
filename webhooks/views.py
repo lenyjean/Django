@@ -65,15 +65,15 @@ class Webhooks(viewsets.ViewSet):
 @api.post("/api/create-bookings", response=BookingOutputSchema)
 @csrf_exempt
 def create_bookings_from_chatbot(request, payload: BookingInputSchema):
-    # bookings = Bookings.objects.create(
-    #     customer_name = payload.customer_name,
-    #     category = payload.category,
-    #     cake_name = payload.cake_name,
-    #     cake_size = payload.cake_size,
-    #     quantity = float(payload.quantity),
-    #     pickup_date = payload.pickup_date,
-    #     phone = payload.phone,
-    #     total_amount = payload.total_amount,
-    #     mode_of_payment = payload.mode_of_payment,
-    # )
-    return payload
+    bookings = Bookings.objects.create(
+        customer_name = payload.customer_name,
+        category = payload.category,
+        cake_name = payload.cake_name,
+        cake_size = payload.cake_size,
+        quantity = int(payload.quantity),
+        pickup_date = payload.pickup_date,
+        phone = payload.phone,
+        total_amount = float(payload.total_amount),
+        mode_of_payment = payload.mode_of_payment,
+    )
+    return bookings
