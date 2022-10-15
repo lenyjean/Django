@@ -4,7 +4,7 @@ from django.http import HttpResponse
 from rest_framework.response import Response
 from rest_framework import viewsets
 from rest_framework import status
-
+from django.views.decorators.csrf import csrf_exempt
 from ninja import NinjaAPI
 
 
@@ -13,7 +13,7 @@ from .models import *
 from bookings.models import *
 from .schema import *
 
-api = NinjaAPI()
+api = NinjaAPI(csrf=True)
 class Webhooks(viewsets.ViewSet):
 
     def list(self, request):
@@ -63,6 +63,7 @@ class Webhooks(viewsets.ViewSet):
 
 
 @api.post("/api/create-bookings", response=BookingOutputSchema)
+@csrf_exempt
 def create_bookings_from_chatbot(request, payload: BookingInputSchema):
     return Bookings.objects.create(**payload.dict())
 
