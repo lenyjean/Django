@@ -11,8 +11,8 @@ class BookingInputSchema(Schema):
     cake_name: str
     category: str
     cake_size: str
-    quantity: int
-    total_amount: int
+    quantity: str
+    total_amount: str
     pickup_date: str
     phone: str
     mode_of_payment: str
