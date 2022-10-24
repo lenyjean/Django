@@ -22,7 +22,7 @@ class Bookings(models.Model):
     phone = models.CharField(max_length=225)
     status = models.CharField(max_length=225, choices=status)
     mode_of_payment = models.CharField(max_length=225, choices=mop)
-    created_date = models.DateField(auto_now_add=True)
+    created_date = models.DateTimeField(auto_now_add=True)
 
 
     class Meta:
