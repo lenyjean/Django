@@ -34,7 +34,11 @@
 					  <td>{{list.category}}</td>
 					  <td>{{list.price}}</td>
 					  <td>
-						{% if list.status == True %} <span class="badge bg-primary">Available</span> {% else %} <span class="badge bg-danger">Not Available</span> {% endif %}
+						{% if list.status == "Available" %} 
+							<span class="badge bg-primary">Available</span> 
+						{% else %} 
+							<span class="badge bg-danger">Not Available</span> 
+						{% endif %}
 					  </td>
 					</tr>
 				  {% endfor %}
@@ -57,7 +61,7 @@
 						<h3 class="flex items-center mb-1 text-lg font-semibold text-gray-900 dark:text-white">{{sched.customer_name}}</h3>
 						<time class="block mb-2 text-sm font-normal leading-none text-gray-400 dark:text-gray-500">Date ordered: {{sched.date_ordered}}</time>
 						<p class="mb-4 text-base font-normal text-gray-500 dark:text-gray-400">
-							Products: {{sched.products}}
+							Product: {{sched.products}}
 						</p>
 					</li>
 					{% endfor %}

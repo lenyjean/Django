@@ -29,3 +29,6 @@ def bookings_update(request, pk):
     }
     return render (request, template_name, context)
 
+def bookings_delete(request, pk):
+    bookings = Bookings.objects.filter(id=pk).update(status="Done")
+    return redirect("bookings-list")

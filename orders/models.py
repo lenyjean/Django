@@ -13,7 +13,7 @@ class Orders(models.Model):
     )
     customer_name = models.CharField(max_length=255)
     customer_address = models.CharField(max_length=255)
-    products = models.ForeignKey(Products, on_delete=models.CASCADE)
+    product = models.ForeignKey(Products, on_delete=models.CASCADE)
     no_of_order = models.IntegerField()
     total_amount = models.DecimalField(max_digits=10, decimal_places=2)
     date_ordered = models.DateField(auto_now_add=True)

@@ -13,12 +13,13 @@
       <div class="card shadow rounded p-3">
         {% for detail in orders %}
         <div class="card-title">
-            Product: {{detail.products}}
+            Order Details:
         </div>
         <div class="card-body">
           <ul class="list-group list-group-flush">
             <li class="list-group-item">Customer Name: {{detail.customer_name}}</li>
             <li class="list-group-item">Customer Address: {{detail.customer_address}}</li>
+            <li class="list-group-item">Product: {{detail.product}}</li>
             <li class="list-group-item">Quantity: {{detail.no_of_order}}</li>
             <li class="list-group-item">Date Ordered: {{detail.date_ordered}}</li>
             <li class="list-group-item">Pickup Date: {{detail.pickup_date}}</li>

@@ -5,7 +5,7 @@
     class="card p-5 shadow-lg p-3 mb-5 bg-white rounded"
     style="width: 60rem"
   >
-    <div class="card-ttile">Update order:</div>
+    <div class="card-ttile">Update Order:</div>
     <div class="card-body">
         <form method="POST">
             {% csrf_token %} {{ form|crispy }}

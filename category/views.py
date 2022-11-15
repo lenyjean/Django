@@ -42,8 +42,8 @@ def category_update(request, pk):
     category = get_object_or_404(Category, id=pk)
     form = CategoryForms(request.POST or None, instance=category)
     if form.is_valid():
-         form.save()
-         return redirect("category-list")
+        form.save()
+        return redirect("category-list")
     context = {
         "form" : form
     }
@@ -51,5 +51,6 @@ def category_update(request, pk):
 
 @login_required(login_url='/accounts/login')
 def category_delete(request, pk):
+    Products.objects.filter(category_id=pk).update(status="Not Available")
     category = Category.objects.filter(id=pk).update(status=False)
     return redirect("category-list")

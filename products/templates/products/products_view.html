@@ -12,15 +12,21 @@
       <div class="card shadow rounded p-3">
         {% for detail in products %}
         <div class="card-title">
-            Product: {{detail.products}}
+            Product Details:
         </div>
         <div class="card-body">
           <ul class="list-group list-group-flush">
             <li class="list-group-item">Product Name: {{detail.product_name}}</li>
             <li class="list-group-item">Category:  {{detail.category}}</li>
             <li class="list-group-item">Size:  {{detail.size}}</li>
-            <li class="list-group-item">Price: {{detail.price}}</li>
-            <li class="list-group-item">Status: {% if detail.status == True %}Available</span> {% else %} Not Available</span> {% endif %}</li>
+            <li class="list-group-item">Price: ₱{{detail.price}}</li>
+            <li class="list-group-item">Status: 
+              {% if detail.status == "Available" %} 
+                Available
+              {% else %} 
+                Not Available
+              {% endif %}
+            </li>
           </ul>
         </div>
         {% endfor %}

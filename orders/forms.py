@@ -8,11 +8,11 @@ class DateInput(forms.DateInput):
     input_type = 'date'
  
 class OrderForms(forms.ModelForm):
-    products = forms.ModelChoiceField(queryset=Products.objects.filter(status=True))
+    product = forms.ModelChoiceField(queryset=Products.objects.filter(status="Available"))
     class Meta: 
         model = Orders
         fields = [
-            "customer_name", "customer_address" , "products", "no_of_order", "pickup_date", "status"
+            "customer_name", "customer_address" , "product", "no_of_order", "pickup_date", "status"
         ]
         widgets = {
             "pickup_date" : DateInput()
@@ -30,5 +30,5 @@ class MessengerOrdersForm(forms.ModelForm):
     class meta: 
         model = MessengerOrders
         fields = [
-             "customer_name", "customer_address" , "products", "no_of_order", "total_amount", "pickup_date", "status", "remarks"
+             "customer_name", "customer_address" , "product", "no_of_order", "total_amount", "pickup_date", "status", "remarks"
         ]

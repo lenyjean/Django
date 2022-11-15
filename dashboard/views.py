@@ -15,14 +15,14 @@ import datetime
 def homepage(request):
     template_name = "dashboard/homepage.html"
     date = datetime.date.today()
-    orders = Orders.objects.filter(status__in=["Done", "Pending"])[:5]
-    products = Products.objects.all()[:5]
+    orders = Orders.objects.filter(status__in=["Pending", "Late"])[:5]
+    products = Products.objects.filter(status__in=["Available"])[:5]
     orders_date = Orders.objects.filter(pickup_date=date)
     orders_today = Orders.objects.filter(pickup_date=date).count()
 
     total_orders = Orders.objects.filter(status__in=['Done', 'Pending', 'Cancelled', 'Late']).aggregate(Sum('no_of_order'))
     total_sales = Orders.objects.filter(status="Done").aggregate(Sum('total_amount'))
-    total_products = Products.objects.filter(status=True).count()
+    total_products = Products.objects.filter(status="Available").count()
     # total_inquiries = Inquiries.objects.all().count()
     total_bookings = Bookings.objects.all().count()
     

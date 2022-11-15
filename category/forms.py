@@ -8,4 +8,3 @@ class CategoryForms(forms.ModelForm):
         fields = ["category", "status"]
 
 
-

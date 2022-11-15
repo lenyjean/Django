@@ -8,8 +8,9 @@ from .models import *
 @login_required(login_url='/accounts/login')
 def products(request):
     template_name = "products/products_list.html"
-    available_products = Products.objects.filter(status=True)
-    not_available_products = Products.objects.filter(status=False)
+    available_products = Products.objects.filter(status="Available")
+    not_available_products = Products.objects.filter(status="Not Available")
+    
     context = {
         "available_products": available_products,
         "not_available_products" : not_available_products
@@ -21,7 +22,9 @@ def products_add(request):
     template_name = "products/products_add.html"
     form = ProductForms(request.POST or None)
     if form.is_valid():
-        form.save()
+        new_product = form.save(commit=False)
+        new_product.status = "Available"
+        new_product.save()
         return redirect("products-list")
     context = {
        "form" :  form
