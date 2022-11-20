@@ -81,7 +81,7 @@ ruamel.yaml==0.17.21
 ruamel.yaml.clib==0.2.6
 s3transfer==0.6.0
 sendgrid==6.9.7
-sentry==22.11.0
+sentry
 sentry-sdk==1.9.10
 six==1.16.0
 sniffio==1.2.0
