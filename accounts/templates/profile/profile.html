@@ -5,41 +5,47 @@
     class="card p-5 shadow-lg p-3 mb-5 bg-white rounded"
     style="width: 100%"
   >
-    <div class="card-ttile">User Profile:</div>
+    <div class="card-ttile">User Profile Information:</div>
     <div class="card-body">
         <form method="Get">
             {% csrf_token %} {{ form|crispy }}
             <table class="table table-striped text-center">              
               <tr>
-                <td>Firstname</td>
+                <td>First Name:</td>
                 <td>{{user.first_name}}</td>
               </tr>
               <tr>
-                <td>Lastname</td>
+                <td>Last Name:</td>
                 <td>{{user.last_name}}</td>
               </tr>
               <tr>
-                <td>Username</td>
+                <td>Username:</td>
                 <td>{{user.username}}</td>
               </tr>
               <tr>
-                <td>Email</td>
+                <td>Email Address:</td>
                 <td>{{user.email}}</td>
               </tr>
               <tr>
-                <td>Date Joined</td>
+                <td>Date Joined:</td>
                 <td>{{user.date_joined}}</td>
               </tr>
               <tr>
-                <td>Status</td>
-                <td>{% if user.status == True %} Active {% else %} Inactive {% endif %}</td>
+                <td>Status:</td>
+                <td>
+                  {% if user.status == True %} 
+                  Active 
+                  {% else %} 
+                  Inactive 
+                  {% endif %}</td>
               </tr>
               <tr>
-                <td>Role</td>
-                <td>{% if user.is_staff %}
-                  Staff
-                  {% elif user.is_admin %}
+                <td>Role:</td>
+                <td>
+                  {% if user.is_admin %}
                   Admin
+                  {% elif user.is_staff %}
+                  Staff
                   {% elif user.is_superuser %}
                   Super Admin
                   {% else %}

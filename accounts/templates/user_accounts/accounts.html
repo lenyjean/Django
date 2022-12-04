@@ -120,10 +120,10 @@
           <td>{{list.date_joined}}</td>
           <td>{{list.last_login|default_if_none:"Not yet logged in"}}</td>
           <td>
-            {% if list.is_staff %}
-            <span class="badge bg-primary">Staff</span>
-            {% elif list.is_admin %}
+            {% if list.is_admin %}
             <span class="badge bg-success">Admin</span>
+            {% elif list.is_staff %}
+            <span class="badge bg-primary">Staff</span>
             {% elif list.is_superuser %}
             <span class="badge bg-warning text-dark">Super Admin</span>
             {% else %}
@@ -328,10 +328,10 @@
         <td>{{list.date_joined}}</td>
         <td>{{list.last_login|default_if_none:"Not yet logged in"}}</td>
         <td>
-          {% if list.is_staff %}
-          <span class="badge bg-primary">Staff</span>
-          {% elif list.is_admin %}
+          {% if list.is_admin %}
           <span class="badge bg-success">Admin</span>
+          {% elif list.is_staff %}
+          <span class="badge bg-primary">Staff</span>
           {% elif list.is_superuser %}
           <span class="badge bg-warning text-dark">Super Admin</span>
           {% else %}
@@ -339,7 +339,11 @@
           {% endif %}
         </td>
         <td>
-          {% if list.status == True %} Active {% else %} Inactive {% endif %}
+          {% if list.status == True %} 
+            Active 
+          {% else %} 
+            Inactive 
+          {% endif %}
         </td>
         <td colspan="5">
           <a
