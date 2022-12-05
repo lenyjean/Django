@@ -3,13 +3,14 @@ from django.forms import CharField
 
 from products.models import *
 
+
 # Create your models here.
 class Orders(models.Model):
     status = (
-        ("Pending" , "Pending"),
-        ("Done" , "Done"),
-        ("Cancelled" , "Cancelled"),
-        ("Late" , "Late")
+        ("Pending", "Pending"),
+        ("Done", "Done"),
+        ("Cancelled", "Cancelled"),
+        ("Late", "Late")
     )
     customer_name = models.CharField(max_length=255)
     customer_address = models.CharField(max_length=255)
@@ -31,17 +32,18 @@ class Orders(models.Model):
     def total_price(self):
         total = self.no_of_order * self.products.price
         return total
-        
+
+
 class MessengerOrders(models.Model):
     status = (
-        ("Pending" , "Pending"),
-        ("Done" , "Done"),
-        ("Cancelled" , "Cancelled"),
-        ("Late" , "Late")
+        ("Pending", "Pending"),
+        ("Done", "Done"),
+        ("Cancelled", "Cancelled"),
+        ("Late", "Late")
     )
     choices = (
-        ("Accept" , "Accept"),
-        ("Decline" , "Decline")
+        ("Accept", "Accept"),
+        ("Decline", "Decline")
     )
     customer_name = models.CharField(max_length=255)
     customer_address = models.CharField(max_length=255)
