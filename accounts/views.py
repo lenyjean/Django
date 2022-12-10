@@ -54,8 +54,13 @@ def profile_update(request, pk):
     return render (request, template_name, context)
     
 def user_delete(request, pk):
-     user = User.objects.filter(id=pk).update(status=False)
-     return redirect("account-list")
+    user = User.objects.filter(id=pk).update(status=False)
+    return redirect("account-list")
+
+def user_reactivate(request, pk):
+    user = User.objects.filter(id=pk).update(status=True)
+    return redirect("account-list")
+
 
 class AdminSignUpView(CreateView):
     model = User
@@ -104,6 +109,11 @@ def update_password(request):
 class UserDetailView(DetailView):
     # specify the model to use
     template_name = 'user_accounts/delete_profile.html'
+    model = User
+    context_object_name = "user"
+
+class UserReactivateView(DetailView):
+    template_name = 'user_accounts/reactivate_profile.html'
     model = User
     context_object_name = "user"
 

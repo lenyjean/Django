@@ -1,0 +1,21 @@
+{% extends 'base.html' %} {% load crispy_forms_tags %} {% block body %}
+
+<div class="container p-4">
+  <div
+    class="card p-5 shadow-lg p-3 mb-5 bg-white rounded"
+    style="width: 60rem"
+  >
+    <div class="card-ttile"></div>
+    <div class="card-body">
+        Are you sure you want to reactivate this user account? <br> <br>
+        <b>Full Name:</b> {{user.first_name|default:"Not Available"}} {{user.last_name|default:"Not Available"}} <br>
+        <b>User Name:</b> {{user.username|default:"Not Available"}} <br>
+
+        <div class="d-grid gap-2 d-md-block mt-3">
+            <a href="{% url 'reactivate-account' user.id %}" class="btn btn-danger text-decoration-none" type="button">Yes</a>
+            <a href="{% url 'account-list' %}" class="btn btn-secondary text-decoration-none" type="button">Cancel</a>
+        </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
