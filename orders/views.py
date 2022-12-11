@@ -7,8 +7,6 @@ from .forms import *
 from datetime import datetime
 
 # Create your views here.
-
-
 @login_required(login_url='/accounts/login')
 def orders_list(request):
     template_name = "orders/orders_list.html"

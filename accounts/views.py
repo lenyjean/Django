@@ -1,5 +1,5 @@
 from django.shortcuts import render, get_object_or_404
-from django.contrib.auth import login
+from django.contrib.auth.decorators import login_required
 from django.shortcuts import redirect
 from django.views.generic import CreateView
 from django.views.generic.detail import DetailView
@@ -12,6 +12,8 @@ from django.contrib.auth import logout
 from .models import *
 from .forms import *
 # Create your views here.
+
+@login_required(login_url='/accounts/login')
 def accounts(request):
     template_name = "user_accounts/accounts.html"
     accounts = User.objects.all()
@@ -24,11 +26,14 @@ def accounts(request):
     }
     return render (request, template_name, context)
 
+
+@login_required(login_url='/accounts/login')
 def viewprofile(request):
     template_name = "profile/profile.html"
     return render (request, template_name)
 
 
+@login_required(login_url='/accounts/login')
 def user_update(request, pk):
     template_name = "user_accounts/update_account.html"
     user = get_object_or_404(User, pk=pk)
@@ -41,6 +46,7 @@ def user_update(request, pk):
     }
     return render (request, template_name, context)
 
+@login_required(login_url='/accounts/login')
 def profile_update(request, pk):
     template_name = "user_accounts/update_account.html"
     user = get_object_or_404(User, pk=pk)
@@ -52,15 +58,17 @@ def profile_update(request, pk):
         "form" : form
     }
     return render (request, template_name, context)
-    
+
+@login_required(login_url='/accounts/login')  
 def user_delete(request, pk):
     user = User.objects.filter(id=pk).update(status=False)
     return redirect("account-list")
 
+
+@login_required(login_url='/accounts/login')
 def user_reactivate(request, pk):
     user = User.objects.filter(id=pk).update(status=True)
     return redirect("account-list")
-
 
 class AdminSignUpView(CreateView):
     model = User
@@ -75,6 +83,7 @@ class AdminSignUpView(CreateView):
         user = form.save()
         return redirect('account-list')
 
+
 class StaffSignUpView(CreateView):
     model = User
     form_class = StaffSignUpForm
@@ -88,7 +97,7 @@ class StaffSignUpView(CreateView):
         user = form.save()
         return redirect('account-list')
 
-
+@login_required(login_url='/accounts/login')
 def update_password(request):
     template_name =  "user_accounts/update_password.html"
     if request.method == 'POST':
@@ -106,11 +115,13 @@ def update_password(request):
         'form': form
     })
 
+
 class UserDetailView(DetailView):
     # specify the model to use
     template_name = 'user_accounts/delete_profile.html'
     model = User
     context_object_name = "user"
+
 
 class UserReactivateView(DetailView):
     template_name = 'user_accounts/reactivate_profile.html'
@@ -138,6 +149,7 @@ def login_page(request):
             "form" : form
             }
     return render(request, template_name, context)
+
 
 def logout_page(request):
     logout(request)

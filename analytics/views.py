@@ -9,9 +9,11 @@ from bookings.models import *
 from datetime import datetime
 import datetime as dt
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
 from django.db.models.functions import TruncMonth
 
 # Create your views here.
+@login_required(login_url='/accounts/login')
 def analytics(request):
     """
     It gets the total number of orders, total sales and total products. It also gets the total sales per
@@ -61,7 +63,7 @@ def analytics(request):
     return render(request, template_name, context)
 
 
-
+@login_required(login_url='/accounts/login')
 def analytics_day(request):
     """
     It gets the total number of orders, total sales and total products for a specific day
@@ -138,7 +140,7 @@ def analytics_day(request):
 
     return render(request, template_name, context)
 
-
+@login_required(login_url='/accounts/login')
 def analytics_week(request):
     """
     I'm trying to get the total number of orders, total sales and total products from the database
@@ -220,7 +222,7 @@ def analytics_week(request):
 
     return render(request, template_name, context)
 
-
+@login_required(login_url='/accounts/login')
 def analytics_month(request):
     """
     It gets the total number of orders, total sales and total products for a specific day
@@ -307,7 +309,7 @@ def analytics_month(request):
 
     return render(request, template_name, context)
 
-
+@login_required(login_url='/accounts/login')
 def analytics_year(request):
     """
     It gets the total number of orders, total sales and total products for a specific day

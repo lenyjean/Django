@@ -6,6 +6,7 @@ from django.db.models import Q
 from .forms import *
 
 # Create your views here.
+@login_required(login_url='/accounts/login')
 def bookings(request):
     template_name = "bookings/bookings_list.html"
     active_bookings = Bookings.objects.filter(Q(status="Pending") | Q(status="Late"))
@@ -29,6 +30,7 @@ def bookings_update(request, pk):
     }
     return render (request, template_name, context)
 
+@login_required(login_url='/accounts/login')
 def bookings_delete(request, pk):
     bookings = Bookings.objects.filter(id=pk).update(status="Done")
     return redirect("bookings-list")
