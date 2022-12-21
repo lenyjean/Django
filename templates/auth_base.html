@@ -11,12 +11,17 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
+      <script src="https://unpkg.com/htmx.org@1.6.0"></script>
     <title>STSWEB AUTH</title>
   </head>
   <body style="font-family: 'Inter', sans-serif;" class="bg-[#f8f9ff]">
   {% block auth %}
   {% endblock %}
-
     <script src="https://unpkg.com/flowbite@1.5.5/dist/flowbite.js"></script>
+    <script>
+        document.body.addEventListener('htmx:configRequest', (event) => {
+            event.detail.headers['X-CSRFToken'] = '{{ csrf_token }}'; //insert csrf token when performing AJAX request
+        })
+    </script>
   </body>
 </html>

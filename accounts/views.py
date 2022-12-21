@@ -11,6 +11,9 @@ from django.contrib.auth import logout
 
 from .models import *
 from .forms import *
+from .utils import send_email
+
+
 # Create your views here.
 
 @login_required(login_url='/accounts/login')
@@ -21,17 +24,17 @@ def accounts(request):
     inactive_user = User.objects.filter(status=False)
     context = {
         "active_user": active_user,
-        "inactive_user" : inactive_user,
-        "accounts" : accounts,
+        "inactive_user": inactive_user,
+        "accounts": accounts,
         "accounts_state": "background-color: #dbeafe;"
     }
-    return render (request, template_name, context)
+    return render(request, template_name, context)
 
 
 @login_required(login_url='/accounts/login')
 def viewprofile(request):
     template_name = "profile/profile.html"
-    return render (request, template_name)
+    return render(request, template_name)
 
 
 @login_required(login_url='/accounts/login')
@@ -40,12 +43,13 @@ def user_update(request, pk):
     user = get_object_or_404(User, pk=pk)
     form = AdminSignUpForm(request.POST or None, instance=user)
     if form.is_valid():
-         form.save()
-         return redirect("account-list")
+        form.save()
+        return redirect("account-list")
     context = {
-        "form" : form
+        "form": form
     }
-    return render (request, template_name, context)
+    return render(request, template_name, context)
+
 
 @login_required(login_url='/accounts/login')
 def profile_update(request, pk):
@@ -53,14 +57,15 @@ def profile_update(request, pk):
     user = get_object_or_404(User, pk=pk)
     form = UpdateForm(request.POST or None, instance=user)
     if form.is_valid():
-         form.save()
-         return redirect("view-profile")
+        form.save()
+        return redirect("view-profile")
     context = {
-        "form" : form
+        "form": form
     }
-    return render (request, template_name, context)
+    return render(request, template_name, context)
 
-@login_required(login_url='/accounts/login')  
+
+@login_required(login_url='/accounts/login')
 def user_delete(request, pk):
     user = User.objects.filter(id=pk).update(status=False)
     return redirect("account-list")
@@ -70,6 +75,7 @@ def user_delete(request, pk):
 def user_reactivate(request, pk):
     user = User.objects.filter(id=pk).update(status=True)
     return redirect("account-list")
+
 
 class AdminSignUpView(CreateView):
     model = User
@@ -98,9 +104,10 @@ class StaffSignUpView(CreateView):
         user = form.save()
         return redirect('account-list')
 
+
 @login_required(login_url='/accounts/login')
 def update_password(request):
-    template_name =  "user_accounts/update_password.html"
+    template_name = "user_accounts/update_password.html"
     if request.method == 'POST':
         form = PasswordChangeForm(request.user, request.POST)
         if form.is_valid():
@@ -129,6 +136,7 @@ class UserReactivateView(DetailView):
     model = User
     context_object_name = "user"
 
+
 def login_page(request):
     template_name = "registration/login.html"
     form = SignInForm(request.POST or None)
@@ -147,11 +155,26 @@ def login_page(request):
         except User.DoesNotExist:
             messages.error(request, "User doesn't exists. Please contact the administrator for creating new account.")
     context = {
-            "form" : form
-            }
+        "form": form
+    }
     return render(request, template_name, context)
 
 
 def logout_page(request):
     logout(request)
     return redirect("login")
+
+
+def send_password_reset_link(request):
+    template_name = "registration/result.html"
+    if request.method == "POST":
+        email = request.POST.get("email")
+
+        try:
+            user = User.objects.get(email=email)
+            data = f"{user.username}|{user.email}"
+            link = "/accounts/login"
+            send_email(email, link)
+            return render(request, template_name, {"success" : True, "reset" : True})
+        except User.DoesNotExist:
+            return render(request, template_name, {"success" : False, "reset" : True})

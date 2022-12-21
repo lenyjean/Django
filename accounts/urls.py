@@ -15,4 +15,5 @@ urlpatterns = [
     path("reactivate-user/<int:pk>", UserReactivateView.as_view(), name="reactivate-user"),
     path("accounts/login", login_page, name="login"),
     path("accounts/logout", logout_page, name="logout"),
+    path("accounts/reset-password-link", send_password_reset_link, name="send_password_reset_link"),
 ]
