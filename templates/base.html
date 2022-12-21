@@ -28,9 +28,13 @@
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/uikit@3.9.4/dist/css/uikit.min.css"
     />
+
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Inter&display=swap" rel="stylesheet">
   </head>
 
-  <body>
+  <body style="font-family: 'Inter', sans-serif;">
     {% if user.is_authenticated %} {% include "sidenav.html" %} {% endif %}
 
     <!-- ======== main-wrapper start =========== -->

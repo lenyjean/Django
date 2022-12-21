@@ -37,7 +37,8 @@ def homepage(request):
         "total_bookings" : total_bookings,
         "orders_date" : orders_date,
         "date" : date,
-        "orders_today" : orders_today
+        "orders_today" : orders_today,
+        "dashboard_state" : "background-color: #dbeafe;"
     }
     return render(request, template_name, context)
 

@@ -22,7 +22,8 @@ def accounts(request):
     context = {
         "active_user": active_user,
         "inactive_user" : inactive_user,
-        "accounts" : accounts
+        "accounts" : accounts,
+        "accounts_state": "background-color: #dbeafe;"
     }
     return render (request, template_name, context)
 
@@ -142,9 +143,9 @@ def login_page(request):
                 login(request, user)
                 return redirect("/")
             else:
-                messages.error(request, "Invalid email address or password")
+                messages.error(request, "Invalid username or password")
         except User.DoesNotExist:
-            messages.error(request, "User doesn't exists. Please register.")
+            messages.error(request, "User doesn't exists. Please contact the administrator for creating new account.")
     context = {
             "form" : form
             }

@@ -13,7 +13,8 @@ def products(request):
     
     context = {
         "available_products": available_products,
-        "not_available_products" : not_available_products
+        "not_available_products" : not_available_products,
+        "products_state": "background-color: #dbeafe;"
     }
     return render (request, template_name, context)
 
@@ -27,7 +28,8 @@ def products_add(request):
         new_product.save()
         return redirect("products-list")
     context = {
-       "form" :  form
+       "form" :  form,
+        "products_state": "background-color: #dbeafe;"
     }
     return render (request, template_name, context)
 
@@ -36,7 +38,8 @@ def products_view(request, pk):
      template_name = "products/products_view.html"
      products = Products.objects.filter(id=pk)
      context = {
-         "products" : products
+         "products" : products,
+        "products_state": "background-color: #dbeafe;"
      }
      return render (request, template_name, context)
 
@@ -49,7 +52,8 @@ def products_update(request, pk):
          form.save()
          return redirect("products-list")
     context = {
-        "form" : form
+        "form" : form,
+        "products_state": "background-color: #dbeafe;"
     }
     return render (request, template_name, context)
     

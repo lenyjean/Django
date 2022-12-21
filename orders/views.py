@@ -44,7 +44,8 @@ def orders_list(request):
         "inactive_orders" : inactive_orders,
         "filtered" : filtered,
         "filter_info" : filter_info,
-        "inactive" : inactive
+        "inactive" : inactive,
+        "orders_state": "background-color: #dbeafe;"
     }
     return render(request, template_name, context)
 
@@ -71,7 +72,8 @@ def orders_add(request):
 
         return redirect("orders-list")
     context = {
-        "form":  form
+        "form":  form,
+        "orders_state": "background-color: #dbeafe;"
     }
     return render(request, template_name, context)
 
@@ -81,7 +83,8 @@ def orders_view(request, pk):
     template_name = "orders/orders_view.html"
     orders = Orders.objects.filter(id=pk)
     context = {
-        "orders": orders
+        "orders": orders,
+        "orders_state": "background-color: #dbeafe;"
     }
     return render(request, template_name, context)
 
@@ -95,7 +98,8 @@ def orders_update(request, pk):
         form.save()
         return redirect("orders-list")
     context = {
-        "form":  form
+        "form":  form,
+        "orders_state": "background-color: #dbeafe;"
     }
     return render(request, template_name, context)
 
@@ -109,7 +113,8 @@ def messenger_list(request):
     template_name = "messenger_orders/m-orders_list.html"
     messenger_orders = MessengerOrders.objects.all()
     context = {
-        "messenger_orders":  messenger_orders
+        "messenger_orders":  messenger_orders,
+        "orders_state": "background-color: #dbeafe;"
     }
     return render(request, template_name, context)
 
@@ -121,7 +126,8 @@ def messenger_add(request):
         form.save()
         return redirect("m-orders-list")
     context = {
-       "form" :  form
+       "form" :  form,
+        "orders_state": "background-color: #dbeafe;"
     }
     return render (request, template_name, context)
 
@@ -130,7 +136,8 @@ def messenger_view(request, pk):
     template_name = "messenger_orders/m-orders_view.html"
     messenger_orders = MessengerOrders.objects.filter(id=pk)
     context = {
-        "messenger_orders": messenger_orders
+        "messenger_orders": messenger_orders,
+        "orders_state": "background-color: #dbeafe;"
     }
     return render(request, template_name, context)
 
@@ -143,7 +150,8 @@ def messenger_update(request, pk):
          form.save()
          return redirect("m-orders-list")
     context = {
-        "form" : form
+        "form" : form,
+        "orders_state": "background-color: #dbeafe;"
     }
     return render (request, template_name, context)
     

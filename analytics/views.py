@@ -58,7 +58,8 @@ def analytics(request):
         'total_product_per_category' : total_product_per_category,
         'total_sales_per_product' : total_sales_per_product,
         # 'total_inquiries' : total_inquiries,
-        'total_bookings' : total_bookings
+        'total_bookings' : total_bookings,
+        "analytics_state": "background-color: #dbeafe;"
     }
     return render(request, template_name, context)
 
@@ -135,7 +136,8 @@ def analytics_day(request):
         # "total_inquiries" : total_inquiries,
         'total_bookings' : total_bookings,
         'date' : date,
-        "day" : day
+        "day" : day,
+        "analytics_state": "background-color: #dbeafe;"
     }
 
     return render(request, template_name, context)
@@ -218,6 +220,7 @@ def analytics_week(request):
         'date' : date,
         "from_date" : from_date,
         "to_date" : to_date,
+        "analytics_state": "background-color: #dbeafe;"
     }
 
     return render(request, template_name, context)
@@ -304,7 +307,8 @@ def analytics_month(request):
         # 'total_inquiries' : total_inquiries,
         'total_bookings' : total_bookings,
         'date' : date,
-        "month" : month
+        "month" : month,
+        "analytics_state": "background-color: #dbeafe;"
     }
 
     return render(request, template_name, context)
@@ -383,7 +387,8 @@ def analytics_year(request):
         # 'total_inquiries' : total_inquiries,
         'total_bookings' : total_bookings,
         'date' : date,
-        "year" : year
+        "year" : year,
+        "analytics_state": "background-color: #dbeafe;"
     }
 
     return render(request, template_name, context)

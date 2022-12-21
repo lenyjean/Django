@@ -13,7 +13,8 @@ def bookings(request):
     inactive_bookings = Bookings.objects.filter(Q(status="Done") | Q(status="Cancelled"))
     context = {
         "active_bookings": active_bookings,
-        "inactive_bookings" : inactive_bookings
+        "inactive_bookings" : inactive_bookings,
+        "bookings_state": "background-color: #dbeafe;"
     }
     return render (request, template_name, context)
 
@@ -26,7 +27,8 @@ def bookings_update(request, pk):
          form.save()
          return redirect("bookings-list")
     context = {
-        "form" : form
+        "form" : form,
+        "bookings_state": "background-color: #dbeafe;"
     }
     return render (request, template_name, context)
 

@@ -11,7 +11,8 @@ def category(request):
     inactive_category = Category.objects.filter(status=False)
     context = {
         "active_category": active_category,
-        "inactive_category" : inactive_category
+        "inactive_category" : inactive_category,
+        "category_state": "background-color: #dbeafe;"
     }
     return render (request, template_name, context)
 
@@ -23,7 +24,8 @@ def category_add(request):
         form.save()
         return redirect("category-list")
     context = {
-       "form" :  form
+       "form" :  form,
+        "category_state": "background-color: #dbeafe;"
     }
     return render (request, template_name, context)
 
@@ -32,7 +34,8 @@ def category_view(request, pk):
      template_name = "category/category_view.html"
      category = Category.objects.filter(id=pk)
      context = {
-         "category" : category
+         "category" : category,
+        "category_state": "background-color: #dbeafe;"
      }
      return render (request, template_name, context)
 
@@ -45,7 +48,8 @@ def category_update(request, pk):
         form.save()
         return redirect("category-list")
     context = {
-        "form" : form
+        "form" : form,
+        "category_state": "background-color: #dbeafe;"
     }
     return render (request, template_name, context)
 
