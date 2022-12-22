@@ -16,4 +16,5 @@ urlpatterns = [
     path("accounts/login", login_page, name="login"),
     path("accounts/logout", logout_page, name="logout"),
     path("accounts/reset-password-link", send_password_reset_link, name="send_password_reset_link"),
+    path("accounts/reset-password/<str:token>", reset_password_link, name="reset_password_link"),
 ]

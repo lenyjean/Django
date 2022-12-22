@@ -1,6 +1,7 @@
 import os
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
+from cryptography.fernet import Fernet
 
 
 def reset_password_html(link):
@@ -92,3 +93,26 @@ def send_email(email, link):
     response = sg.send(message)
     print(response.status_code, response.body, response.headers)
     return response
+
+
+def load_key():
+    """
+    Loads the key named `secret.key` from the current directory.
+    """
+    return open("secret.key", "rb").read()
+
+
+def encrypt_data(data):
+    # Encrypting the data using Fernet encryption.
+    key = load_key()
+    encoded_message = data.encode()
+    fernet = Fernet(key)
+    encrypted_data = fernet.encrypt(encoded_message)
+    return encrypted_data.decode()
+
+
+def decrypt_data(data):
+    key = load_key()
+    fernet = Fernet(key)
+    decrypted_data = fernet.decrypt(data.encode())
+    return decrypted_data.decode()

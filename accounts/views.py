@@ -9,9 +9,11 @@ from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib import messages
 from django.contrib.auth import logout
 
+import shortuuid
+import datetime
 from .models import *
 from .forms import *
-from .utils import send_email
+from .utils import send_email, encrypt_data, decrypt_data
 
 
 # Create your views here.
@@ -172,9 +174,48 @@ def send_password_reset_link(request):
 
         try:
             user = User.objects.get(email=email)
-            data = f"{user.username}|{user.email}"
-            link = "/accounts/login"
+            encrypt_token = encrypt_data(user.username + "|" + shortuuid.ShortUUID().random(length=100) + "|" + user.email)
+            print("ENCRYPTED", encrypt_token)
+            print("DECRYPTED", decrypt_data(encrypt_token))
+            link = "http://localhost:8000/accounts/reset-password/" + encrypt_token
             send_email(email, link)
-            return render(request, template_name, {"success" : True, "reset" : True})
+            PasswordResetRequest.objects.create(
+                token=encrypt_token
+            )
+            return render(request, template_name, {"success": True, "reset": True})
         except User.DoesNotExist:
-            return render(request, template_name, {"success" : False, "reset" : True})
+            return render(request, template_name, {"success": False, "reset": True})
+
+
+def reset_password_link(request, token):
+    template_name = "registration/reset_password.html"
+
+    check_token = PasswordResetRequest.objects.filter(
+        token=token, created_on__gt=datetime.datetime.now()-datetime.timedelta(minutes=10)
+    )
+    if check_token.exists():
+        for i in check_token:
+            if not i.is_expired:
+                decrypted_token = decrypt_data(token)
+                user_data = decrypted_token.split("|")
+                user = User.objects.get(email=user_data[2])
+                if request.method == "POST":
+                    new_password = request.POST.get("new_password")
+                    confirm_password = request.POST.get("confirm_password")
+
+                    if new_password == confirm_password:
+                        user.set_password(new_password)
+                        PasswordResetRequest.objects.filter(token=token).update(is_expired=True)
+                        messages.success(request, "Password changed successfully")
+                        return redirect("/accounts/login")
+                    else:
+                        messages.error(request, "New and confirm password doesn't match")
+                        return render(request, template_name)
+            else:
+                messages.error(request, "Password reset link already expired")
+                return redirect("/accounts/login")
+    else:
+        messages.error(request, "Password reset link already expired")
+        return redirect("/accounts/login")
+    return render(request, template_name)
+
