@@ -7,7 +7,7 @@
     var data = google.visualization.arrayToDataTable([
         ['Product', 'Total Orders',],
         {% for orders in total_orders_per_products %}
-        ['{{orders.products_id__product_name}}', {{orders.no_of_order__sum}}],
+        ['{{orders.product_id__product_name}}', {{orders.no_of_order__sum}}],
         {% endfor %}
     ]);
 

@@ -162,9 +162,11 @@
               </svg>
             </a>
             <a
-              href="{% url 'products-delete' list.id %}"
+{#              href="{% url 'products-delete' list.id %}"#}
               class="bg-danger p-1 text-white rounded"
               style="font-size: 12px"
+              data-bs-toggle="modal" data-bs-target="#removeProductModal"
+              onclick="setID(id={{ list.id }})"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -326,6 +328,26 @@
   </table>
 </div>
 </div>
+  </div>
+
+        <!-- Modal -->
+<div class="modal fade" id="removeProductModal" tabindex="-1" aria-labelledby="removeProductModal" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="removeProductModal">Remove product</h5>
+        <a href="/products-list" class="btn-close" aria-label="Close"></a>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to remove this product from the list?
+      </div>
+      <div class="modal-footer">
+        <a href="/products-list" class="btn btn-secondary text-decoration-none">Cancel</a>
+        <a  class="btn btn-primary text-decoration-none" id="confirmCloseOrder">Confirm</a>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
 <script
@@ -468,6 +490,12 @@
       history.style.display = "block";
       active.style.display = "none";
     }
+  }
+
+    function setID(id) {
+
+    var confirm = document.getElementById("confirmCloseOrder");
+    confirm.setAttribute('href', `products-delete/${id}`)
   }
 </script>
 

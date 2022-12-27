@@ -37,7 +37,8 @@
     {% endblock %}
   </head>
 
-  <body>
+
+  <body style="font-family: 'Inter', sans-serif;">
     {% if user.is_authenticated %} {% include "sidenav.html" %} {% endif %}
 
     <!-- ======== main-wrapper start =========== -->
@@ -47,6 +48,9 @@
       <!-- ========== section start ========== -->
       {% block body %} {% endblock %}
       <!-- ========== section end ========== -->
+
+      <!-- ========== footer start =========== -->
+      <!-- ========== footer end =========== -->
     </main>
     <!-- ======== main-wrapper end =========== -->
     <script src="https://unpkg.com/flowbite@1.4.5/dist/flowbite.js"></script>

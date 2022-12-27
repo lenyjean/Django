@@ -5,7 +5,7 @@
       var data = google.visualization.arrayToDataTable([
         ["Product", "Sales" ],
         {% for product in total_sales_per_product %}
-            ["{{product.products_id__product_name}}", {{product.total_amount__sum}}],
+            ["{{product.product_id__product_name}}", {{product.total_amount__sum}}],
         {% endfor %}
       ]);
 

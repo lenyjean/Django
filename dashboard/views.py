@@ -17,8 +17,8 @@ def homepage(request):
     date = datetime.date.today()
     orders = Orders.objects.filter(status__in=["Pending", "Late"])[:5]
     products = Products.objects.filter(status__in=["Available"])[:5]
-    orders_date = Orders.objects.filter(pickup_date=date)
-    orders_today = Orders.objects.filter(pickup_date=date).count()
+    orders_date = Orders.objects.filter(pickup_date=date, status="Pending")
+    orders_today = Orders.objects.filter(pickup_date=date, status="Pending").count()
 
     total_orders = Orders.objects.filter(status__in=['Done', 'Pending', 'Cancelled', 'Late']).aggregate(Sum('no_of_order'))
     total_sales = Orders.objects.filter(status="Done").aggregate(Sum('total_amount'))
