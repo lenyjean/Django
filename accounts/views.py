@@ -149,11 +149,14 @@ def login_page(request):
         try:
             check_email = User.objects.get(username=username)
             user = authenticate(request, username=username, password=password)
-            if user is not None:
-                login(request, user)
-                return redirect("/")
+            if check_email.status:
+                if user is not None:
+                    login(request, user)
+                    return redirect("/")
+                else:
+                    messages.error(request, "Invalid username or password")
             else:
-                messages.error(request, "Invalid username or password")
+                messages.error(request, "Account deactivated. Contact administrator to activate it")
         except User.DoesNotExist:
             messages.error(request, "User doesn't exists. Please contact the administrator for creating new account.")
     context = {

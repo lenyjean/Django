@@ -59,5 +59,5 @@ def products_update(request, pk):
     
 @login_required(login_url='/accounts/login')
 def products_delete(request, pk):
-    products = Products.objects.filter(id=pk).update(status=False)
+    products = Products.objects.filter(id=pk).update(status="Not Available")
     return redirect("products-list")

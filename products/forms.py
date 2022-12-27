@@ -7,7 +7,7 @@ class ProductForms(forms.ModelForm):
     size = forms.CharField(max_length=255, label="Size : (in centimeters)")
     class Meta: 
         model = Products
-        fields = ["product_name", "category", "price", "size"]
+        fields = ["product_name", "category", "price", "size", "status"]
 
        
    
