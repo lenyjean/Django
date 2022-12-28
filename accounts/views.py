@@ -180,7 +180,7 @@ def send_password_reset_link(request):
             encrypt_token = encrypt_data(user.username + "|" + shortuuid.ShortUUID().random(length=100) + "|" + user.email)
             print("ENCRYPTED", encrypt_token)
             print("DECRYPTED", decrypt_data(encrypt_token))
-            link = "http://localhost:8000/accounts/reset-password/" + encrypt_token
+            link = "https://stswebapp.up.railway.app/accounts/reset-password/" + encrypt_token
             send_email(email, link)
             PasswordResetRequest.objects.create(
                 token=encrypt_token
