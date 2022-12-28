@@ -207,7 +207,8 @@ def reset_password_link(request, token):
                     confirm_password = request.POST.get("confirm_password")
 
                     if new_password == confirm_password:
-                        user.set_password(new_password)
+                        update_password = user.set_password(new_password)
+                        print(update_password)
                         PasswordResetRequest.objects.filter(token=token).update(is_expired=True)
                         messages.success(request, "Password changed successfully")
                         return redirect("/accounts/login")
