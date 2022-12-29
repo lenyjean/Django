@@ -82,14 +82,12 @@
           <th scope="col">Category</th>
           <th scope="col">Cake Name</th>
           <th scope="col">Cake Size</th>
-          <th scope="col">Quantity</th>
-          <th scope="col">Pickup Date</th>
           <th scope="col">Created Date</th>
-          <th scope="col">Phone</th>
-          <th scope="col">Status</th>
-          <th scope="col">Mode of Payment</th>
-          <!-- <th scope="col">Name on Cake</th> -->
+          <th scope="col">Pickup Date</th>
+          <th scope="col">Quantity</th>
           <th scope="col">Total Amount</th>
+          <th scope="col">Phone Number</th>
+          <th scope="col">Status</th>
           <th scope="col">Actions</th>
         </tr>
       </thead>
@@ -101,13 +99,12 @@
           <td>{{list.category}}</td>
           <td>{{list.cake_name}}</td>
           <td>{{list.cake_size}}</td>
-          <td>{{list.quantity}}</td>
-          <td>{{list.pickup_date}}</td>
           <td>{{list.created_date}}</td>
+          <td>{{list.pickup_date}}</td>
+          <td>{{list.quantity}}</td>
+          <td>{{list.total_amount}}</td>
           <td>{{list.phone}}</td>
           <td>{{list.status}}</td>
-          <td>{{list.mode_of_payment}}</td>
-          <td>{{list.total_amount}}</td>
           <td colspan="5">
             <a
               href="{% url 'bookings-update' list.id %}"

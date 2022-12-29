@@ -76,7 +76,6 @@ def create_bookings_from_chatbot(request, payload: BookingInputSchema):
             pickup_date = payload.pickup_date,
             phone = payload.phone,
             total_amount = float(payload.total_amount),
-            mode_of_payment = payload.mode_of_payment,
             status="Pending"
         )
         return bookings

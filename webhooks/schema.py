@@ -15,8 +15,7 @@ class BookingInputSchema(Schema):
     total_amount: str
     pickup_date: str
     phone: str
-    mode_of_payment: str
-
+   
 
 class BookingOutputSchema(Schema):
     id: Optional[str] = None
@@ -28,4 +27,3 @@ class BookingOutputSchema(Schema):
     total_amount: Optional[str] = None
     pickup_date: Optional[str] = None
     phone: Optional[str] = None
-    mode_of_payment: Optional[str] = None
