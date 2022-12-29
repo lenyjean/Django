@@ -8,10 +8,6 @@ class Bookings(models.Model):
         ("Cancelled" , "Cancelled"),
         ("Late" , "Late"),
     )
-    mop = (
-        ("GCash", "GCash"),
-        ("Bank Transfer", "Bank Transfer"),
-    )
     customer_name = models.CharField(max_length=225)
     cake_name = models.CharField(max_length=225)
     category = models.CharField(max_length=225)
@@ -21,7 +17,6 @@ class Bookings(models.Model):
     pickup_date = models.CharField(max_length=225)
     phone = models.CharField(max_length=225)
     status = models.CharField(max_length=225, choices=status)
-    mode_of_payment = models.CharField(max_length=225, choices=mop)
     created_date = models.DateTimeField(auto_now_add=True)
 
 
