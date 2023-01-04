@@ -189,7 +189,7 @@ def send_password_reset_link(request):
         except User.DoesNotExist:
             return render(request, template_name, {"success": False, "reset": True})
 
-
+@csrf_exempt
 def reset_password_link(request, token):
     template_name = "registration/reset_password.html"
 
@@ -201,14 +201,16 @@ def reset_password_link(request, token):
             if not i.is_expired:
                 decrypted_token = decrypt_data(token)
                 user_data = decrypted_token.split("|")
-                user = User.objects.get(email=user_data[2])
+                email = user_data[2]
+                user = User.objects.get(email=email)
+                print(user)
                 if request.method == "POST":
                     new_password = request.POST.get("new_password")
                     confirm_password = request.POST.get("confirm_password")
 
                     if new_password == confirm_password:
-                        update_password = user.set_password(new_password)
-                        print(update_password)
+                        user.set_password(new_password)
+                        user.save()
                         PasswordResetRequest.objects.filter(token=token).update(is_expired=True)
                         messages.success(request, "Password changed successfully")
                         return redirect("/accounts/login")

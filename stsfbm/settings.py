@@ -83,7 +83,7 @@ CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = ['https://stswebapp.up.railway.app' , 'https://*.up.railway.app', 'http://127.0.0.1:8000','http://localhost:8000']
 
 
-CSRF_COOKIE_DOMAIN = 'up.railway.app'
+# CSRF_COOKIE_DOMAIN = 'up.railway.app'
 
 CORS_ORIGIN_WHITELIST = (
     'https://stswebapp.up.railway.app',
