@@ -43,13 +43,13 @@ def analytics(request):
     total_orders_per_products = Orders.objects.filter(status__in=['Done', 'Pending', 'Cancelled', 'Late']).values('product_id__product_name').annotate(Sum('no_of_order'))
 
     # Getting the total number of products per category.
-    total_product_per_category = Products.objects.filter(status=True).values('category_id__category').annotate(Count('category'))
+    total_product_per_category = Products.objects.filter(status="Available").values('category_id__category').annotate(Count('category'))
 
     # Getting the total sales per product.
     total_sales_per_product = Orders.objects.filter(status="Done").values('product_id__product_name').annotate(Sum('total_amount'))
 
 
-    context = {
+    context = { 
         "total_orders" : total_orders,
         "total_sales" : total_sales,
         "total_products": total_products,
