@@ -9,10 +9,29 @@
     <div class="card-body">
         <form method="POST">
             {% csrf_token %} {{ form|crispy }}
+            <button type="button" class="btn btn-secondary btn-sm mt-2" id="show-password-btn" onclick="showPassword()">Show Password</button><br/>
             <button type="submit" class="btn btn-primary mt-3">Save</button>
             <a href="{% url "account-list" %}" class="btn btn-secondary mt-3 text-decoration-none">Cancel </a>
           </form>
     </div>
   </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="path/to/your/javascript/file.js"></script>
+<script type="application/javascript">
+  function showPassword() {
+    var password1 = document.getElementById("id_password1");
+    var password2 = document.getElementById("id_password2");
+    if (id_password1.type === "password" || id_password2.type === "password") {
+     password1.type = "text";
+     password2.type = "text";
+      
+  } else {
+    password1.type = "password";
+    password2.type = "password";
+   
+  }
+}
+</script>
+
 {% endblock %}

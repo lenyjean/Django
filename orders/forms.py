@@ -12,7 +12,7 @@ class OrderForms(forms.ModelForm):
     class Meta: 
         model = Orders
         fields = [
-            "customer_name", "customer_address" , "product", "no_of_order", "pickup_date", "status"
+            "customer_name", "customer_address" , "product", "no_of_order", "pickup_date", "contact_number", "status"
         ]
         widgets = {
             "pickup_date" : DateInput()

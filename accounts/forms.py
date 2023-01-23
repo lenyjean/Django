@@ -38,9 +38,9 @@ class UpdateForm(forms.ModelForm):
 
 
 class UpdatePasswordForm(forms.ModelForm):
-    password = forms.CharField(max_length=255, widget=forms.PasswordInput(), label="Old Password")
-    new_password = forms.CharField(max_length=255, widget=forms.PasswordInput())
-    confirm_password = forms.CharField(max_length=255, widget=forms.PasswordInput())
+    password = forms.CharField(max_length=255, widget=forms.PasswordInput(attrs={'class': 'password-field'}), label="Old Password")
+    new_password = forms.CharField(max_length=255, widget=forms.PasswordInput(attrs={'class': 'password-field'}))
+    confirm_password = forms.CharField(max_length=255, widget=forms.PasswordInput(attrs={'class': 'password-field'}))
     class Meta:
         model = User
         fields = ["password", "new_password", "confirm_password"]

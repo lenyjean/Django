@@ -20,7 +20,8 @@ class Orders(models.Model):
     date_ordered = models.DateField(auto_now_add=True)
     pickup_date = models.DateField(auto_now_add=False)
     processed_by = models.CharField(max_length=255)
-    notes = models.TextField()
+    note = models.TextField()
+    contact_number = models.CharField(max_length=255)
     status = models.CharField(max_length=255, choices=status)
 
     class Meta:
