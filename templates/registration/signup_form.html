@@ -1,17 +1,22 @@
 {% extends 'base.html' %} {% load crispy_forms_tags %} {% block title %}Add new
 user account{% endblock %} {% block body %}
-<div class="container">
+<div class="container mt-4">
   <div class="row">
     <div class="col-sm col-md-3 col-lg-3"></div>
     <div class="col-sm col-md-6 col-lg-6">
       <div class="card shadow mt-2">
-        <div class="card-title text-center">
+        <div class="card-title text-center mt-3">
           <h2>Add new account for {{user_type}}</h2>
         </div>
         <div class="card-body">
           <form method="post">
             {% csrf_token %} {{form|crispy}}
-            <div class="d-grid gap-2 mt-3">
+            <div class="d-grid gap-2 mt-2">
+              <div style="display: flex; align-items: center;">
+                <input type="checkbox" id="show-password" onclick="showPassword()">
+                <label for="show-password">&nbsp;Show Password</label>
+              </div>
+              
               <button class="btn btn-primary" type="submit">Create an account</button>
               <a href="{% url "account-list" %}" class="btn btn-secondary text-decoration-none">Cancel</a>
             </div>
@@ -22,4 +27,20 @@ user account{% endblock %} {% block body %}
     <div class="col-sm col-md-3 col-lg-3"></div>
   </div>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="path/to/your/javascript/file.js"></script>
+<script type="application/javascript">
+  function showPassword() {
+    var password1 = document.getElementById("id_password1");
+    var password2 = document.getElementById("id_password2");
+    if (password1.type === "password" || password2.type === "password") {
+      password1.type = "text";
+      password2.type = "text";
+    } else {
+      password1.type = "password";
+      password2.type = "password";
+    }
+  }
+</script>
+
 {% endblock %}

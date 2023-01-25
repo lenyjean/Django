@@ -131,12 +131,12 @@ WSGI_APPLICATION = 'stsfbm.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.sqlite3',
-#         'NAME': BASE_DIR / 'db.sqlite3',
-#     }
-# }
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+    }
+}
 import os
 # DATABASES = {
 #     'default': {
@@ -149,20 +149,20 @@ import os
 #     }
 # }
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': "defaultdb",
-        'USER': "doadmin",
-        'PASSWORD': "AVNS_jlFK0xDzICc_M1a-_c_",
-        'HOST': "db-postgresql-sgp1-57187-do-user-13128433-0.b.db.ondigitalocean.com",
-        'PORT': "25060",
-        'OPTIONS': {
-            'sslmode': 'verify-full',
-            'sslrootcert': ('ca-certificate.crt')
-        }
-    }
-}
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': "defaultdb",
+#         'USER': "doadmin",
+#         'PASSWORD': "AVNS_jlFK0xDzICc_M1a-_c_",
+#         'HOST': "db-postgresql-sgp1-57187-do-user-13128433-0.b.db.ondigitalocean.com",
+#         'PORT': "25060",
+#         'OPTIONS': {
+#             'sslmode': 'verify-full',
+#             'sslrootcert': ('ca-certificate.crt')
+#         }
+#     }
+# }
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 

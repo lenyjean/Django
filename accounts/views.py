@@ -55,7 +55,7 @@ def user_update(request, pk):
 
 @login_required(login_url='/accounts/login')
 def profile_update(request, pk):
-    template_name = "user_accounts/update_account.html"
+    template_name = "profile/update_profile.html"
     user = get_object_or_404(User, pk=pk)
     form = UpdateForm(request.POST or None, instance=user)
     if form.is_valid():
